@@ -15,7 +15,7 @@ development:
   database: movie_seen_development
   pool: 5
   username: maint
-  password: kochinda
+  password: 
   socket: /var/lib/mysql/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -38,5 +38,5 @@ production:
   database: movie_seen
   pool: 5
   username: maint
-  password: kochinda
+  password: 
   socket: /var/lib/mysql/mysql.sock
