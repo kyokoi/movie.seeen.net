@@ -18,6 +18,11 @@ class RankingController < ApplicationController
     @rankings = compile [:stars]
   end
 
+  def wish
+    @display  = 10
+    @rankings = compile [:wishs]
+  end
+
   def detail
     @display  = 100
     @rankings = catch_data params[:kind]

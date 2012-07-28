@@ -90,7 +90,30 @@ def stars_count(title, display, target_date, monitor)
   File.write("#{OUTPUT_DIR}#{title}.yml", result_set.to_yaml)
 
   monitor.append('star count', "type of #{title}");
+end
 
+def wishs_count(title, display, target_date, monitor)
+  # arguments
+  result_set = {
+    :title      => title,
+    :display    => display,
+    :date_start => DateTime.now,
+    :date_end   => target_date,
+    :set => []
+  }
+
+  sql = "select m.id, m.name_of_japan, count(*) as number from seens s, movies m where s.movie_id = m.id and s.negative = 0 and s.evaluation = 84 group by s.movie_id order by number desc;"
+  rs = ActiveRecord::Base.connection.execute(sql);
+  rs.each do |row|
+    result_set[:set] << {
+      :name   => row[1],
+      :number => row[2],
+      :link   => "/movie/#{row[0]}/seens"
+    }
+  end
+
+  File.write("#{OUTPUT_DIR}#{title}.yml", result_set.to_yaml)
+  monitor.append('wish count', "type of #{title}");
 end
 
 current_date = DateTime.now
@@ -107,8 +130,8 @@ movie_count('weekly_movie',  '見られた映画ランキング（過去１週�
 movie_count('monthly_movie', '見られた映画ランキング（過去１ヶ月）', date_before_a_month, monitor)
 movie_count('yearly_movie',  '見られた映画ランキング（過去１年間）', date_before_a_year, monitor)
 movie_count('all_movie',     '見られた映画ランキング（過去全て）',   date_before_older,  monitor)
-
-stars_count('stars', 'スター', nil, monitor)
+stars_count('stars', 'スター',     nil, monitor)
+wishs_count('wishs', '見たい映画', nil, monitor)
 
 monitor.aging
 
