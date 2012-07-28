@@ -1,0 +1,6 @@
+<div>検索結果が０件でした。<br />検索条件を変えてもう一度検索しましょう。</div>
+
+<ul>
+<li><%= form_tag search_movies_path, :method => "get" do -%><%= text_field_tag 'search[word]', "", :size => 12 %><%= image_submit_tag('layout/search.png') %><% end %></li>
+</ul>
+

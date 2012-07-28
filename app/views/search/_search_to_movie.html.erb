@@ -1,0 +1,11 @@
+<% @matches.each do |movie| -%>
+<div class="result_of_search">
+<%= link_to movie_seens_path(:movie_id => movie.id) do -%>
+<div class="rightside">
+<div><span class="movie_title"><%= movie.name_of_japan %></span>&nbsp;公開：<%= movie.open_date.strftime('%Y') %>年</div>
+<div>ジャンル：<%= movie.category_tag.map{|tag| tag.name }.join(' ') %></div>
+<% if 0 < movie.seen_users.count %><div class="seen_users">この映画は<strong><%= movie.seen_users.count %></strong>人が見ています。</div><% end %>
+</div>
+<% end -%>
+</div>
+<% end -%>

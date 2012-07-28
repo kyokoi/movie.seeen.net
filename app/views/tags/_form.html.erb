@@ -1,0 +1,35 @@
+<%= form_for(@tag) do |f| %>
+<% if @tag.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
+
+    <ul>
+    <% @tag.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="field">
+<table>
+<tr>
+<th>name</th><td><%= f.text_field :name %></td>
+</tr>
+<tr>
+<th>attribute</th><td><%= f.select :attrib, options_for_select(@map_of_attribs, @tag.attrib_code) %></td>
+</tr>
+<tr>
+<th>belong</th><td><%= f.select :belong, options_for_select(@list_of_attribs.map{|attr| [attr.name, attr.id]}.unshift(['no', 0]), @tag.belong) %></td>
+</tr>
+<tr>
+<th>order by</th><td><%= f.text_field :order_by %></td>
+</tr>
+<tr>
+<th>negative</th><td><%= f.text_field :negative %></td>
+</tr>
+</table>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>

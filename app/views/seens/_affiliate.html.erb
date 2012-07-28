@@ -1,0 +1,12 @@
+<% unless @movie.affiliates.blank? -%>
+<div id="movie_affiliate">
+<h2>関連商品</h2>
+<ul>
+<% @movie.affiliates.each do |affiliate| -%>
+<%= link_to affiliate.url, :target => "_blank" do %>
+<li><span class="linkable">›</span><%= affiliate.name %></li>
+<% end -%>
+<% end -%>
+</ul>
+</div>
+<% end %>

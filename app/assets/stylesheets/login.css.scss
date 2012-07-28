@@ -1,0 +1,65 @@
+// Place all the styles related to the login controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+a { text-decoration: none; }
+section .login a:link    {text-decoration: underline; color: #339900; }
+section .login a:visited {text-decoration: underline; color: #339900; }
+section .login a:active  {text-decoration: underline; color: #339900; }
+section .login a:hover   {text-decoration: underline; color: #339900; }
+
+h1
+{
+  color: #339900;
+  font-size: 121%;
+  font-weight: bold;
+
+  margin: 10px;
+  padding: 5px 5px 0px 2px;
+
+  border-bottom: solid 1px #339900;
+}
+
+h2
+{
+  color: #339900;
+  font-weight: bold;
+  font-size: 110%;
+
+  padding: 5px 5px 0px 2px;
+}
+
+p_service
+{
+  margin: 10px;
+}
+p_service ul
+{
+  margin: 5px;
+}
+p_service li
+{
+  list-style: none;
+  width: 100%;
+}
+
+section
+{
+  margin: 5px;
+}
+section h3
+{
+  color: #339900;
+}
+section p
+{
+  margin-bottom: 10px;
+}
+section ul
+{
+  margin-bottom: 10px;
+}
+section note
+{
+  font-size: x-small;
+}

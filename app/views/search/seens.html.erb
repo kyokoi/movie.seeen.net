@@ -1,0 +1,33 @@
+<div id="search_items">
+
+<% if @search_condition -%>
+<div id="search_condition">
+<%= @search_condition %>
+</div>
+<% end -%>
+
+<% if @monthly -%>
+<div id="authors_activity">
+<%= link_to my_activity_path(@monthly.author_id) do %><span class="linkable">›</span>今月は映画を<strong><%= @monthly.all %></strong>本見ています。<% end %>
+</div>
+<% end -%>
+
+<div id="narrow_items">
+<%= link_to search_path(:search => params[:search].merge({:narrow => :none})) do -%>
+<all class="narrow_items_type<% unless ['star', 'seen', 'wish'].include?(params[:search][:narrow]) %>_selected<% end %>">全て(<%= @activity[:all] %>)</all>
+<% end -%>
+<%= link_to search_path(:search => params[:search].merge({:narrow => :star})) do -%>
+<star class="narrow_items_type<% if params[:search][:narrow] == "star"%>_selected<% end %>"><%= image_tag('layout/stars_on.png') %>(<%= @activity[:stars] %>)</star>
+<% end -%>
+<%= link_to search_path(:search => params[:search].merge({:narrow => :seen})) do -%>
+<seen class="narrow_items_type<% if params[:search][:narrow] == "seen"%>_selected<% end %>"><%= image_tag('layout/stars_off.png') %>(<%= @activity[:all] - @activity[:stars] %>)</seen>
+<% end -%>
+<%= link_to search_path(:search => params[:search].merge({:narrow => :wish})) do -%>
+<wish class="narrow_items_type<% if params[:search][:narrow] == "wish"%>_selected<% end %>">見たい(<%= @activity[:wishes] %>)</wish>
+<% end -%>
+</div>
+
+<%= render @template %>
+<%= render 'next_page' %>
+</div>
+

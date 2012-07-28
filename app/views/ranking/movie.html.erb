@@ -1,0 +1,6 @@
+<%= render 'selecter' %>
+
+<%= render :partial => 'display', :locals => {:items => @rankings[:weekly_movie], :limit => @display} %>
+<%= render :partial => 'display', :locals => {:items => @rankings[:monthly_movie], :limit => @display} %>
+<%= render :partial => 'display', :locals => {:items => @rankings[:yearly_movie], :limit => @display} %>
+<%= render :partial => 'display', :locals => {:items => @rankings[:all_movie], :limit => @display} %>

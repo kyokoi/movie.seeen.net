@@ -1,0 +1,30 @@
+--- 
+:name: Rankings
+:messages: 
+  5296138becf062b3002ba09cc24996e2: 
+    :count: 4
+    :message: seen count
+    :detail: 
+    - type of weekly_seen
+    - type of monthly_seen
+    - type of yearly_seen
+    - type of all_seen
+  4dd0a2252b39f69e5c5b6444037a3899: 
+    :count: 4
+    :message: movie count
+    :detail: 
+    - type of weekly_movie
+    - type of monthly_movie
+    - type of yearly_movie
+    - type of all_movie
+  b618e7113ef9a4191622f6e6c40aaf77: 
+    :count: 1
+    :message: star count
+    :detail: 
+    - type of stars
+:recent: 
+  :start: 2012-06-17T12:24:09+09:00
+  :end: 2012-06-17T12:24:14+09:00
+:previous: 
+  :start: 2012-06-17 08:28:56 +09:00
+  :end: 2012-06-17 08:28:58 +09:00

@@ -1,0 +1,13 @@
+<%= link_to params[:return] do -%>
+<div>
+<span class="linkable">›</span>戻る
+</div>
+<% end -%>
+
+<%= render :partial => 'display', :locals => {:items => @rankings, :limit => @display} %>
+
+<%= link_to params[:return] do -%>
+<div>
+<span class="linkable">›</span>戻る
+</div>
+<% end -%>

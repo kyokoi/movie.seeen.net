@@ -1,0 +1,22 @@
+<div id="movie_detail">
+<div class="rightside">
+<div class="story">ストーリー</div>
+<div class="movie_outline"><%= @movie.outline %></div>
+<div>公開：<%= @movie.open_date.strftime('%Y') %>年</div>
+<div>上映時間：<%= @movie.show_time %>分</div>
+<% if action_name == 'index' -%>
+<div id="google_plus_setup">
+<g:plusone size="medium" href="<%= request.url %>"></g:plusone>
+<% end -%>
+</div>
+<% unless @total_counts.blank? -%>
+<div class="view_number">
+<% if @total_counts[:users] > 0 %><strong><%= @total_counts[:users] %></strong>人が見ています。<% end -%>
+<% if @total_counts[:seens] > 0 %><strong><%= @total_counts[:seens] %></strong>回みられています。<% end -%>
+<% if @total_counts[:stars] > 0 %><strong><%= @total_counts[:stars] %></strong>人がスターをつけています。<% end -%>
+<% if @total_counts[:wishs] > 0 %><strong><%= @total_counts[:wishs] %></strong>人が見たいと思っています。<% end -%>
+</div>
+<% end -%>
+</div>
+</div>
+

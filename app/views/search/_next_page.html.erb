@@ -1,0 +1,5 @@
+<% if word = next_page(@search_count, @offset, @each_limit_when_search) -%>
+<%= link_to(url_path(action_name, @offset + 1, params[:search]), :url_options => {:a => action_name}, :remote => true, 'data-type' => 'html', :id => "next_page") do -%>
+<div id="next_page_button">次の<%= word %>件</div>
+<% end -%>
+<% end -%>

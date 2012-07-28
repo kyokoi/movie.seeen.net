@@ -1,0 +1,68 @@
+<%= render 'movie_title' %>
+
+<div><%= flash[:notice] %></div>
+
+<%= render 'movie' -%>
+
+<%= render 'affiliate' -%>
+
+<div id="movie_seens">
+<regist_movie class="action">
+<%= link_to 'この映画を見た！', new_movie_seen_path %>
+</regist_movie>
+<wish class="action">
+<% if @has_wishlist -%>
+<%= link_to '見たい映画から外す', movie_wish_delete_path(@movie.id) -%>
+<% else -%>
+<%= link_to 'この映画が見たい！', movie_wish_new_path(@movie.id) -%>
+<% end -%>
+</wish>
+</div>
+
+<div id="narrow_items">
+<%= link_to movie_seens_path(:movie_id => @movie.id) do -%>
+<all class="narrow_items_type<% unless ['star', 'seen', 'wish'].include?(params[:narrow]) %>_selected<% end %>">全て(<%= @activity[:all] %>)</all>
+<% end -%>
+<%= link_to movie_seens_path(:movie_id => @movie.id, :narrow => 'star') do -%>
+<star class="narrow_items_type<% if params[:narrow] == "star"%>_selected<% end %>"><%= image_tag('layout/stars_on.png') %>(<%= @activity[:stars] %>)</star>
+<% end -%>
+<%= link_to movie_seens_path(:movie_id => @movie.id, :narrow => 'seen') do -%>
+<seen class="narrow_items_type<% if params[:narrow] == "seen"%>_selected<% end %>"><%= image_tag('layout/stars_off.png') %>(<%= @activity[:all] - @activity[:stars] %>)</seen>
+<% end -%>
+<%= link_to movie_seens_path(:movie_id => @movie.id, :narrow => 'wish') do -%>
+<wish class="narrow_items_type<% if params[:narrow] == "wish"%>_selected<% end %>">見たい(<%= @activity[:wishes] %>)</wish>
+<% end -%>
+</div>
+
+<% if @seens.count < 1 -%>
+<div>この映画はまだ誰も見ていません。</div>
+<% end -%>
+<% @seens.each do |seen| -%>
+<%= link_to "/search/?search[author]=#{seen.author.id}" do -%>
+<div class="result_of_same_movie_seener<% if seen.wish? %> with_wish<% end %>">
+<div class="leftside">
+<%= image_tag(seen.author.image, :size => '64x64') %>
+</div>
+<div class="rightside">
+<div>
+<%= seen.author.name %>
+<% unless seen.wish? %>&nbsp;見た日：<%= seen.date.strftime('%Y/%m/%d') %><% end -%>
+</div>
+<% unless seen.wish? -%>
+<div><%= image_tag(stars(seen.evaluation)) %><%= seen.acondition_tag.name %></div>
+<div><%= seen.comment %></div>
+<% if seen.author.uid == session[:uid] && seen.author.provider == session[:provider] && !(seen.wish?) -%>
+<div>
+<span><%= link_to '修正する', edit_movie_seen_path(@movie.id, seen) %></span>
+<span><%= link_to '削除する', movie_seen_path(@movie.id, seen), confirm: 'Are you sure?', method: :delete %></span>
+</div>
+<% end -%>
+<% end -%>
+<% end -%>
+</div>
+<div class="navigation_allow">
+<%= image_tag('layout/arrow.png') %>
+</div>
+</div>
+<% end %>
+

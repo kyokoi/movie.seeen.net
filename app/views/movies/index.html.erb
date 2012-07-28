@@ -1,0 +1,30 @@
+<h1>Listing movies(<%= number_with_delimiter(@movies_count) %>)</h1>
+
+<%= form_tag movies_path, :method => "get" do %><%= text_field_tag 'movies[word]', "#{params[:movies][:word] if params[:movies]}", :size => 20 %><%= image_submit_tag('layout/search.png') %><% end %>
+
+<%= link_to 'New Movie', new_movie_path %>
+
+<table>
+<% @movies.each do |movie| %>
+  <tr style="border: 1px #cccccc solid;">
+    <td style="padding: 2px;"><%= movie.id %></td>
+    <td style="padding: 2px;">
+      <div><%= movie.name_of_original %></div>
+      <div><%= movie.name_of_japan %></div>
+      <div><%= movie.name_of_japan_kana %></div>
+      <div><%= movie.name_of_english %></div>
+    </td>
+    <td style="padding: 2px;"><div><%= movie.image %></div><div><%= image_tag movie.image, :size => "64x64" %></div></td>
+    <td style="padding: 2px;"><%= movie.show_time %></td>
+    <td style="padding: 2px;"><%= movie.open_date %></td>
+    <td style="padding: 2px;"><%= movie.category_tag.map{|tag| tag.name }.join(' ') %></td>
+    <td style="padding: 2px;"><%= movie.negative %></td>
+    <td style="padding: 2px;">
+      <div><%= link_to 'Show Movie',     movie_path(movie) %></div>
+      <div><%= link_to 'Movie Edit', edit_movie_path(movie) %></div>
+      <div><%= link_to 'Destroy', movie, confirm: 'Are you sure?', method: :delete %></div>
+    </td>
+  </tr>
+<% end %>
+</table>
+

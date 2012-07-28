@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= @page_title %> - MovieSeen</title>
+<%= stylesheet_link_tag "reset", "application", "admin", controller_name %>
+<%= javascript_include_tag "application" %>
+<%= csrf_meta_tags %>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+<style>
+a { text-decoration: underline; }
+a:link    {text-decoration: underline; color: #339900; }
+a:visited {text-decoration: underline; color: #339900; }
+a:active  {text-decoration: underline; color: #339900; }
+a:hover   {text-decoration: underline; color: #339900; }
+
+</style>
+</head>
+<body>
+
+<div id="admin_headline">
+<ul>
+<li><%= link_to "Management top", admin_path %></li>
+<li>｜</li>
+<li><%= link_to "Movies management", movies_path %></li>
+<li>｜</li>
+<li><%= link_to "Tags management",   tags_path %></li>
+</ul>
+</div>
+
+<%= yield %>
+
+</body>
+</html>

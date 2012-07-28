@@ -1,0 +1,24 @@
+<% @matches.each do |seen| -%>
+<div class="result_of_search<% if seen.wish? %> with_wish<% end %>">
+<%= link_to movie_seens_path(:movie_id => seen.movie.id) do -%>
+<div class="rightside">
+<data_and_area>
+<%= image_tag stars(seen.evaluation) %>
+<span class="movie_title"><%= seen.movie.name_of_japan %></span>
+<% unless seen.wish? -%>
+</data_and_area>
+<div>
+<%= seen.date.strftime('%Y/%m/%d') %>
+<% unless seen.wish? -%>
+<%= seen.acondition_tag.name %>
+<% end -%>
+</div>
+<% end -%>
+<% if 0 < seen.movie.seen_users.count %><div class="seen_users">この映画は<strong><%= seen.movie.seen_users.count %></strong>人が見ています。</div><% end %>
+</div>
+<div class="navigation_allow">
+<%= image_tag('layout/arrow.png') %>
+</div>
+<% end -%>
+</div>
+<% end %>

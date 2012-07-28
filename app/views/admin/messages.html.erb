@@ -1,0 +1,15 @@
+<h1>Movie seen.</h1>
+
+<div><%= link_to 'Back', admin_path %></dvi>
+
+<div class="box" id="messages">
+<h2>Messages</h2>
+<h3><%= @message[:name] %> - More detail - <%= @message[:messages][params[:message_id]][:message] %></h3>
+<ul>
+<% @message[:messages][params[:message_id]][:detail].each do |detail| -%>
+<li><%= detail %></li>
+<% end -%>
+</ul>
+</div>
+
+<div><%= link_to 'Back', admin_path %></dvi>

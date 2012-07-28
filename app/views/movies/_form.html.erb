@@ -1,0 +1,53 @@
+<%= form_for(@movie) do |f| %>
+<% if @movie.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+    <ul>
+    <% @movie.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="field">
+<table>
+<tr>
+<th>name_of_original</th><td><%= f.text_field :name_of_original %></td>
+</tr>
+<tr>
+<th>name_of_japan</th><td><%= f.text_field :name_of_japan %></td>
+</tr>
+<tr>
+<th>name_of_japan_kana</th><td><%= f.text_field :name_of_japan_kana %></td>
+</tr>
+<tr>
+<th>name_of_english</th><td><%= f.text_field :name_of_english %></td>
+</tr>
+<tr>
+<th>image</th><td><%= f.text_field :image %></td>
+</tr>
+<tr>
+<th>show_time</th><td><%= f.text_field :show_time %></td>
+</tr>
+<tr>
+<th>outline</th><td><%= f.text_area :outline %></td>
+</tr>
+<tr>
+<th>open_date</th><td><%= f.date_select :open_date, :start_year => 1900, :end_year => Time.now.year + 5, :use_month_numbers => true %></td>
+</tr>
+<tr>
+<th>category</th><td><%= f.select :category, options_for_select(@categories.map{|category| [category.name, category.id]}, @movie.category) %></td>
+</tr>
+<tr>
+<th>アマゾンアフィリエイトURL</th><td></td>
+</tr>
+<tr>
+<th>negative</th><td><%= f.text_field :negative %></td>
+</tr>
+</table>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>

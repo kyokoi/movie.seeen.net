@@ -1,0 +1,45 @@
+<table>
+  <tr style="border: 1px #cccccc solid;">
+    <td style="padding: 2px;"><%= @movie.id %></td>
+    <td style="padding: 2px;">
+      <div><%= @movie.name_of_original %></div>
+      <div><%= @movie.name_of_japan %></div>
+      <div><%= @movie.name_of_japan_kana %></div>
+      <div><%= @movie.name_of_english %></div>
+    </td>
+  </tr>
+</table>
+
+<hr />
+
+<%= form_for([@movie, @affiliate]) do |f| %>
+<% if @affiliate.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@affiliate.errors.count, "error") %> prohibited this affiliate from being saved:</h2>
+
+  <ul>
+  <% @affiliate.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+<table>
+<tr>
+<th>表示テキスト</th><td><%= f.text_field :name %></td>
+</tr>
+<tr>
+<th>アフィリエイトURL</th><td><%= f.text_field :url %></td>
+</tr>
+<tr>
+<th>ソート順</th><td><%= f.text_field :order_by %></td>
+</tr>
+</table>
+</div>
+<div class="actions">
+  <%= hidden_field_tag 'affiliate[movie_id]',  @movie.id %>
+  <%= f.submit %>
+</div>
+<% end %>

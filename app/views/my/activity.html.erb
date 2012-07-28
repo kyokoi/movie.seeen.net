@@ -1,0 +1,50 @@
+<div id="search_condition">
+<%= @my.name %>のアクティビティ
+</div>
+
+<H2><%= image_tag(@my.image) %></h2>
+<div>全視聴数：<%= in_total_of_seens @month %>本</div>
+<div>月間平均視聴数：<%= in_average_of_seens_monthly @month %>本</div>
+
+<h2>年間アクティビティ</h2>
+<table class="tableout">
+<tr>
+<th>年</th>
+<th>全て</th>
+<th><%= image_tag('layout/stars_on.png') %></th>
+<th><%= image_tag('layout/stars_off.png') %></th>
+<th>見たい</th>
+</tr>
+<% activity_of_years(@month).each do |key, seen| -%>
+<tr>
+<td><%= key %></td>
+<td><%= seen[:all] %></td>
+<td><%= seen[:stars] %></td>
+<td><%= seen[:all] - seen[:stars] %></td>
+<td><%= seen[:wishes] %></td>
+</tr>
+<% end -%>
+</table>
+
+<h2>月間アクティビティ</h2>
+
+<table class="tableout">
+<tr>
+<th>月</th>
+<th>全て</th>
+<th><%= image_tag('layout/stars_on.png') %></th>
+<th><%= image_tag('layout/stars_off.png') %></th>
+<th>見たい</th>
+</tr>
+<% @month.each do |seen| -%>
+<tr>
+<td><%= seen.date.strftime("%Y-%m") %></td>
+<td><%= seen.all %></td>
+<td><%= seen.stars %></td>
+<td><%= seen.all - seen.stars %></td>
+<td><%= seen.wishes %></td>
+</tr>
+<% end -%>
+</table>
+
+<%= link_to '戻る', "/search/?search[author]=#{@my.id}" %>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= @page_title %> - MovieSeen</title>
+<meta name="description" content="見たい映画を記録する。見た映画を記録する。思い出の映画を忘れないように履歴をメモしよう。" />
+<meta name="keywords" content="見たい映画を記録する。見た映画を記録する。思い出の映画を忘れないように履歴をメモしよう。" />
+<%= stylesheet_link_tag "reset", "application", controller_name %>
+<%= javascript_include_tag "application" %>
+<%= csrf_meta_tags %>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+
+<% if @author -%>
+<div id='headline'>
+<%= form_tag search_movies_path, :method => "get" do -%>
+<%= link_to search_path do %><div id="author"><%= @author.name %><%= link_to 'ランキング！', ranking_movie_path, :class => 'ranking_path' %></div><% end %>
+<div id="headline_search"><%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :class => "headline_search_box", :placeholder => "映画を検索！", :size => 12 %><%= image_submit_tag('layout/search.png') %></div>
+<% end -%>
+</div>
+<% end -%>
+
+<%= yield %>
+
+<% if @author -%>
+<div id="footerline">
+<ul>
+<li><%= link_to 'お問い合わせ・ご要望', 'https://plus.google.com/u/0/b/114587405265399791648/', :target => '_blank' %></li>
+<li><%= link_to '使い方', about_path %></li>
+<li><%= link_to 'ログアウト',logout_path %></li>
+</ul>
+</div>
+<% end -%>
+
+<!-- g+ -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ja'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+</body>
+</html>

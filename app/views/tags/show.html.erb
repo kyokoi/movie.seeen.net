@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tr style="border: 1px #cccccc solid;">
+    <td style="padding: 2px;"><%= @tag.id %></td>
+    <td style="padding: 2px;">
+      <div><%= @tag.name %></div>
+      <div><%= @tag.attrib_name %></div>
+      <div><%= @tag.belong_tag.name %></div>
+    </td>
+    <td style="padding: 2px;"><%= @tag.negative %></td>
+    <td style="padding: 2px;">
+      <div><%= link_to 'Edit', edit_tag_path(@tag) %></div>
+      <div><%= link_to 'Back', tags_path %></div>
+    </td>
+  </tr>
+</table>
+

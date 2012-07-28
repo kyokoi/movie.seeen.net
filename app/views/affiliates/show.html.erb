@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+<table>
+<tr>
+<th>表示テキスト</th><td><%= @affiliate.name %></td>
+</tr>
+<tr>
+<th>アフィリエイトURL</th><td><%= @affiliate.url %></td>
+</tr>
+<tr>
+<th>ソート順</th><td><%= @affiliate.order_by %></td>
+</tr>
+</table>
+</p>
+
+
+<%= link_to 'Edit', edit_movie_affiliate_path(@movie, @affiliate) %> |
+<%= link_to 'Back', movie_affiliates_path(@movie) %>

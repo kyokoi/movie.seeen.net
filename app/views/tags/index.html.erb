@@ -1,0 +1,25 @@
+<h1>Listing tags(<%= @tag_groups.count %>)</h1>
+
+New <%= link_to 'Tag Group', new_tag_path({:g => 1}) %> or  <%= link_to 'Tag', new_tag_path %>
+
+<table>
+<% @tag_groups.each do |tag_group| %>
+  <tr style="border: 1px #cccccc solid;">
+    <td style="padding: 2px;"><%= tag_group.id %></td>
+    <td style="padding: 2px;"><%= tag_group.name %></td>
+    <td style="padding: 2px;">
+      <div><%= link_to 'Show', tag_path(tag_group) %></div>
+      <div><%= link_to 'Edit', edit_tag_path(tag_group) %></div>
+      <div><%= link_to 'Destroy', tag_group, confirm: 'Are you sure?', method: :delete %></div>
+    </td>
+    <td style="padding: 2px; vertical-align: top">
+      <% tag_group.follow_tags.order("order_by asc").each do |tag| -%>
+        <span class="tag_box" style="block: inline; float: left; margin: 2px 4px; background-color: <% if tag.attrib %>#E6E6FA<% else %>#dddddd<% end %>">
+          <div><%= tag.id %> <%= tag.name %></div><div style="font-size: xx-small;"><%= link_to 'Show', tag_path(tag) %>|<%= link_to 'Edit', edit_tag_path(tag) %>|<%= link_to 'Destroy', tag_path(tag), confirm: 'Are you sure?', method: :delete %></div>
+        </span>
+      <% end -%>
+    </td>
+  </tr>
+<% end %>
+</table>
+

@@ -1,0 +1,38 @@
+<h1>Listing affiliates on Movie</h1>
+
+<ul>
+<li style="display: inline;"><%= link_to 'Show Movie', movie_path(@movie) %></li>
+<li style="display: inline;"><%= link_to 'New Affiliate', new_movie_affiliate_path %></li>
+</ul>
+
+<table>
+  <tr style="border: 1px #cccccc solid;">
+    <td style="padding: 2px;"><%= @movie.id %></td>
+    <td style="padding: 2px;">
+      <div><%= @movie.name_of_original %></div>
+      <div><%= @movie.name_of_japan %></div>
+      <div><%= @movie.name_of_japan_kana %></div>
+      <div><%= @movie.name_of_english %></div>
+    </td>
+  </tr>
+</table>
+
+<hr />
+
+<p><strong><%= @movie.name_of_japan %></strong>にひもづくアフィリエイト一覧</p>
+<table>
+
+<% @affiliates.each do |affiliate| %>
+  <tr style="border: 1px #cccccc solid;">
+    <td>
+      <div><%= affiliate.name %></div>
+      <div><%= affiliate.url %></div>
+    </td>
+    <td>
+      <div><%= link_to 'Edit', edit_movie_affiliate_path(@movie, affiliate) %></div>
+      <div><%= link_to 'Destroy', [@movie, affiliate], confirm: 'Are you sure?', method: :delete %></div>
+    </td>
+  </tr>
+<% end %>
+</table>
+

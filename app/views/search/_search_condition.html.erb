@@ -1,0 +1,7 @@
+<div id="search_condition">
+<ul>
+<li><h3><%= "#{@search_condition unless @search_condition.blank?}" %></h3></li>
+<li><span>（<%= "#{number_with_delimiter(@search_count) unless @search_count.blank?}" %>件）</span></li>
+</ul>
+</div>
+

@@ -1,0 +1,43 @@
+<h1>Movie seen.</h1>
+
+<div class="box" id="index">
+<h2>Management Top.</h2>
+<ul>
+<li><%= link_to "Amazon affiliate program", "http://affiliate.amazon.co.jp/gp/associates/network/reports/main.html", :target => "_blank" %></li>
+<li><%= link_to "Google webmaster tool", "https://www.google.com/webmasters/tools/home?hl=ja", :target => "_blank" %></li>
+<li><%= link_to "Google Adwords", "https://adwords.google.co.jp/cm/CampaignMgmt?__u=1043928698&__c=9886275698#r.ONLINE&app=cm", :target => "_blank" %></li>
+</ul>
+</div>
+
+<div class="box" id="messages">
+<h2>Messages</h2>
+<% @messages.each do |message| -%>
+<h3><%= message[:name] %></h3>
+
+<table>
+<tr><th> </th><th>最新</th><th>前回</th></tr>
+<tr>
+<th>開始</th>
+<td><%= message[:recent][:start].strftime('%Y/%m/%d %H:%M:%S') %></td>
+<td><%= message[:previous][:start].strftime('%Y/%m/%d %H:%M:%S') %></td>
+</tr>
+<tr>
+<th>終了</th>
+<td><%= message[:recent][:end].strftime('%Y/%m/%d %H:%M:%S') %></td>
+<td><%= message[:previous][:end].strftime('%Y/%m/%d %H:%M:%S') %></td>
+</tr>
+</table>
+
+<table>
+<tr><th>Message</th><th>詳細</th><th>回数</th></tr>
+<% message[:messages].each do |key, value| -%>
+<tr>
+<td><%= value[:message] %></td>
+<td><%= value[:detail].first %><%if value[:count] > 1 %><detail><%= link_to 'more...', admin_messages_path(message[:_target], key) %></detail><% end %></td>
+<td class="number"><%= value[:count] %></td>
+</tr>
+<% end -%>
+</table>
+
+<% end -%>
+</div>

@@ -1,0 +1,71 @@
+<%= form_for([@movie, @seen]) do |f| %>
+<% if @seen.errors.any? %>
+<div id="error_explanation">
+<h2><%= pluralize(@seen.errors.count, "error") %> prohibited this seen from being saved:</h2>
+
+<ul>
+<% @seen.errors.full_messages.each do |msg| %>
+<li><%= msg %></li>
+<% end %>
+</ul>
+</div>
+<% end %>
+
+<div class="field">
+<%= hidden_field_tag 'seen[movie_id]',  @movie.id %>
+<%= hidden_field_tag 'seen[author_id]', @author.id %>
+
+<div id="watch_date">
+<span>見た日</span>
+<%= f.date_select :date, :start_year => 1975, :end_year => Time.now.year, :use_month_numbers => true %>
+</div>
+
+<div id="watch_on_place">
+<span>見た場所を選択する</span>
+<span id="acondition_value"><%= @seen.acondition_tag.name %></span>
+</div>
+
+<div id="watch_areas">
+<% if @useful_areas -%>
+<div id="watch_area_used">
+<h2>見たことがある場所</h2>
+<ul>
+<% @useful_areas.each do |area| -%>
+<li id="watch_area_used-<%= area.id %>"><span class="linkable">›</span><%= area.name %></li>
+<% end %>
+</ul>
+</div>
+<% end -%>
+
+<h2>都道府県を選択</h2>
+<ul class="areas">
+<% @watch_areas.each do |area| -%>
+<li id="area-<%= area[:area_id] %>"><a><span class="linkable">›</span><%= area[:area_name] %></a></li>
+<% end -%>
+</ul>
+<div id="watch_area_cinemas">
+<% @watch_areas.each do |area| -%>
+<ul id="watch_area-<%= area[:area_id] %>">
+<% area[:cinemas].each do |cinema| -%>
+<li id="watch_area_cinema-<%= cinema.id %>"><a><span class="linkable">›</span><%= cinema.name %></a></li>
+<% end -%>
+</ul>
+<% end -%>
+</div>
+<div id="watch_areas_close"><a>閉じる</a></div>
+</div>
+<%= f.hidden_field :acondition, :id => :acondition %>
+
+<div id="seen_star">
+<div>
+<%= image_tag("layout/stars_on.png", :id => "stars_on") %><%= image_tag("layout/stars_off.png", :id => "stars_off") %><%= f.hidden_field :evaluation, :id => :evaluation %>お気に入りの映画にスターを
+</div>
+</div>
+
+<div id="memo" style="width: 100%; background-color: #eeeeee;">メモ</div>
+<%= f.text_area :comment, :size => "32x4" %>
+</div>
+<div class="actions">
+  <%= f.submit 'みた' %>
+</div>
+<% end %>
