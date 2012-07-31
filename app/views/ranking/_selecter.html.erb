@@ -1,15 +1,15 @@
 <div id="narrow_items">
 <%= link_to ranking_movie_path do -%>
-<span class="narrow_items_type<% if action_name == 'movie' %>_selected<% end %>">見られた映画</span>
+<span class="narrow_items_type<% if action_name == 'movie' %>_selected<% end %>">見られた</span>
 <% end -%>
 <%= link_to ranking_seen_path do -%>
-<span class="narrow_items_type<% if action_name == 'seen' %>_selected<% end %>">映画を見た回数</span>
+<span class="narrow_items_type<% if action_name == 'seen' %>_selected<% end %>">映画を見た</span>
 <% end -%>
 <%= link_to ranking_star_path do -%>
 <span class="narrow_items_type<% if action_name == 'star' %>_selected<% end %>"><%= image_tag('layout/stars_on.png') %></span>
 <% end -%>
 <%= link_to ranking_wish_path do -%>
-<span class="narrow_items_type<% if action_name == 'wish' %>_selected<% end %>">見たい映画</span>
+<span class="narrow_items_type<% if action_name == 'wish' %>_selected<% end %>">見たい</span>
 <% end -%>
 </div>
 
