@@ -12,7 +12,8 @@ test/tmp
 test/version_tmp
 tmp
 *.log
-data/*
+data/*/*.mon
+data/*/*.yml
 database.yml
 
 # YARD artifacts
