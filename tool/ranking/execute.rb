@@ -116,11 +116,37 @@ def wishs_count(title, display, target_date, monitor)
   monitor.append('wish count', "type of #{title}");
 end
 
+
+def cinemas_count(title, display, target_date, monitor)
+  # arguments
+  result_set = {
+    :title      => title,
+    :display    => display,
+    :date_start => DateTime.now,
+    :date_end   => target_date,
+    :set => []
+  }
+
+  sql = "select count(*) as count, t.name from seens s, movies m, tags t where s.movie_id = m.id and s.acondition = t.id and t.id <> 77 and s.negative = 0 and m.negative = 0 group by s.acondition order by count desc;"
+  rs = ActiveRecord::Base.connection.execute(sql);
+  rs.each do |row|
+    result_set[:set] << {
+      :name   => row[1],
+      :number => row[0],
+      :link   => ""
+    }
+  end
+
+  File.write("#{OUTPUT_DIR}#{title}.yml", result_set.to_yaml)
+  monitor.append('wish count', "type of #{title}");
+end
+
+
 current_date = DateTime.now
 date_before_a_week  = current_date - 1.week
 date_before_a_month = current_date - 1.month
 date_before_a_year  = current_date - 1.year
-date_before_older   = current_date - 100.year
+date_before_older   = current_date - 200.year
 
 seen_count('weekly_seen',  '映画を見た人ランキング（過去１週間）', date_before_a_week, monitor)
 seen_count('monthly_seen', '映画を見た人ランキング（過去１ヶ月）', date_before_a_month, monitor)
@@ -130,8 +156,9 @@ movie_count('weekly_movie',  '見られた映画ランキング（過去１週�
 movie_count('monthly_movie', '見られた映画ランキング（過去１ヶ月）', date_before_a_month, monitor)
 movie_count('yearly_movie',  '見られた映画ランキング（過去１年間）', date_before_a_year, monitor)
 movie_count('all_movie',     '見られた映画ランキング（過去全て）',   date_before_older,  monitor)
-stars_count('stars', 'スター',     nil, monitor)
-wishs_count('wishs', '見たい映画', nil, monitor)
+stars_count('stars',     'スター',     nil, monitor)
+wishs_count('wishs',     '見たい映画', nil, monitor)
+cinemas_count('cinemas', '見たい映画', nil, monitor)
 
 monitor.aging
 

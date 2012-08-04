@@ -17,6 +17,7 @@ MovieSeen::Application.routes.draw do
   match 'ranking/movie'        => 'Ranking#movie',  :as => 'ranking_movie'
   match 'ranking/star'         => 'Ranking#star',   :as => 'ranking_star'
   match 'ranking/wish'         => 'Ranking#wish',   :as => 'ranking_wish'
+  match 'ranking/cinema'       => 'Ranking#cinema', :as => 'ranking_cinema'
   match 'ranking/detail/:kind' => 'Ranking#detail', :as => 'ranking_detail'
 
   get 'login'   => 'Login#index'
