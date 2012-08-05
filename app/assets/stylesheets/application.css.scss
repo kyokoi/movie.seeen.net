@@ -24,11 +24,25 @@
   margin-bottom: 5px;
   text-align: center;
 }
+#headline div span
+{
+  padding: 5px 5px;
+  font-weight: bold;
+}
+#headline #headline_search_trigger img
+{
+  cursor: pointer;
+  vertical-align: middle;
+}
+#headline #headline_search
+{
+  display: none;
+}
 #headline .headline_search_box
 {
   font-size: large;
   height: 22px;
-  margin: 0px 4px;
+  margin: 0px 0px;
   padding: 0px;
 }
 #headline a:link { color: #ffffff; }

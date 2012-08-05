@@ -24,3 +24,13 @@ $(function(){
   setTimeout("scrollTo(0,1)", 100);
 });
 
+$(function(){
+  $('#headline_search_trigger').click(
+    function() {
+      $('#headline_search').toggle();
+      if ($('#headline_search').css('display') == 'block') {
+        $('.headline_search_box').focus();
+      }
+    }
+  )
+});

@@ -14,9 +14,14 @@
 <% if @author -%>
 <div id='headline'>
 <%= form_tag search_movies_path, :method => "get" do -%>
-<%= link_to search_path do %><div id="author"><%= @author.name %></div><% end %>
-<div id="headline_search"><%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :class => "headline_search_box", :placeholder => "映画を検索！", :size => 12 %><%= image_submit_tag('layout/search.png') %></div>
-<div><%= link_to 'ランキング！', ranking_movie_path, :class => 'ranking_path' %></div>
+<%= link_to search_path @author.id do %><div id="author"><%= @author.name %></div><% end %>
+<div>
+<%= link_to ranking_movie_path, :class => 'ranking_path' do %><span><span class="linkable">›</span>ランキング</span><% end %>
+<span id="headline_search_trigger"><%= image_tag('layout/search.png') %></span>
+</div>
+<div id="headline_search">
+<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :class => "headline_search_box", :placeholder => "映画を検索！" %><%= image_submit_tag('layout/search.png') %>
+</div>
 <% end -%>
 </div>
 <% end -%>
