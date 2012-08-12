@@ -20,8 +20,7 @@ class MyController < ApplicationController
       return redirect_to search_path
     end
 
-    @recently_seen = Seen.active.where(:author_id => @author.id)
-    @recently_seen = @recently_seen.where Seen.no_star
+    @recently_seen = Seen.all_seens @author.id
     @recently_seen = @recently_seen.order('date desc').order('id desc')
     @recently_seen = @recently_seen.limit(SUMMARY_LIMIT)
 
