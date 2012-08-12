@@ -118,7 +118,7 @@ class SearchController < ApplicationController
     search_count = matches.count
 
     template = 'at_beginner'
-    template = 'search_to_seen' if matches.count > 0
+    template = 'layouts/seen' if matches.count > 0
 
     matches = matches.order('date desc').order('id desc')
     matches = matches.limit(EACH_LIMIT_WHEN_SEARCH)
@@ -163,7 +163,7 @@ class SearchController < ApplicationController
       matches = matches.where(:author_id => @author.id)
 
       template = 'at_beginner'
-      template = 'search_to_seen' if matches.count > 0
+      template = 'layouts/seen' if matches.count > 0
       yield matches, template if block_given?
       matches = matches.order('date desc').order('id desc')
     end

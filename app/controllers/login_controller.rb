@@ -5,7 +5,7 @@ class LoginController < ApplicationController
     page_title "見た映画を記録しよう！"
 
     if logged_in?
-      return redirect_to search_path
+      return redirect_to my_summary_path @author.id
     end
 
     unless auth = request.env["omniauth.auth"]
@@ -18,7 +18,7 @@ class LoginController < ApplicationController
 
     session[:uid]      = @author.uid
     session[:provider] = @author.provider
-    return redirect_to search_path
+    return redirect_to my_summary_path @author.id
   end
 
   def failure

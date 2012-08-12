@@ -14,7 +14,7 @@
 <% if @author -%>
 <div id='headline'>
 <%= form_tag search_movies_path, :method => "get" do -%>
-<%= link_to search_path @author.id do %><div id="author"><%= @author.name %></div><% end %>
+<%= link_to my_summary_path(@author.id) do %><div id="author"><%= @author.name %></div><% end %>
 <div>
 <%= link_to ranking_movie_path, :class => 'ranking_path' do %><span><span class="linkable">›</span>ランキング</span><% end %>
 <span id="headline_search_trigger"><%= image_tag('layout/search.png') %></span>

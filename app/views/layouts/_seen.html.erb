@@ -1,4 +1,4 @@
-<% @matches.each do |seen| -%>
+<% items.each do |seen| -%>
 <div class="result_of_search<% if seen.wish? %> with_wish<% end %>">
 <%= link_to movie_seens_path(:movie_id => seen.movie.id) do -%>
 <div class="rightside">

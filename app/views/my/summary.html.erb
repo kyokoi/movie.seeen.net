@@ -1,0 +1,32 @@
+<div id="search_condition">
+<%= @my.name %>のアクティビティ
+</div>
+
+<div class="outside">
+<h2><%= image_tag(@my.image) %></h2>
+</div>
+
+<%= render(:partial => 'block', :locals => {
+  :block_partial    => 'layouts/seen',
+  :block_link       => search_path,
+  :block_items      => @recently_seen,
+  :block_title      => '最近見た映画',
+  :block_limit      => 3
+}) -%>
+
+<%= render(:partial => 'block', :locals => {
+  :block_partial    => 'layouts/seen',
+  :block_link       => search_path(:search => {:narrow => :star}),
+  :block_items      => @wish_seen,
+  :block_title      => '見たい映画',
+  :block_limit      => 3
+}) -%>
+
+<%= render(:partial => 'block', :locals => {
+  :block_partial    => 'ranking/display',
+  :block_link       => ranking_movie_path,
+  :block_items      => @weekly_ranking[:weekly_movie],
+  :block_title      => '最近見られている映画',
+  :block_limit      => 3
+}) -%>
+

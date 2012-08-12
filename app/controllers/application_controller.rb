@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class ApplicationController < ActionController::Base
+  INPUT_PATH = '/usr/local/apps/movie_seen/data/ranking/'
+
   protect_from_forgery
 
   before_filter :redirect_to_login_if_one_do_not, :unless => :no_need_login
@@ -27,5 +29,19 @@ class ApplicationController < ActionController::Base
     @author = Author.find_by_uid_and_provider_and_negative(
       session[:uid], session[:provider], 0
     )
+  end
+
+  def fetch_ranking(target)
+    rankings = Hash.new
+    target.each do |title|
+      if contents = catch_data(title)
+        rankings[title] = contents
+      end
+    end
+    rankings
+  end
+
+  def catch_data(title)
+    YAML.load_file "#{INPUT_PATH}#{title}.yml"
   end
 end

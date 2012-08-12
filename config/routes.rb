@@ -10,6 +10,7 @@ MovieSeen::Application.routes.draw do
   match 'how_to_use'                 => 'Search#how_to_use'
 
   match '/my/:author_id/activity' => 'My#activity', :as => 'my_activity'
+  match '/my/:author_id/summary'  => 'My#summary',  :as => 'my_summary'
 
   match 'about'                      => 'About#index'
 

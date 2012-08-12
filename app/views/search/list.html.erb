@@ -1,4 +1,4 @@
-<%= render @template %>
+<%= render :partial => @template, :locals => {:items => @matches} %>
 
 <%= render 'next_page' %>
 
