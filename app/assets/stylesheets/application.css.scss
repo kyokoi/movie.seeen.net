@@ -181,7 +181,7 @@ table.tableout th
   border: #E3E3E3 solid;
   border-width: 0 0 1px 1px;
   background: #F5F5F5;
-  font-weight: bold;
+  color: #000000;
   line-height: 120%;
   text-align: center;
   vertical-align: middle;
@@ -196,7 +196,13 @@ table.tableout td
 table.tableout td.contents
 {
   text-align: left;
+  font-weight: bold;
+  font-size: large;
 }
+table.tableout td.contents a:hover { color: #339900; }
+table.tableout td.contents a:link { color: #339900; }
+table.tableout td.contents a:visited { color: #339900; }
+table.tableout td.contents a:active { color: #339900; }
 table.tableout td.number
 {
   text-align: right;
