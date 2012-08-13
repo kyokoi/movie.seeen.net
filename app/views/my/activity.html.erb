@@ -2,7 +2,7 @@
 <%= @my.name %>のアクティビティ
 </div>
 
-<H2><%= image_tag(@my.image) %></h2>
+<H2><%= image_tag(@my.image, :size => '50x50') %></h2>
 <div>全視聴数：<%= in_total_of_seens @month %>本</div>
 <div>月間平均視聴数：<%= in_average_of_seens_monthly @month %>本</div>
 
