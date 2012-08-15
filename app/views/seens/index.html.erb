@@ -53,8 +53,8 @@
 <div><%= seen.comment %></div>
 <% if seen.author.uid == session[:uid] && seen.author.provider == session[:provider] && !(seen.wish?) -%>
 <div>
-<span><%= link_to '修正する', edit_movie_seen_path(@movie.id, seen) %></span>
-<span><%= link_to '削除する', movie_seen_path(@movie.id, seen), confirm: 'Are you sure?', method: :delete %></span>
+<span><%= link_to '修正する', edit_movie_seen_path(@movie.id, seen), :class => 'edit_link' %></span>
+<span><%= link_to '削除する', movie_seen_path(@movie.id, seen), :class => 'edit_link', confirm: 'Are you sure?', method: :delete %></span>
 </div>
 <% end -%>
 <% end -%>
