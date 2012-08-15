@@ -26,8 +26,23 @@
 }
 #headline div span
 {
-  padding: 5px 5px;
   font-weight: bold;
+}
+#headline #headline_social_services
+{
+  color: #339900;
+  font-size: large;
+  padding-top: 4px;
+}
+#headline #headline_social_services a
+{
+  color: #999999;
+  font-size: small;
+}
+#headline #headline_social_services img
+{
+  margin-right: 4px;
+  vertical-align: middle;
 }
 #headline #headline_search_trigger img
 {
@@ -71,10 +86,9 @@
 }
 #footerline ul
 {
-  font-size: x-small;
   list-style: none;
   margin-top: 40px;
-  border-top: solid 1px #000000;
+  border-top: solid 1px #339900;
   padding: 5px;
 }
 
@@ -214,5 +228,6 @@ table.tableout td.number
   font-family: arial,helvetica,osaka,"MS PGothic",sans-serif;
   font-size: 120%;
   font-weight: bold;
-  margin-right: 0.2em;
+  padding-left:  6px;
+  padding-right: 2px;
 }

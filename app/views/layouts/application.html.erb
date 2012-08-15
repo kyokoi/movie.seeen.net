@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><%= @page_title %> - MovieSeen</title>
+<title>映画箱<%= @page_title %></title>
 <meta name="description" content="見たい映画を記録する。見た映画を記録する。思い出の映画を忘れないように履歴をメモしよう。" />
 <meta name="keywords" content="見たい映画を記録する。見た映画を記録する。思い出の映画を忘れないように履歴をメモしよう。" />
 <%= stylesheet_link_tag "reset", "application", controller_name %>
 <%= javascript_include_tag "application" %>
 <%= csrf_meta_tags %>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+<link href="/assets/layout/logo_300.png" rel="apple-touch-icon-precomposed">
 </head>
 <body>
 
 <% if @author -%>
 <div id='headline'>
-<%= form_tag search_movies_path, :method => "get" do -%>
+<div id='headline_social_services'>
+<%= image_tag 'layout/logo_40.png', :size => '18x18' %><span>映画箱</span>
+<%= link_to 'https://www.facebook.com/pages/%E6%98%A0%E7%94%BB%E7%AE%B1/350658838322011', :target => '_blank' do -%>
+<span class="linkable">›</span>Facebook</span>
+<% end -%>
+<%= link_to 'https://plus.google.com/u/0/b/114587405265399791648/', :target => '_blank' do -%>
+<span class="linkable">›</span>Google Plus</span>
+<% end -%>
+</div>
 <%= link_to my_summary_path(@author.id) do %><div id="author"><%= @author.name %></div><% end %>
+<%= form_tag search_movies_path, :method => "get" do -%>
 <div>
 <%= link_to ranking_movie_path, :class => 'ranking_path' do %><span><span class="linkable">›</span>ランキング</span><% end %>
 <span id="headline_search_trigger"><%= image_tag('layout/search.png') %></span>
@@ -31,9 +41,8 @@
 <% if @author -%>
 <div id="footerline">
 <ul>
-<li><%= link_to 'お問い合わせ・ご要望', 'https://plus.google.com/u/0/b/114587405265399791648/', :target => '_blank' %></li>
-<li><%= link_to '使い方', about_path %></li>
-<li><%= link_to 'ログアウト',logout_path %></li>
+<li><%= link_to about_path do %><span class="linkable">›</span>使い方</li><% end %>
+<li><%= link_to logout_path do %><span class="linkable">›</span>ログアウト</li><% end %>
 </ul>
 </div>
 <% end -%>

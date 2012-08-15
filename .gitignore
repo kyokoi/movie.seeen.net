@@ -15,6 +15,7 @@ tmp
 data/*/*.mon
 data/*/*.yml
 database.yml
+public/
 
 # YARD artifacts
 .yardoc

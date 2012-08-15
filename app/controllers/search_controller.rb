@@ -2,7 +2,7 @@
 
 class SearchController < ApplicationController
 
-  EACH_LIMIT_WHEN_SEARCH = 10
+  EACH_LIMIT_WHEN_SEARCH = 20
 
   before_filter do |controller|
     @each_limit_when_search = EACH_LIMIT_WHEN_SEARCH
