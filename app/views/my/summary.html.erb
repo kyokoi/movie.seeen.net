@@ -30,3 +30,11 @@
   :block_limit      => 3
 }) -%>
 
+<%= render(:partial => 'block', :locals => {
+  :block_partial    => 'ranking/display',
+  :block_link       => ranking_wish_path,
+  :block_items      => @wishs_ranking[:wishs],
+  :block_title      => '見たい映画ランキング',
+  :block_limit      => 3
+}) -%>
+

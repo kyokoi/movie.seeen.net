@@ -31,5 +31,6 @@ class MyController < ApplicationController
 
     @display        = 3
     @weekly_ranking = fetch_ranking [:weekly_movie]
+    @wishs_ranking  = fetch_ranking [:wishs]
   end
 end
