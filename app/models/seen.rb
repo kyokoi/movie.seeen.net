@@ -59,8 +59,16 @@ class Seen < ActiveRecord::Base
     self.arel_table[:evaluation].not_eq(tag_id)
   end
 
+  def self.not(column_name, value)
+    self.where self.arel_table[column_name].not_eq(value)
+  end
+
   def wish?
     self.evaluation.to_i == EVALUATION_WISH_ID
+  end
+
+  def star?
+    self.evaluation.to_i == EVALUATION_STAR_ID
   end
 
   def acondition_tag
