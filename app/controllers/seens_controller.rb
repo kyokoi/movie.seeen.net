@@ -38,9 +38,9 @@ class SeensController < ApplicationController
     @seens = @seens.active
 
     @activity = {}
-    @activity[:all]    = @movie.result_of_seen.number
-    @activity[:stars]  = @movie.result_of_star.number
-    @activity[:wishes] = @movie.result_of_wish.number
+    @activity[:all]    = @seens.where(Seen.no_wish).count
+    @activity[:stars]  = @seens.where(Seen.star).count
+    @activity[:wishes] = @seens.where(Seen.wish).count
 
     case params[:narrow]
     when 'star'
@@ -182,7 +182,7 @@ class SeensController < ApplicationController
     end
 
     useful_areas = []
-    sql = "select acondition, count(*) as number from seens where author_id = #{@author.id} and acondition <> '' group by acondition order by number desc limit 5;"
+    sql = "select acondition, count(*) as number from seens where author_id = #{@author.id} and acondition <> '' group by acondition order by number desc limit 10;"
     areas = ActiveRecord::Base.connection.execute(sql)
     areas.each do |area|
       tag = Tag.active.where(:id => area[0]).first
