@@ -44,7 +44,7 @@ class MyController < ApplicationController
     directory_name = "#{RECOMMEND_DIR}/#{Digest::MD5.hexdigest(author_id.to_s)[0, 2]}"
     users = YAML.load_file "#{directory_name}/#{author_id}.yml"
     recommends = users.map do |user_id, point|
-      recommend_user = Author.active.where(:id => author_id)
+      recommend_user = Author.active.where(:id => user_id)
       if recommend_user.first.blank?
         next
       end
