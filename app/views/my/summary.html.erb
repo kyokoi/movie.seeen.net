@@ -6,6 +6,17 @@
 <h2><%= image_tag(@my.image, :size => '50x50') %></h2>
 </div>
 
+<%= @star_seen %>
+<% unless @star_seen -%>
+<%= render(:partial => 'block', :locals => {
+  :block_partial    => 'layouts/seen',
+  :block_link       => search_path(:search => {:narrow => :star, :author => @my.id}),
+  :block_items      => @star_seen,
+  :block_title      => 'お気に入りの映画',
+  :block_limit      => 3
+}) -%>
+<% end -%>
+
 <%= render(:partial => 'block', :locals => {
   :block_partial    => 'layouts/seen',
   :block_link       => search_path(:search => {:narrow => :wish, :author => @my.id}),

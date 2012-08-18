@@ -23,12 +23,18 @@ class MyController < ApplicationController
 
     @recently_seen = Seen.all_seens @my.id
     @recently_seen = @recently_seen.order('date desc').order('id desc')
-    @recently_seen = @recently_seen.limit(SUMMARY_LIMIT)
+    @recently_seen = @recently_seen.limit SUMMARY_LIMIT
 
-    @wish_seen = Seen.active.where(:author_id => @my.id)
-    @wish_seen = @wish_seen.where Seen.wish
+    some_seen = Seen.active.where(:author_id => @my.id)
+
+    @wish_seen = some_seen.where Seen.wish
     @wish_seen = @wish_seen.order('date desc').order('id desc')
     @wish_seen = @wish_seen.limit(SUMMARY_LIMIT)
+
+    if @my.id != @author.id
+      @star_seen = some_seen.stars
+      @star_seen = @star_seen.limit SUMMARY_LIMIT
+    end
 
     @recommend_users = fetch_recommend @my.id
 
