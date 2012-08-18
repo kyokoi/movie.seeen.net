@@ -2,7 +2,7 @@
 
 class MyController < ApplicationController
 
-  SUMMARY_LIMIT = 3
+  SUMMARY_LIMIT = 5
   RECOMMEND_DIR = '/usr/local/apps/movie_seen/data/recommend'
 
   def activity
@@ -32,7 +32,7 @@ class MyController < ApplicationController
 
     @recommend_users = fetch_recommend @my.id
 
-    @display        = 3
+    @display        = SUMMARY_LIMIT
     @weekly_ranking = fetch_ranking [:weekly_movie]
     @wishs_ranking  = fetch_ranking [:wishs]
   end

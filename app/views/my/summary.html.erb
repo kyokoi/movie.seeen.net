@@ -27,7 +27,7 @@
   :block_link       => ranking_movie_path,
   :block_items      => @weekly_ranking[:weekly_movie],
   :block_title      => '最近見られている映画',
-  :block_limit      => 3
+  :block_limit      => @display
 }) -%>
 
 <%= render(:partial => 'block', :locals => {
@@ -35,7 +35,7 @@
   :block_link       => ranking_wish_path,
   :block_items      => @wishs_ranking[:wishs],
   :block_title      => '見たい映画ランキング',
-  :block_limit      => 3
+  :block_limit      => @display
 }) -%>
 
 <% unless @recommend_users.blank? -%>
