@@ -38,7 +38,7 @@
 <div>この映画はまだ誰も見ていません。</div>
 <% end -%>
 <% @seens.each do |seen| -%>
-<%= link_to "/search/?search[author]=#{seen.author.id}" do -%>
+<%= link_to my_summary_path seen.author.id do -%>
 <div class="result_of_same_movie_seener<% if seen.wish? %> with_wish<% end %>">
 <div class="leftside">
 <%= image_tag(seen.author.image, :size => '64x64') %>
