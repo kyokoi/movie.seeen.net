@@ -8,13 +8,13 @@
 
 <div id="movie_seens">
 <regist_movie class="action">
-<%= link_to 'この映画を見た！', new_movie_seen_path %>
+<%= link_to 'この映画を見た', new_movie_seen_path %>
 </regist_movie>
 <wish class="action">
 <% if @has_wishlist -%>
-<%= link_to '見たい映画から外す', movie_wish_delete_path(@movie.id) -%>
+<%= link_to '見たい映画を外す', movie_wish_delete_path(@movie.id) -%>
 <% else -%>
-<%= link_to 'この映画が見たい！', movie_wish_new_path(@movie.id) -%>
+<%= link_to 'この映画が見たい', movie_wish_new_path(@movie.id) -%>
 <% end -%>
 </wish>
 </div>
