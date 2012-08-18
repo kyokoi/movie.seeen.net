@@ -9,14 +9,6 @@
 <g:plusone size="medium" href="<%= request.url %>"></g:plusone>
 <% end -%>
 </div>
-<% unless @total_counts.blank? -%>
-<div class="view_number">
-<% if @total_counts[:users] > 0 %><strong><%= @total_counts[:users] %></strong>人が見ています。<% end -%>
-<% if @total_counts[:seens] > 0 %><strong><%= @total_counts[:seens] %></strong>回みられています。<% end -%>
-<% if @total_counts[:stars] > 0 %><strong><%= @total_counts[:stars] %></strong>人がスターをつけています。<% end -%>
-<% if @total_counts[:wishs] > 0 %><strong><%= @total_counts[:wishs] %></strong>人が見たいと思っています。<% end -%>
-</div>
-<% end -%>
 </div>
 </div>
 
