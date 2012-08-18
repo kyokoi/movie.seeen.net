@@ -8,7 +8,7 @@
 
 <%= render(:partial => 'block', :locals => {
   :block_partial    => 'layouts/seen',
-  :block_link       => search_path(:search => {:narrow => :wish}),
+  :block_link       => search_path(:search => {:narrow => :wish, :author => @my.id}),
   :block_items      => @wish_seen,
   :block_title      => '見たい映画',
   :block_limit      => 3
@@ -16,7 +16,7 @@
 
 <%= render(:partial => 'block', :locals => {
   :block_partial    => 'layouts/seen',
-  :block_link       => search_path,
+  :block_link       => search_path(:search => {:author => @my.id}),
   :block_items      => @recently_seen,
   :block_title      => '最近見た映画',
   :block_limit      => 3
