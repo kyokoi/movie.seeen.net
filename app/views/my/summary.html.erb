@@ -6,8 +6,7 @@
 <h2><%= image_tag(@my.image, :size => '50x50') %></h2>
 </div>
 
-<%= @star_seen %>
-<% unless @star_seen -%>
+<% unless @star_seen.blank? -%>
 <%= render(:partial => 'block', :locals => {
   :block_partial    => 'layouts/seen',
   :block_link       => search_path(:search => {:narrow => :star, :author => @my.id}),
