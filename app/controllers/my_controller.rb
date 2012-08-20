@@ -26,9 +26,9 @@ class MyController < ApplicationController
     @recently_seen = @recently_seen.limit SUMMARY_LIMIT
 
     some_seen = Seen.active.where(:author_id => @my.id)
+    some_seen = some_seen.order('date desc').order('id desc')
 
     @wish_seen = some_seen.where Seen.wish
-    @wish_seen = @wish_seen.order('date desc').order('id desc')
     @wish_seen = @wish_seen.limit(SUMMARY_LIMIT)
 
     if @my.id != @author.id
