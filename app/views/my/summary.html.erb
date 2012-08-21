@@ -54,7 +54,7 @@
 </div>
 <div class="recommend_user">
 <% @recommend_users.each do |user| -%>
-<%= link_to my_summary_path user[:id] do %><span class="linkable">›</span><span><%= user[:name] %></span><% end %>
+<%= link_to my_summary_path user[:id] do %><span class="linkable">›</span><span><%= user[:name] %>（<%= user[:approximation] %>％）</span><% end %>
 <% end -%>
 </div>
 <% end -%>

@@ -49,12 +49,12 @@ class MyController < ApplicationController
   def fetch_recommend(author_id)
     directory_name = "#{RECOMMEND_DIR}/#{Digest::MD5.hexdigest(author_id.to_s)[0, 2]}"
     users = YAML.load_file "#{directory_name}/#{author_id}.yml"
-    recommends = users.map do |user_id, point|
+    recommends = users.map do |user_id, approximation|
       recommend_user = Author.active.where(:id => user_id)
       if recommend_user.first.blank?
         next
       end
-      {:id => user_id, :name => recommend_user.first.name}
+      {:id => user_id, :name => recommend_user.first.name, :approximation => approximation}
     end
     recommends
   rescue Exception => e

@@ -22,12 +22,17 @@ NUMBER_MAP = {
 }
 COUNT_LIMIT = 2
 POINT_LIMIT = 30
+POINT_TOTAL = NUMBER_MAP.select do |column, value|
+  column == :wish ? false : true
+end.values.inject(0) do |sum, value|
+  sum + value
+end
 
 
 # setup Active record
 ConfigFile = File.join(File.dirname(__FILE__), "..", "..", "config", "database.yml")
 ds = YAML.load(File.read(ConfigFile))
-ActiveRecord::Base.establish_connection(ds["production"])
+ActiveRecord::Base.establish_connection(ds["development"])
 
 
 # select all user.
@@ -77,9 +82,8 @@ authors.each do |subject|
   tmp_points.sort do |a, b|
     b[1] <=> a[1]
   end.each do |author_id, point|
-    points[author_id] = point
+    points[author_id] = ((point / POINT_TOTAL.to_f) * 100).round
   end
-  puts points.inspect
 
   # save
   directory_name = OUTPUT_DIR + Digest::MD5.hexdigest(subject.id.to_s)[0, 2]
