@@ -41,6 +41,18 @@ class MyController < ApplicationController
     @display        = SUMMARY_LIMIT
     @weekly_ranking = fetch_ranking [:weekly_movie]
     @wishs_ranking  = fetch_ranking [:wishs]
+
+    @monthly = MonthlySeen.active.where :author_id => @my.id
+    @monthly = @monthly.monthly(DateTime.now).first
+    if @monthly.blank?
+      @monthly = MonthlySeen.new do |mons|
+        mons.author_id = target.id
+        mons.date      = DateTime.now
+        mons.all       = 0
+        mons.stars     = 0
+        mons.wishes    = 0
+      end
+    end
   end
 
 

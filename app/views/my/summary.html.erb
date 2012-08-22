@@ -1,9 +1,10 @@
 <div id="search_condition">
-<%= @my.name %>
+<h1><%= @my.name %></h1>
 </div>
 
 <div class="outside">
-<h2><%= image_tag(@my.image, :size => '50x50') %></h2>
+<you><%= image_tag(@my.image, :size => '50x50') %></you>
+<p><%= link_to my_activity_path @my.id do %>今月見た映画は<emp><%= @monthly.all %>本</emp>です。<br /><br /><span class="linkable">›</span>詳細<% end %></p>
 </div>
 
 <% unless @star_seen.blank? -%>
