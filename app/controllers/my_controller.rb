@@ -46,7 +46,7 @@ class MyController < ApplicationController
     @monthly = @monthly.monthly(DateTime.now).first
     if @monthly.blank?
       @monthly = MonthlySeen.new do |mons|
-        mons.author_id = target.id
+        mons.author_id = @my.id
         mons.date      = DateTime.now
         mons.all       = 0
         mons.stars     = 0
