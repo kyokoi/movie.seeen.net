@@ -39,7 +39,7 @@ class AdminController < ApplicationController
 
   def logged_in?
     return false unless super
-    return false unless [1, 8].include? @author.id
+    return false unless [1, 8, 17].include? @author.id
     @author
   end
 
