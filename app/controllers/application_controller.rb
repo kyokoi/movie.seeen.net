@@ -1,11 +1,13 @@
 # encoding: utf-8
 
 class ApplicationController < ActionController::Base
+
   INPUT_PATH = '/usr/local/apps/movie_seen/data/ranking/'
+  SUPER_USERS = [1, 6, 7, 8, 17, 47]
 
   protect_from_forgery
 
-  before_filter :redirect_to_login_if_one_do_not, :unless => :no_need_login
+  before_filter :logged_in?
 
 
   protected
@@ -14,21 +16,34 @@ class ApplicationController < ActionController::Base
     @page_title = "#{messege} - 映画の履歴を残す 見たい映画をメモ・記録する"
   end
 
-  def no_need_login
-    ['login'].include? controller_name
+  def logged_in?
+    uid      ||= session[:uid]
+    provider ||= session[:provider]
+
+    @author = Author.find_by_uid_and_provider_and_negative(uid, provider, 0)
+    @author ||= Author.create_guest
   end
 
-  def redirect_to_login_if_one_do_not
-    unless logged_in?
+  def logged_into_admin(author)
+    unless SUPER_USERS.include? author.id
       redirect_to :controller => 'login'
+      return
     end
   end
 
-  def logged_in?
-    return false unless session[:uid] && session[:provider]
-    @author = Author.find_by_uid_and_provider_and_negative(
-      session[:uid], session[:provider], 0
-    )
+  def authorize
+    unless auth = request.env["omniauth.auth"]
+      logger.info "No login status"
+      return render
+    end
+
+    logger.info "Authentication is OKay"
+    @author = Author.authorize auth
+
+    session[:uid]      = @author.uid
+    session[:provider] = @author.provider
+
+    return_url = request.env['omniauth.origin'] || root_path
   end
 
   def fetch_ranking(target)

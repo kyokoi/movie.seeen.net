@@ -100,6 +100,14 @@ class MoviesController < AdminController
   end
 
 
+  protected
+
+  def logged_in?
+    author = super
+    logged_into_admin author
+  end
+
+
   private
 
   def list_of_category

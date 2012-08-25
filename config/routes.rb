@@ -1,7 +1,8 @@
 MovieSeen::Application.routes.draw do
   # omniauth
-  match '/auth/:provider/callback' => 'Login#index'
-  match '/auth/failure'            => 'Login#failure'
+  match '/auth/:provider'          => 'Root#login',          :as => 'login'
+  match '/auth/:provider/callback' => 'Root#login_callback', :as => 'login_callback'
+  match '/auth/failure'            => 'Root#failure'
 
   match 'search'                     => 'Search#seens'
   match 'search/movies'              => 'Search#movies'
@@ -21,8 +22,8 @@ MovieSeen::Application.routes.draw do
   match 'ranking/cinema'       => 'Ranking#cinema', :as => 'ranking_cinema'
   match 'ranking/detail/:kind' => 'Ranking#detail', :as => 'ranking_detail'
 
-  get 'login'   => 'Login#index'
-  get 'logout'  => 'Login#logout'
+  get 'login'   => 'Root#login', :as => 'root_login'
+  get 'logout'  => 'Root#logout'
 
   resources :movie, :except => [:index, :new, :edit, :show, :create, :update, :destroy] do
       get 'seens/wish_new'    => 'seens#wish_new',    :as => 'wish_new'
@@ -89,7 +90,7 @@ MovieSeen::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
-  root :to => 'login#index'
+  root :to => 'Root#index', :as => 'root'
 
   # See how all your routes lay out with "rake routes"
 

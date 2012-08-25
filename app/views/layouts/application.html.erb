@@ -12,37 +12,51 @@
 </head>
 <body>
 
-<% if @author -%>
 <div id='headline'>
-<div id='headline_social_services'>
-<%= image_tag 'layout/logo_40.png', :size => '18x18' %><span>映画箱</span>
-<%= link_to 'https://www.facebook.com/pages/%E6%98%A0%E7%94%BB%E7%AE%B1/350658838322011', :target => '_blank' do -%>
-<span class="linkable">›</span>Facebook</span>
+
+<div id='service_logo'>
+<%= link_to '/' do -%>
+<%= image_tag 'layout/logo_40.png', :size => '26x26', :class => 'logo' %>
+<span id='service_logo_text'>映画箱</span>
 <% end -%>
-<%= link_to 'https://plus.google.com/u/0/b/114587405265399791648/', :target => '_blank' do -%>
-<span class="linkable">›</span>Google Plus</span>
+<%= link_to ranking_movie_path, :id => 'to_ranking' do %><span><%= linksym.html_safe %>ランキング</span><% end %>
+</div>
+<div id='left_line'>
+<% if @author.guest? -%>
+<%= image_tag(@author.image, :size => '24x24', :class => 'author_image') %>
+<% else -%>
+<%= link_to my_summary_path @author.id do %><%= image_tag(@author.image, :size => '24x24', :class => 'author_image') %><% end %>
 <% end -%>
+<%= image_tag('layout/search.png', :id => 'headline_search_trigger') %>
 </div>
-<%= link_to my_summary_path(@author.id) do %><div id="author"><%= @author.name %></div><% end %>
-<%= form_tag search_movies_path, :method => "get" do -%>
-<div>
-<%= link_to ranking_movie_path, :class => 'ranking_path' do %><span><span class="linkable">›</span>ランキング</span><% end %>
-<span id="headline_search_trigger"><%= image_tag('layout/search.png') %></span>
-</div>
+
 <div id="headline_search">
+<%= form_tag search_movies_path, :method => "get" do -%>
+<%= linksym.html_safe %><span id='headline_search_reverse'>戻る</span>
+<%= image_tag 'layout/logo_40.png', :size => '26x26', :class => 'logo' %>
 <%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :class => "headline_search_box", :placeholder => "映画を検索！" %><%= image_submit_tag('layout/search.png') %>
-</div>
 <% end -%>
 </div>
-<% end -%>
+
+</div>
 
 <%= yield %>
 
 <% if @author -%>
 <div id="footerline">
 <ul>
-<li><%= link_to about_path do %><span class="linkable">›</span>使い方</li><% end %>
-<li><%= link_to logout_path do %><span class="linkable">›</span>ログアウト</li><% end %>
+<li>
+<%= link_to 'https://plus.google.com/u/0/b/114587405265399791648/', :target => '_blank' do -%>
+<%= linksym.html_safe %>Google Plus
+<% end -%>
+</li>
+<li>
+<%= link_to 'https://www.facebook.com/pages/%E6%98%A0%E7%94%BB%E7%AE%B1/350658838322011', :target => '_blank' do -%>
+<%= linksym.html_safe %>Facebook
+<% end -%>
+</li>
+<li><%= link_to about_path do %><%= linksym.html_safe %>使い方</li><% end %>
+<li><%= link_to logout_path do %><%= linksym.html_safe %>ログアウト</li><% end %>
 </ul>
 </div>
 <% end -%>

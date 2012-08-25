@@ -4,6 +4,11 @@ class SeensController < ApplicationController
   before_filter :fixed_movie
 
   def wish_new
+    author = logged_in?
+    if author.guest?
+      return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @movie.id)})
+    end
+
     seen = Seen.new
     seen.movie_id  = params[:movie_id]
     seen.author_id = @author.id
@@ -23,6 +28,11 @@ class SeensController < ApplicationController
   end
 
   def wish_delete
+    author = logged_in?
+    if author.guest?
+      return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @movie.id)})
+    end
+
     seens = Seen.wishlist.where :author_id => @author.id
     seens = seens.where :movie_id => params[:movie_id]
     seens.each do |seen|
@@ -80,6 +90,11 @@ class SeensController < ApplicationController
   # GET /seens/new
   # GET /seens/new.json
   def new
+    author = logged_in?
+    if author.guest?
+      return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @movie.id)})
+    end
+
     @seen = Seen.new
 
     @watch_areas, @useful_areas = select_watch_areas
@@ -92,6 +107,11 @@ class SeensController < ApplicationController
 
   # GET /seens/1/edit
   def edit
+    author = logged_in?
+    if author.guest?
+      return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @movie.id)})
+    end
+
     @seen = Seen.find(params[:id])
     @watch_areas, @useful_areas = select_watch_areas
   end
@@ -99,6 +119,11 @@ class SeensController < ApplicationController
   # POST /seens
   # POST /seens.json
   def create
+    author = logged_in?
+    if author.guest?
+      return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @movie.id)})
+    end
+
     unless @author.id.to_i == params[:seen][:author_id].to_i
       return render(:action => "new")
     end
@@ -132,6 +157,11 @@ class SeensController < ApplicationController
   # PUT /seens/1
   # PUT /seens/1.json
   def update
+    author = logged_in?
+    if author.guest?
+      return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @movie.id)})
+    end
+
     unless @author.id.to_i == params[:seen][:author_id].to_i
       @tags_for_acondition = list_for_tags
       return render(:action => "edit")
@@ -153,6 +183,11 @@ class SeensController < ApplicationController
   # DELETE /seens/1
   # DELETE /seens/1.json
   def destroy
+    author = logged_in?
+    if author.guest?
+      return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @movie.id)})
+    end
+
     @seen = Seen.find_by_id_and_negative(params[:id], 0)
     @seen.destroy
 

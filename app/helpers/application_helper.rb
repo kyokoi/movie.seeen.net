@@ -1,4 +1,10 @@
+# encoding: utf-8
+
 module ApplicationHelper
+  def linksym
+    simbol_string = '<bow>›</bow>'
+  end
+
   def stars(evaluation)
     return_path = "layout/stars_off.png"
     if evaluation == "83"

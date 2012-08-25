@@ -85,4 +85,12 @@ class TagsController < AdminController
       format.json { head :no_content }
     end
   end
+
+
+  protected
+
+  def logged_in?
+    author = super
+    logged_into_admin author
+  end
 end

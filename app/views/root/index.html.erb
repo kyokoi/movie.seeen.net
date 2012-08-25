@@ -1,0 +1,22 @@
+<navi>
+<h1><%= image_tag 'layout/logo_40.png', :size => '40x40' %>見た映画は記録しよう！</h1>
+<div id="login_service">
+<div><h2>いつも使っているサービスでログイン</h2></div>
+<ul>
+<li><%= link_to image_tag("layout/login_facebook.png"), '/auth/facebook' %></li>
+<li><%= link_to image_tag("layout/login_google.png"),   '/auth/google_oauth2' %></li>
+<li><%= link_to image_tag("layout/login_twitter.png"),  '/auth/twitter' %></li>
+</ul>
+</div>
+</navi>
+
+<section>
+<%= link_to about_path do -%>
+<h2><span class="linkable">›</span>このサービスで出来ることは？</h2>
+<h3>見た映画を記録することが出来ます。</h3>
+<h3>見たい映画をメモできます。</h3>
+<h3>ログインをするには。</h3>
+<h3>お問い合わせ・ご要望について。</h3>
+<h3>その他</h3>
+<% end -%>
+</section>

@@ -3,8 +3,6 @@ class AdminController < ApplicationController
 
   layout 'admin'
 
-  SUPER_USERS = [1, 6, 8, 17, 47]
-
   def index
     @messages = []
     Dir.glob(BATCH_MESSAGE_PATH + '*.*.mon') do |path|
@@ -40,9 +38,8 @@ class AdminController < ApplicationController
   protected
 
   def logged_in?
-    return false unless super
-    return false unless SUPER_USERS.include? @author.id
-    @author
+    author = super
+    logged_into_admin author
   end
 
 

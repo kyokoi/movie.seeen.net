@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Author < ActiveRecord::Base
   scope :active, lambda {
     where :negative => 0
@@ -7,6 +9,11 @@ class Author < ActiveRecord::Base
 
   has_many :seens
   has_many :monthly_seens
+
+
+  def guest?
+    self.uid.blank?
+  end
 
   def self.authorize(auth)
     author = active.where(
@@ -22,7 +29,7 @@ class Author < ActiveRecord::Base
         user.provider = auth['provider']
 
         user.email = "" if user.email.nil?
-        user.image = "movies/_noimage.jpg" if user.image.nil?
+        user.image = "movies/_noimage.jpg" if user.image.blank?
       end
     end
 
@@ -36,6 +43,18 @@ class Author < ActiveRecord::Base
     end
     author.save! if need_to_update
 
+    author
+  end
+
+  def self.create_guest
+    author = Author.new do |user|
+      user.uid      = nil
+      user.name     = 'ゲスト'
+      user.provider = 'movie.seeen.net'
+
+      user.email = "" if user.email.nil?
+      user.image = "movies/_noimage.jpg" if user.image.blank?
+    end
     author
   end
 end

@@ -4,7 +4,8 @@ class LoginController < ApplicationController
   def index
     page_title "見た映画を記録しよう！"
 
-    if logged_in?
+    logged_in?
+    unless @author.guest?
       return redirect_to my_summary_path @author.id
     end
 
@@ -29,5 +30,6 @@ class LoginController < ApplicationController
   def logout
     session[:uid]      = nil
     session[:provider] = nil
+    logged_in?
   end
 end

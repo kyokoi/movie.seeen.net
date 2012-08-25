@@ -17,32 +17,35 @@
   background-color: #000000;
   font-weight: bold;
   padding: 3px 2px;
+  height: 32px;
 }
-#headline div
-{
-  width: 100%;
-  margin-bottom: 5px;
-  text-align: center;
-}
-#headline div span
-{
-  font-weight: bold;
-}
-#headline #headline_social_services
+#headline #service_logo
 {
   color: #339900;
   font-size: large;
   padding-top: 4px;
+  width: 60%;
+  float: left;
 }
-#headline #headline_social_services a
-{
-  color: #999999;
-  font-size: small;
-}
-#headline #headline_social_services img
+#headline .logo
 {
   margin-right: 4px;
   vertical-align: middle;
+}
+#headline #left_line
+{
+  padding-top: 4px;
+  padding-right: 4px;
+  float: right;
+}
+#headline #left_line .author_image
+{
+  border: solid #117700 1px;
+}
+#to_ranking
+{
+  margin: 0px 15px;
+  font-size: small;
 }
 #headline #headline_search_trigger img
 {
@@ -51,7 +54,13 @@
 }
 #headline #headline_search
 {
+  padding-top: 4px;
   display: none;
+  background-color: #000000;
+}
+#headline #headline_search span
+{
+  color: #ffffff;
 }
 #headline .headline_search_box
 {
@@ -70,11 +79,6 @@
   color: #ffffff;
   font-size: large;
   padding: 5px 0px;
-}
-#author .ranking_path
-{
-  margin: 0px 15px;
-  font-size: x-small;
 }
 
 #footerline
@@ -223,7 +227,7 @@ table.tableout td.number
   text-align: right;
 }
 
-.linkable
+bow
 {
   color: #E47911;
   font-family: arial,helvetica,osaka,"MS PGothic",sans-serif;

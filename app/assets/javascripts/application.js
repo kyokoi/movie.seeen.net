@@ -27,8 +27,22 @@ $(function(){
 $(function(){
   $('#headline_search_trigger').click(
     function() {
+      $('#service_logo').toggle();
       $('#headline_search').toggle();
+      $('#left_line').toggle();
       if ($('#headline_search').css('display') == 'block') {
+        $('#headline').css('height', '32')
+        $('.headline_search_box').focus();
+      }
+    }
+  )
+  $('#headline_search_reverse').click(
+    function() {
+      $('#service_logo').toggle();
+      $('#headline_search').toggle();
+      $('#left_line').toggle();
+      if ($('#headline_search').css('display') == 'block') {
+        $('#headline').css('height', '32')
         $('.headline_search_box').focus();
       }
     }

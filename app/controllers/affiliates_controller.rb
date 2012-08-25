@@ -74,6 +74,14 @@ class AffiliatesController < AdminController
   end
 
 
+  protected
+
+  def logged_in?
+    author = super
+    logged_into_admin author
+  end
+
+
   private
 
   def fixed_movie
