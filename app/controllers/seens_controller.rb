@@ -9,6 +9,13 @@ class SeensController < ApplicationController
       return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @movie.id)})
     end
 
+    seens = Seen.wishlist.where :author_id => @author.id
+    seens = seens.where :movie_id => params[:movie_id]
+    if seens.count > 0
+      redirect_to movie_seens_path({:movie_id => @movie.id, :narrow => 'wish'})
+      return
+    end
+
     seen = Seen.new
     seen.movie_id  = params[:movie_id]
     seen.author_id = @author.id
