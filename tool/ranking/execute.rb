@@ -30,6 +30,7 @@ def movie_count(title, display, target_date, monitor)
   rs = ActiveRecord::Base.connection.execute(sql);
   rs.each do |row|
     result_set[:set] << {
+      :id     => row[0],
       :name   => row[1],
       :number => row[2],
       :link   => "/movie/#{row[0]}/seens"
@@ -56,6 +57,7 @@ def seen_count(title, display, target_date, monitor)
   rs = ActiveRecord::Base.connection.execute(sql);
   rs.each do |row|
     result_set[:set] << {
+      :id     => row[0],
       :name   => row[1],
       :number => row[2],
       :link   => "/search/?search[author]=#{row[0]}"
@@ -81,6 +83,7 @@ def stars_count(title, display, target_date, monitor)
   rs = ActiveRecord::Base.connection.execute(sql);
   rs.each do |row|
     result_set[:set] << {
+      :id     => row[0],
       :name   => row[1],
       :number => row[2],
       :link   => "/movie/#{row[0]}/seens"

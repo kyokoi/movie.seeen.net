@@ -1,0 +1,90 @@
+// Place all the styles related to the login controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+a { text-decoration: none; }
+section .login a:link    {text-decoration: underline; color: #339900; }
+section .login a:visited {text-decoration: underline; color: #339900; }
+section .login a:active  {text-decoration: underline; color: #339900; }
+section .login a:hover   {text-decoration: underline; color: #339900; }
+
+#login_service
+{
+  margin: 5px;
+}
+#login_service li
+{
+  display: inline;
+}
+
+h1
+{
+  color: #339900;
+  font-size: x-large;
+  font-weight: bold;
+
+  margin: 10px;
+  padding: 5px 5px 0px 2px;
+
+  border-bottom: solid 1px #339900;
+}
+h1 img
+{
+  vertical-align: middle;
+}
+
+h2
+{
+  color: #339900;
+  font-weight: bold;
+  font-size: large;
+
+  padding: 5px 5px 0px 2px;
+}
+
+section
+{
+  margin: 5px;
+}
+
+#summary_of_recently_movie
+{
+  margin: 6px;
+}
+#summary_of_recently_movie h3
+{
+  border: solid 1px #117700;
+  background-color: #339900;
+  margin-top: 10px;
+  padding: 4px;
+
+  color: #ffffff;
+  font-size: large;
+  font-weight: bold;
+}
+#summary_of_recently_movie h3 img
+{
+  vertical-align: middle;
+}
+#summary_of_recently_movie h3 span
+{
+  font-size: small;
+}
+#summary_of_recently_movie .outline
+{
+  margin-bottom: 5px;
+}
+#summary_of_recently_movie .actions
+{
+  padding: 2px;
+  background-color: #dddddd;
+  border: solid 1px #eeeeee;
+  font-size: normal;
+}
+#summary_of_recently_movie .activity
+{
+}
+#summary_of_recently_movie .each_activity
+{
+  height: 34px;
+}

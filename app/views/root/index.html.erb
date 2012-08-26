@@ -1,22 +1,50 @@
 <navi>
 <h1><%= image_tag 'layout/logo_40.png', :size => '40x40' %>見た映画は記録しよう！</h1>
+<% if @author.guest? -%>
 <div id="login_service">
 <div><h2>いつも使っているサービスでログイン</h2></div>
 <ul>
-<li><%= link_to image_tag("layout/login_facebook.png"), '/auth/facebook' %></li>
-<li><%= link_to image_tag("layout/login_google.png"),   '/auth/google_oauth2' %></li>
-<li><%= link_to image_tag("layout/login_twitter.png"),  '/auth/twitter' %></li>
+<li><%= link_to image_tag("layout/icon_facebook.png"), login_path(:provider => 'facebook',      :origin => @return_url) %></li>
+<li><%= link_to image_tag("layout/icon_google.gif"),   login_path(:provider => 'google_oauth2', :origin => @return_url) %></li>
+<li><%= link_to image_tag("layout/icon_twitter.png"),  login_path(:provider => 'twitter',       :origin => @return_url) %></li>
 </ul>
 </div>
+<% end -%>
 </navi>
 
 <section>
 <%= link_to about_path do -%>
-<h2><span class="linkable">›</span>このサービスで出来ることは？</h2>
-<h3>見た映画を記録することが出来ます。</h3>
-<h3>見たい映画をメモできます。</h3>
-<h3>ログインをするには。</h3>
-<h3>お問い合わせ・ご要望について。</h3>
-<h3>その他</h3>
+<h2><%= linksym.html_safe %>ここで出来ることは？</h2>
+<p>見た映画を記録することが出来ます。
+見たい映画をメモできます。</p>
 <% end -%>
 </section>
+
+<div id="summary_of_recently_movie">
+<h2>最近見られてる映画</h2>
+
+<% @weekly[:weekly_movie][:set].each do |movie| -%>
+<div class="each_summary_of_recently_movie">
+
+<%= link_to movie_seens_path movie[:id] do -%>
+<h3><%= movie[:name] %><% if movie[:stars] > 0 %><%= image_tag('layout/stars_on.png') %><span>(<%= movie[:stars] %>)</span><% end %></h3>
+<div class="outline"><%= truncate(movie[:outline], :length => 56) %></div>
+<% end -%>
+
+<div class="actions">
+<%= link_to "/movie/#{movie[:id]}/seens/new" do %><%= linksym.html_safe %><span>見た<% if movie[:watch] > 0 %>(<%= movie[:watch] %>)<% end %></span><% end %>
+<%= link_to movie_wish_new_path movie[:id] do %><%= linksym.html_safe %><span>見たい<% if movie[:wish] > 0 %>(<%= movie[:wish] %>)<% end %></span><% end %>
+</div>
+
+<div class="activity">
+<% movie[:seens].each do |seen| -%>
+<%= link_to my_summary_path seen.author_id do -%>
+<span><%= image_tag(seen.author.image, :size => '32x32') %></span>
+<% end -%>
+<% end -%>
+</div>
+
+</div>
+<% end -%>
+
+</div>
