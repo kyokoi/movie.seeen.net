@@ -16,7 +16,7 @@ class RootController < ApplicationController
       movie[:outline] = movie_for_outline.outline || ''
 
       movie[:stars] = Seen.where(:movie_id => movie[:id]).stars.count
-      movie[:watch] = Seen.active.where(:movie_id => movie[:id]).count
+      movie[:watch] = Seen.active.where(:movie_id => movie[:id]).where(Seen.no_wish).count
       movie[:wish]  = Seen.active.where(:movie_id => movie[:id]).wishes.count
 
       seens = Seen.active.where(:movie_id => movie[:id]).not(:comment, "")
@@ -24,7 +24,6 @@ class RootController < ApplicationController
       movie[:seens] = seens
       movie
     end
-    logger.info @weekly[:weekly_movie][:set].inspect
   end
 
   def login
