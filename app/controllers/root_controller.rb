@@ -19,7 +19,7 @@ class RootController < ApplicationController
       movie[:watch] = Seen.active.where(:movie_id => movie[:id]).where(Seen.no_wish).count
       movie[:wish]  = Seen.active.where(:movie_id => movie[:id]).wishes.count
 
-      seens = Seen.active.where(:movie_id => movie[:id]).not(:comment, "")
+      seens = Seen.active.where(:movie_id => movie[:id])
       seens = seens.limit(INDEX_SUMMARY_AUTHOR_LIMIT).order("date DESC")
       movie[:seens] = seens
       movie
