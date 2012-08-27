@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>映画箱<%= @page_title %></title>
+<title><%= @page_title || '映画箱：見た映画を記録しよう！' %></title>
 <meta name="description" content="見たい映画を記録する。見た映画を記録する。思い出の映画を忘れないように履歴をメモしよう。" />
 <meta name="keywords" content="見たい映画を記録する。見た映画を記録する。思い出の映画を忘れないように履歴をメモしよう。" />
 <%= stylesheet_link_tag "reset", "application", controller_name %>
@@ -9,6 +9,12 @@
 <%= csrf_meta_tags %>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
 <link href="/assets/layout/logo_300.png" rel="apple-touch-icon-precomposed">
+<%= render :partial => 'layouts/ogp', :locals => {
+  :title       => @page_title,
+  :description => '映画箱：見たい映画を記録する。見た映画を記録する。思い出の映画を忘れないように履歴をメモしよう。',
+  :url         => request.url,
+  :app_id      => '362797203743008'
+} %>
 </head>
 <body>
 

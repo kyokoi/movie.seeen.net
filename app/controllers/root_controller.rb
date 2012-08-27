@@ -6,7 +6,7 @@ class RootController < ApplicationController
   INDEX_SUMMARY_AUTHOR_LIMIT = 10
 
   def index
-    page_title "見た映画を記録しよう！index"
+    page_title "見た映画を記録しよう！"
 
     @weekly = fetch_ranking [:weekly_movie]
     @weekly[:weekly_movie][:set].slice!(INDEX_SUMMARY_MOVIE_LIMIT..-1)
@@ -27,7 +27,7 @@ class RootController < ApplicationController
   end
 
   def login
-    page_title "見た映画を記録しよう！login"
+    page_title "見た映画を記録しよう！"
 
     @return_url = 'http://' + request.host + (params[:return_url] || root_path)
   end

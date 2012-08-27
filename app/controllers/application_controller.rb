@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def page_title(messege)
-    @page_title = "#{messege} - 映画の履歴を残す 見たい映画をメモ・記録する"
+  def page_title(message)
+    @page_title = "映画箱#{'：' unless message.blank? }#{message}"
   end
 
   def logged_in?
