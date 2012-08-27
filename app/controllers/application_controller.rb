@@ -26,9 +26,10 @@ class ApplicationController < ActionController::Base
 
   def logged_into_admin(author)
     unless SUPER_USERS.include? author.id
-      redirect_to :controller => 'login'
+      redirect_to root_path
       return
     end
+    author
   end
 
   def authorize
