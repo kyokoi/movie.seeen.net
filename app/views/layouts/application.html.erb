@@ -14,20 +14,19 @@
 
 <div id='headline'>
 
-<div id='service_logo'>
-<%= link_to '/' do -%>
-<%= image_tag 'layout/logo_40.png', :size => '26x26', :class => 'logo' %>
-<span id='service_logo_text'>映画箱</span>
-<% end -%>
-<%= link_to ranking_movie_path, :id => 'to_ranking' do %><span><%= linksym.html_safe %>ランキング</span><% end %>
-</div>
 <div id='left_line'>
 <% if @author.guest? -%>
-<%= image_tag(@author.image, :size => '24x24', :class => 'author_image') %>
+<%= image_tag(@author.image, :size => '34x34', :class => 'author_image logo') %>
 <% else -%>
-<%= link_to my_summary_path @author.id do %><%= image_tag(@author.image, :size => '24x24', :class => 'author_image') %><% end %>
+<%= link_to my_summary_path @author.id do %><%= image_tag(@author.image, :size => '34x34', :class => 'author_image logo') %><% end %>
 <% end -%>
-<%= image_tag('layout/search.png', :id => 'headline_search_trigger') %>
+<%= image_tag('layout/search.png', :size => '34x34', :id => 'headline_search_trigger', :class => 'logo') %>
+</div>
+<div id='service_logo'>
+<%= link_to ranking_movie_path, :id => 'to_ranking' do %><span><%= linksym.html_safe %>ランキング</span><% end %>
+<%= link_to '/' do -%>
+<%= image_tag 'layout/logo_40.png', :size => '34x34', :class => 'logo' %>
+<% end -%>
 </div>
 
 <div id="headline_search">
@@ -56,7 +55,7 @@
 <% end -%>
 </li>
 <li><%= link_to about_path do %><%= linksym.html_safe %>使い方</li><% end %>
-<% unless @author.guest? %><li><%= link_to logout_path do %><%= linksym.html_safe %>ログアウト</li><% end %><% end %>
+<li><%= link_to logout_path do %><%= linksym.html_safe %>ログアウト</li><% end %>
 </ul>
 </div>
 <% end -%>

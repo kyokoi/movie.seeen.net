@@ -17,26 +17,31 @@
   background-color: #000000;
   font-weight: bold;
   padding: 3px 2px;
-  height: 32px;
+  height: 42px;
 }
 #headline #service_logo
 {
   color: #339900;
   font-size: large;
   padding-top: 4px;
-  width: 80%;
-  float: left;
+  float: right;
 }
-#headline .logo
+#headline #service_logo .logo
 {
   margin-right: 4px;
   vertical-align: middle;
 }
+#headline .logo
+{
+  margin-left: 4px;
+  vertical-align: middle;
+}
 #headline #left_line
 {
+  width: 60%;
   padding-top: 4px;
   padding-right: 4px;
-  float: right;
+  float: left;
 }
 #headline #left_line .author_image
 {
