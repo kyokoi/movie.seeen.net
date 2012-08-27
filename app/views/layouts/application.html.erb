@@ -32,8 +32,8 @@
 <div id="headline_search">
 <%= form_tag search_movies_path, :method => "get" do -%>
 <%= linksym.html_safe %><span id='headline_search_reverse'>戻る</span>
-<%= image_tag 'layout/logo_40.png', :size => '26x26', :class => 'logo' %>
-<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :class => "headline_search_box", :placeholder => "映画を検索！" %><%= image_submit_tag('layout/search.png') %>
+<%= image_tag 'layout/logo_40.png', :size => '34x34', :class => 'logo' %>
+<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :class => "headline_search_box", :placeholder => "映画を検索！", :size => 16 %><%= image_submit_tag('layout/search.png', :size => '34x34') %>
 <% end -%>
 </div>
 

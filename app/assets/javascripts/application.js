@@ -31,7 +31,7 @@ $(function(){
       $('#headline_search').toggle();
       $('#left_line').toggle();
       if ($('#headline_search').css('display') == 'block') {
-        $('#headline').css('height', '32')
+        $('#headline').css('height', '42')
         $('.headline_search_box').focus();
       }
     }
@@ -42,7 +42,7 @@ $(function(){
       $('#headline_search').toggle();
       $('#left_line').toggle();
       if ($('#headline_search').css('display') == 'block') {
-        $('#headline').css('height', '32')
+        $('#headline').css('height', '42')
         $('.headline_search_box').focus();
       }
     }
