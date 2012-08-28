@@ -105,20 +105,27 @@ class SearchController < ApplicationController
 
     case params[:search][:narrow]
     when 'star'
+      page_title 'あなたのお気に入り映画一覧'
       matches = matches.where Seen.star
     when 'seen'
+      page_title 'あなたが見た映画一覧'
       matches = matches.where Seen.no_star
       matches = matches.where Seen.no_wish
     when 'wish'
+      page_title 'あなたが見たい映画一覧'
       matches = matches.where Seen.wish
     else
+      page_title 'あなたが見た全ての映画一覧'
       matches = matches.where Seen.no_wish
     end
 
     search_count = matches.count
 
-    template = 'at_beginner'
-    template = 'layouts/seen' if matches.count > 0
+    template = 'layouts/seen'
+    unless matches.count > 0
+      page_title '見た映画を探そう'
+      template = 'at_beginner'
+    end
 
     matches = matches.order('date desc').order('id desc')
     matches = matches.limit(EACH_LIMIT_WHEN_SEARCH)
@@ -128,11 +135,13 @@ class SearchController < ApplicationController
   end
 
   def movies_search(search, offset)
+    page_title '検索結果'
     matches = Movie.where :negative => 0
     if search
       if search[:word] && search[:word].size > 0
         search_condition "#{search[:word]}"
         matches = matches.text_search search[:word]
+        page_title "#{params[:search][:word]}の検索結果"
       end
     end
     template = 'no_hit'
@@ -152,6 +161,7 @@ class SearchController < ApplicationController
       if params[:search][:word] && params[:search][:word].size > 0
         search_condition "#{params[:search][:word]}"
         matches = matches.text_search params[:search][:word]
+
       end
 
       template = 'no_hit'
@@ -173,7 +183,6 @@ class SearchController < ApplicationController
 
   def search_condition(word)
     @search_condition = word
-    page_title word
   end
 
   def search_offset(offset)

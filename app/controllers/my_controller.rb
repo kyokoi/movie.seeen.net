@@ -6,6 +6,8 @@ class MyController < ApplicationController
   RECOMMEND_DIR = '/usr/local/apps/movie_seen/data/recommend'
 
   def activity
+    page_title "あなたの映画活動"
+
     @my = Author.active.where(:id => params[:author_id]).first
     if @my.blank?
       return redirect_to search_path
@@ -16,6 +18,8 @@ class MyController < ApplicationController
   end
 
   def summary
+    page_title "あなたの映画メモ"
+
     @my = Author.active.where(:id => params[:author_id]).first
     if @my.blank?
       return redirect_to search_path
