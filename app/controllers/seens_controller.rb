@@ -51,6 +51,7 @@ class SeensController < ApplicationController
   # GET /seens
   # GET /seens.json
   def index
+
     @seens = Seen.where(:movie_id => @movie.id)
     @seens = @seens.active
 
@@ -62,15 +63,21 @@ class SeensController < ApplicationController
     case params[:narrow]
     when 'star'
       @seens = @seens.where Seen.star
+      title = 'お気に入りに登録している'
     when 'seen'
+      title = '見たことある'
       @seens = @seens.where Seen.no_star
       @seens = @seens.where Seen.no_wish
     when 'wish'
+      title = '見たい'
       @seens = @seens.where Seen.wish
     else
+      title = '見たことある'
       @seens = @seens.where Seen.no_wish
     end
     @seens = @seens.order("date desc");
+
+    page_title "#{@movie.name_of_japan} を#{title}人一覧"
 
     wishlist = Seen.where(Seen.wish).where(:author_id => @author.id)
     wishlist = wishlist.where(:movie_id => @movie.id, :negative => 0)
@@ -97,6 +104,8 @@ class SeensController < ApplicationController
   # GET /seens/new
   # GET /seens/new.json
   def new
+    page_title "#{@movie.name_of_japan} をメモする"
+
     author = logged_in?
     if author.guest?
       return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @movie.id)})
@@ -114,6 +123,8 @@ class SeensController < ApplicationController
 
   # GET /seens/1/edit
   def edit
+    page_title "#{@movie.name_of_japan} をメモする"
+
     author = logged_in?
     if author.guest?
       return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @movie.id)})
