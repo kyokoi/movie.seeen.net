@@ -26,7 +26,7 @@
 <% else -%>
 <%= link_to my_summary_path @author.id do %><%= image_tag(@author.image, :size => '34x34', :class => 'author_image logo') %><% end %>
 <% end -%>
-<%= image_tag('layout/search.png', :size => '34x34', :id => 'headline_search_trigger', :class => 'logo') %>
+<%= image_tag('layout/megane.gif', :size => '34x34', :id => 'headline_search_trigger', :class => 'logo') %>
 </div>
 <div id='service_logo'>
 <%= link_to ranking_movie_path, :id => 'to_ranking' do %><span><%= linksym.html_safe %>ランキング</span><% end %>
@@ -39,7 +39,7 @@
 <%= form_tag search_movies_path, :method => "get" do -%>
 <%= linksym.html_safe %><span id='headline_search_reverse'>戻る</span>
 <%= image_tag 'layout/logo_40.png', :size => '34x34', :class => 'logo' %>
-<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :class => "headline_search_box", :placeholder => "映画を検索！", :size => 16 %><%= image_submit_tag('layout/search.png', :size => '34x34') %>
+<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :class => "headline_search_box", :placeholder => "映画を検索！", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
 <% end -%>
 </div>
 
