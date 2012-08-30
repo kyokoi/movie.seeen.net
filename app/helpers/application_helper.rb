@@ -1,6 +1,13 @@
 # encoding: utf-8
 
 module ApplicationHelper
+  def path_by_author(path, author)
+    if author.guest?
+      path = 'movies/_noimage.jpg'
+    end
+    path
+  end
+
   def linksym
     simbol_string = '<bow>›</bow>'
   end

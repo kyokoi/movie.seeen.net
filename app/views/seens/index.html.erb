@@ -41,7 +41,7 @@
 <%= link_to my_summary_path seen.author.id do -%>
 <div class="result_of_same_movie_seener<% if seen.wish? %> with_wish<% end %>">
 <div class="leftside">
-<%= image_tag(seen.author.image, :size => '64x64') %>
+<%= image_tag(path_by_author(seen.author.image, @author), :size => '64x64') %>
 </div>
 <div class="rightside">
 <div>

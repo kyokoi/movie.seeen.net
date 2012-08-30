@@ -3,7 +3,7 @@
 </div>
 
 <div class="outside">
-<you><%= image_tag(@my.image, :size => '50x50') %></you>
+<you><%= image_tag(path_by_author(@my.image, @author), :size => '50x50') %></you>
 <p><%= link_to my_activity_path @my.id do %>今月見た映画(<%= @monthly.all %>)<br /><span class="linkable">›</span>詳細<% end %></p>
 </div>
 

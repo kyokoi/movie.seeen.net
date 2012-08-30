@@ -39,7 +39,7 @@
 <div class="activity">
 <% movie[:seens].each do |seen| -%>
 <%= link_to my_summary_path seen.author_id do -%>
-<span><%= image_tag(seen.author.image, :size => '32x32') %></span>
+<span><%= image_tag(path_by_author(seen.author.image, @author), :size => '32x32') %></span>
 <% end -%>
 <% end -%>
 </div>
