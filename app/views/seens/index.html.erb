@@ -45,7 +45,13 @@
 </div>
 <div class="rightside">
 <div>
+<% if @author.guest? -%>
+<%= seen.date.strftime('%m月%d日') %>に<%= @movie.name_of_japan %>を見た人さん
+<% else -%>
 <%= seen.author.name %>
+<% end -%>
+</div>
+<div>
 <% unless seen.wish? %>&nbsp;見た日：<%= seen.date.strftime('%Y/%m/%d') %><% end -%>
 </div>
 <% unless seen.wish? -%>

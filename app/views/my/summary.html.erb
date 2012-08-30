@@ -1,5 +1,11 @@
 <div id="search_condition">
-<h1><%= @my.name %></h1>
+<h1>
+<% if @author.guest? -%>
+<%= author_name_for_unlogin_user @star_seen, @wish_seen, @recently_seen -%>
+<% else -%>
+<%= @my.name %>
+<% end -%>
+</h1>
 </div>
 
 <div class="outside">

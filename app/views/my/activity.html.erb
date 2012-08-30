@@ -1,8 +1,12 @@
 <div id="search_condition">
+<% if @author.guest? -%>
+いままでに映画を<%=in_total_of_seens @month %>回見た人さん
+<% else -%>
 <%= @my.name %>のアクティビティ
+<% end -%>
 </div>
 
-<H2><%= image_tag(@my.image, :size => '50x50') %></h2>
+<H2><%= image_tag(path_by_author(@my.image, @author), :size => '50x50') %></h2>
 <div>全視聴数：<%= in_total_of_seens @month %>本</div>
 <div>月間平均視聴数：<%= in_average_of_seens_monthly @month %>本</div>
 
