@@ -3,7 +3,7 @@
 <head>
 <title><%= @page_title || '映画箱：見た映画を記録しよう！' %></title>
 <meta name="description" content="見たい映画を記録する。見た映画を記録する。思い出の映画を忘れないように履歴をメモしよう。" />
-<meta name="keywords" content="見たい映画を記録する。見た映画を記録する。思い出の映画を忘れないように履歴をメモしよう。" />
+<meta name="keywords" content="映画管理,映画記録,映画日記,見た映画,見たい映画,観た映画,観たい映画,映画箱<%= ",#{@movie.name_of_japan}" if @movie %>" />
 <%= stylesheet_link_tag "reset", "application", controller_name %>
 <%= javascript_include_tag "application" %>
 <%= csrf_meta_tags %>
