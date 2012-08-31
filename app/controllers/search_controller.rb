@@ -98,7 +98,7 @@ class SearchController < ApplicationController
     oauthor = check_author search[:author]
     if oauthor
       matches = matches.where :author_id => oauthor.id
-      search_condition oauthor.name
+      search_condition search_condition (@author.guest? ? '名前無しさん' : oauthor.name)
     else
       matches = matches.where :author_id => @author.id
     end
