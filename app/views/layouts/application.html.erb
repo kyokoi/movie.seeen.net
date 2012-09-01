@@ -61,7 +61,7 @@
 <% end -%>
 </li>
 <li><%= link_to about_path do %><%= linksym.html_safe %>使い方</li><% end %>
-<li><%= link_to logout_path do %><%= linksym.html_safe %>ログアウト</li><% end %>
+<% unless @author.guest? %><li><%= link_to logout_path do %><%= linksym.html_safe %>ログアウト</li><% end %><% end -%>
 </ul>
 </div>
 <% end -%>
