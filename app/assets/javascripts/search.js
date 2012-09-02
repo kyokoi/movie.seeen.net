@@ -4,19 +4,10 @@
 
 
 $(function(){
-  $('#next_page').live(
-    "ajax:success",
+  $('#next_page').bind(
     function(data, status, xhr) {
       $('#next_page').remove();
       $('#search_items').append($(status));
-    }
-  );
-  $('#next_page').live(
-    "ajax:beforeSend",
-    function(xhr) {
-      //$('#next_page_button').remove();
-      var s = '<div style="width: 100%;"><img src="/assets/layout/loading.gif" /></div>';
-      $('#next_page_button').html(s);
     }
   );
 });

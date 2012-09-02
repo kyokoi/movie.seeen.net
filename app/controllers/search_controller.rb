@@ -136,21 +136,16 @@ class SearchController < ApplicationController
 
   def movies_search(search, offset)
     page_title '検索結果'
-    matches = Movie.where :negative => 0
-    if search
-      if search[:word] && search[:word].size > 0
-        search_condition "#{search[:word]}"
-        matches = matches.text_search search[:word]
-        page_title "#{params[:search][:word]}の検索結果"
-      end
-    end
-    template = 'no_hit'
-    template = 'search_to_movie' if matches.count > 0
-    search_count = matches.count
 
-    matches = matches.order('open_date desc').order('id desc')
-    matches = matches.limit(EACH_LIMIT_WHEN_SEARCH)
-    matches = matches.offset(offset * EACH_LIMIT_WHEN_SEARCH)
+    search_count = 0
+    matches = Movie.search search[:word], offset, EACH_LIMIT_WHEN_SEARCH do |response|
+      search_count = response['numFound']
+    end
+    search_condition "#{search[:word].to_s}の検索結果"
+    page_title       "#{search[:word].to_s}の検索結果"
+
+    template = 'no_hit'
+    template = 'search_to_movie' if search_count > 0
 
     return matches, search_count, template
   end
@@ -160,8 +155,7 @@ class SearchController < ApplicationController
       matches = Movie.where :negative => 0
       if params[:search][:word] && params[:search][:word].size > 0
         search_condition "#{params[:search][:word]}"
-        matches = matches.text_search params[:search][:word]
-
+        matches = matches.text_search params[:search][:word], offset
       end
 
       template = 'no_hit'

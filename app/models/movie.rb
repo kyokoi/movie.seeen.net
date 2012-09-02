@@ -8,7 +8,23 @@ class Movie < ActiveRecord::Base
   has_many :seens
   has_many :affiliates
 
-  def self.text_search(word, matches = Movie)
+  def self.search(word, offset, limit)
+    search = SearchMovie.new
+    search.keywords = word
+    search.offset   = offset
+    search.limit    = limit
+
+    header, response = search.pull
+
+    yield response
+
+    ids = response['docs'].map do |element|
+      element['id']
+    end
+    matches = Movie.active.where :id => ids
+  end
+
+  def self.text_search(word, offset, matches = Movie)
     word.split(/[[:space:]]/, 3).each do |sentence|
       next if sentence.blank?
       matches = matches.where(
