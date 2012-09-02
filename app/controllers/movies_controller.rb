@@ -10,14 +10,9 @@ class MoviesController < AdminController
       movie_params[:page] = 0
     end
 
-    @movies = Movie.order('open_date desc').order('id desc')
-    unless movie_params[:word].blank?
-      @movies = @movies.text_search movie_params[:word]
+    @movies = Movie.search movie_params[:word], 0, EACH_LIMIT_WHEN_SEARCH do |response|
+      @movies_count = response['numFound']
     end
-    @movies_count = @movies.count
-
-    @movies = @movies.limit(EACH_LIMIT_WHEN_SEARCH)
-    @movies = @movies.offset(movie_params[:page].to_i * EACH_LIMIT_WHEN_SEARCH)
 
 
     respond_to do |format|
