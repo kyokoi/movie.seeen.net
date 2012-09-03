@@ -1,9 +1,9 @@
 <% unless block_items.blank? -%>
 <%= link_to block_link do -%>
-<div class="title_name">
+<h2 class="title_name">
 <span class="title_name_main"><%= block_title %></span>
 <span class="title_name_more">もっと見る</span>
-</div>
+</h2>
 <% end -%>
 <div>
 <%= render :partial => block_partial, :locals => {:items => block_items, :limit => block_limit} -%>
