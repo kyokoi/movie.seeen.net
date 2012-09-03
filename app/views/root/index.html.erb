@@ -1,5 +1,14 @@
 <navi>
 <h1><%= image_tag 'layout/logo_40.png', :size => '40x40' %>見た映画を記録！</h1>
+
+<section>
+<%= link_to about_path do -%>
+<h2><%= linksym.html_safe %>ここで出来ることは？</h2>
+<p>見た映画を記録することが出来ます。
+見たい映画をメモできます。</p>
+<% end -%>
+</section>
+
 <% if @author.guest? -%>
 <div id="login_service">
 <div><h2>いつも使っているサービスでログイン</h2></div>
@@ -11,14 +20,6 @@
 </div>
 <% end -%>
 </navi>
-
-<section>
-<%= link_to about_path do -%>
-<h2><%= linksym.html_safe %>ここで出来ることは？</h2>
-<p>見た映画を記録することが出来ます。
-見たい映画をメモできます。</p>
-<% end -%>
-</section>
 
 <div id="summary_of_recently_movie">
 <h2>最近見られてる映画</h2>
