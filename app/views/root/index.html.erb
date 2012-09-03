@@ -5,13 +5,13 @@
 <%= link_to about_path do -%>
 <h2><%= linksym.html_safe %>ここで出来ることは？</h2>
 <p>見た映画を記録することが出来ます。
-見たい映画をメモできます。</p>
+見たい映画をメモできます。<br />すべて無料で利用できます。</p>
 <% end -%>
 </section>
 
 <% if @author.guest? -%>
 <div id="login_service">
-<div><h2>いつも使っているサービスでログイン</h2></div>
+<div><h2>ログインはここから</h2></div>
 <ul>
 <li><%= link_to image_tag("layout/icon_facebook.png"), login_path(:provider => 'facebook',      :origin => @return_url) %></li>
 <li><%= link_to image_tag("layout/icon_google.gif"),   login_path(:provider => 'google_oauth2', :origin => @return_url) %></li>
