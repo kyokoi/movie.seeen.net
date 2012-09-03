@@ -45,9 +45,9 @@
 
 <% unless @author.guest? -%>
 <% unless @recommend_users.blank? -%>
-<div class="title_name">
+<h2 class="title_name">
 <span class="title_name_main">おすすめユーザ</span>
-</div>
+</h2>
 <div class="recommend_user">
 <% @recommend_users.each do |user| -%>
 <%= link_to my_summary_path user[:id] do %><span class="linkable">›</span><span><%= user[:name] %>(<%= user[:approximation] %>％)</span><% end %>
