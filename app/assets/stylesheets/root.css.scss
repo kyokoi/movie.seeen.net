@@ -50,6 +50,11 @@ section
 {
   margin: 5px;
 }
+section p
+{
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
 
 #summary_of_recently_movie
 {
@@ -98,4 +103,9 @@ section
   height: 32px;
   margin: 8px 0px;
   padding: 0px;
+}
+
+.notice
+{
+  font-size: x-small;
 }
