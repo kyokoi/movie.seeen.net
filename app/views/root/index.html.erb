@@ -3,13 +3,15 @@
 
 <section>
 <%= link_to about_path do -%>
-<h2><%= linksym.html_safe %>ここで出来ることは？</h2>
+<h2 class="contents_tile"><%= linksym.html_safe %>ここで出来ることは？</h2>
 <p>見た映画を記録・管理することが出来ます。
 見たい映画を記録・管理できます。<br />すべて無料で利用できます。</p>
 <% end -%>
+</section>
 
 <% if @author.guest? -%>
 
+<section>
 <%= image_tag('layout/how_to_search.png') %>
 
 <p>
@@ -19,10 +21,7 @@
 <%= form_tag search_movies_path, :method => "get" do -%>
 <%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :id => "search_box_for_biginner", :placeholder => "映画名やキーワードを入力", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
 <% end -%>
-<p>
-探している映画が見つかったらコメントをつけて記録・管理しましょう。<br />見たい映画はすぐに記録することができます。
-
-</p>
+<p>探している映画が見つかったらコメントをつけて記録・管理しましょう。<br />見たい映画はすぐに記録することができます。</p>
 
 </section>
 
@@ -36,10 +35,11 @@
 <div class="notice">またログインしていない場合、一部のコンテンツは閲覧できません。ご利用は完全に無料です。</div>
 </div>
 <% end -%>
+
 </navi>
 
 <div id="summary_of_recently_movie">
-<h2>最近見られてる映画</h2>
+<h2 class="contents_tile">最近見られてる映画</h2>
 
 <% @weekly[:weekly_movie][:set].each do |movie| -%>
 <div class="each_summary_of_recently_movie">

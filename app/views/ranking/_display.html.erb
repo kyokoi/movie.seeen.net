@@ -1,6 +1,6 @@
 <% unless items[:set].blank? -%>
 <div class="ranking_box">
-<h2><%= items[:display] %></h2>
+<h2 class="contents_tile"><%= items[:display] %></h2>
 <table class="tableout">
 <tr>
 <th>順位</th><th>名前</th><th>見た回数</th>
@@ -9,7 +9,7 @@
 <tr>
 <td><%= index %></td>
 <td class="contents"><%= link_to ranking[:link] do -%>
-<span class="linkable">›</span><%= ranking[:name] -%><% if @author[:name] == ranking[:name] %><%= image_tag('layout/stars_on.png') %><% end %>
+<bow>›</bow><%= ranking[:name] -%><% if @author[:name] == ranking[:name] %><%= image_tag('layout/stars_on.png') %><% end %>
 <% end -%></td>
 <td class="number"><%= ranking[:number] %></td>
 </tr>
@@ -17,7 +17,7 @@
 </table>
 <% if limit < items[:set].size -%>
 <%= link_to ranking_detail_path(items[:title], :return => request.fullpath) do -%>
-<span class="linkable">›</span>ランキングをもっと見る...
+<bow>›</bow>ランキングをもっと見る...
 <% end -%>
 <% end -%>
 </div>

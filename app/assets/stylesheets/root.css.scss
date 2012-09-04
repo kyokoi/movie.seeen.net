@@ -35,9 +35,6 @@ h1 img
 
 h2
 {
-  background: -webkit-gradient(linear, left top, left bottom, from(#66cc00), to(#228800));
-
-  border: solid 1px #117700;
   margin-top: 10px;
   padding: 4px;
 
@@ -56,9 +53,14 @@ section p
   margin-bottom: 10px;
 }
 
+.each_summary_of_recently_movie
+{
+  margin-bottom: 30px;
+}
+
 #summary_of_recently_movie
 {
-  margin: 24px 0px;
+  margin: 24px 5px;
 }
 #summary_of_recently_movie h3
 {
@@ -83,8 +85,6 @@ section p
 }
 #summary_of_recently_movie .actions
 {
-  padding: 2px;
-  background-color: #dddddd;
   border: solid 1px #eeeeee;
   font-size: normal;
 }

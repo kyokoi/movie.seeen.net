@@ -105,7 +105,6 @@
   display: inline;
 }
 
-a { text-decoration: none; }
 a:link    {text-decoration: none; color: #000000; }
 a:visited {text-decoration: none; color: #000000; }
 a:active  {text-decoration: none; color: #000000; }
@@ -245,4 +244,21 @@ emphasis
 {
   color: #f30000;
   font-weight: bold;
+}
+
+.contents_tile
+{
+  color: #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#66cc00), to(#228800));
+  border: solid 1px #117700;
+  text-shadow: 1px 1px 1px #339900;
+}
+.active_tile
+{
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #339900;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background-color: #339900;
+  background: -webkit-gradient(linear, left top, left bottom, from(#DAA520), to(#8B5A00));
 }
