@@ -45,8 +45,15 @@ class Movie < ActiveRecord::Base
   end
 
   def seen_users(author_id = nil)
-    matches = Seen.where :negative => 0, :movie_id => self.id
-    matches = matches.where Seen.no_wish
+    matches = Seen.active.where(:movie_id => self.id).where(Seen.no_wish)
+    if author_id
+      matches = matches.where author_id => author_id
+    end
+    matches
+  end
+
+  def wish_users(author_id = nil)
+    matches = Seen.active.where(:movie_id => self.id).wishes
     if author_id
       matches = matches.where author_id => author_id
     end

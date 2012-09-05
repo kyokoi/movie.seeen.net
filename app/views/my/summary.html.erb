@@ -13,6 +13,8 @@
 <p><%= link_to my_activity_path @my.id do %>今月見た映画(<%= @monthly.all %>)<br /><span class="linkable">›</span>詳細<% end %></p>
 </div>
 
+<div id="summary_of_recently_movie">
+
 <% unless @star_seen.blank? -%>
 <%= render(:partial => 'block', :locals => {
   :block_partial    => 'layouts/seen',
@@ -38,6 +40,8 @@
   :block_title      => '最近見た映画',
   :block_limit      => 3
 }) -%>
+
+</div>
 
 <%= render :partial => 'ranking/display', :locals => {:items => @weekly_ranking[:weekly_movie], :limit => @display} %>
 

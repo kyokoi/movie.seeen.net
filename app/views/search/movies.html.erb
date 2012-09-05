@@ -1,7 +1,4 @@
-<div id="search_items">
-<div>
-検索結果：<%= number_with_delimiter(@search_count) %>件
-</div>
+<h2 class="contents_tile"><%= params[:search][:word] %> の検索結果 (<%= number_with_delimiter(@search_count) %>)</h2>
 <%= render @template %>
 <%= render 'next_page' %>
 </div>

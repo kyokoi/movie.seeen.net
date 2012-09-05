@@ -1,15 +1,14 @@
 <navi>
-<h1><%= image_tag 'layout/logo_40.png', :size => '40x40' %>見た映画を記録！</h1>
+<h1><%= image_tag 'layout/logo_40.png', :size => '40x40' %>映画を記録・管理</h1>
 
 <section>
+<% if @author.guest? -%>
+
 <%= link_to about_path do -%>
 <h2 class="contents_tile"><%= linksym.html_safe %>ここで出来ることは？</h2>
-<p>見た映画を記録・管理することが出来ます。
-見たい映画を記録・管理できます。<br />すべて無料で利用できます。</p>
+<p>見た映画・見たい映画をを記録・管理することが出来ます。<br />すべて無料で利用できます。</p>
 <% end -%>
 </section>
-
-<% if @author.guest? -%>
 
 <section>
 <%= image_tag('layout/how_to_search.png') %>
@@ -19,11 +18,10 @@
 あなたが見た映画はなんですか？見たい映画は？映画名かキーワードを入力してください。<br />
 </p>
 <%= form_tag search_movies_path, :method => "get" do -%>
-<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :id => "search_box_for_biginner", :placeholder => "映画名やキーワードを入力", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
+<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :id => "search_box_for_firster", :placeholder => "映画名や俳優名を入力", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
 <% end -%>
 <p>探している映画が見つかったらコメントをつけて記録・管理しましょう。<br />見たい映画はすぐに記録することができます。</p>
 
-</section>
 
 <div id="login_service">
 <div>映画を記録するときには<emphasis>ログイン</emphasis>が必要です。</div>
@@ -34,7 +32,28 @@
 </ul>
 <div class="notice">またログインしていない場合、一部のコンテンツは閲覧できません。ご利用は完全に無料です。</div>
 </div>
+
+<% else -%>
+
+<h2 class="contents_tile">映画を探す</h2>
+<div>
+<%= form_tag search_movies_path, :method => "get" do -%>
+<p>
+<h3>キーワードで探す</h3>
+<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :id => "search_box_for_firster", :placeholder => "映画名や俳優名を入力", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
+</p>
 <% end -%>
+<ul>
+<h3>ランキングから探す</h3>
+<li><%= link_to ranking_movie_path, :id => 'to_ranking' do %><%= linksym.html_safe %>最近見られている映画</li><% end %>
+<li><%= link_to ranking_star_path,  :id => 'to_ranking' do %><%= linksym.html_safe %>お気に入りに登録されている映画</li><% end %>
+<li><%= link_to ranking_wish_path,  :id => 'to_ranking' do %><%= linksym.html_safe %>見たい映画<% end %></li>
+</ul>
+
+</div>
+
+<% end -%>
+</section>
 
 </navi>
 

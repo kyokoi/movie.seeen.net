@@ -10,7 +10,7 @@ rdoc
 spec/reports
 test/tmp
 test/version_tmp
-tmp
+tmp/cache/sass/
 *.log
 data/*/*.mon
 data/*/*.yml

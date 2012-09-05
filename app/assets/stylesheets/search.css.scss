@@ -1,13 +1,6 @@
 // Place all the styles related to the search controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.movie_title
-{
-  color: #339900;
-  font-weight: bold;
-  font-size: large;
-}
-
 #next_page_button
 {
   margin: 6px 0px;
@@ -38,49 +31,6 @@
   color: #ffffff;
   margin: 0px;
   padding: 0px;
-}
-
-.result_of_search
-{
-  margin: 2px 0px 2px 0px;
-}
-
-.result_of_search:after
-{
-  clear: both;
-  content: ".";
-  display: block;
-  height: 1px;
-  margin-top: -1px;
-  visibility: hidden;
-}
-
-.result_of_search .rightside
-{
-  padding: 5px;
-  display: table-cell;
-  float: left;
-}
-.result_of_search .rightside data_and_area img
-{
-  vertical-align: top;
-}
-.result_of_search .rightside .seen_users
-{
-  font-size: xx-small;
-}
-.result_of_search .rightside .seen_users strong
-{
-  font-weight: normal;
-  color: #f30000;
-}
-.result_of_search .navigation_allow
-{
-  text-align: right;
-}
-.result_of_search .navigation_allow img
-{
-  margin-top: 20px;
 }
 
 #authors_activity
