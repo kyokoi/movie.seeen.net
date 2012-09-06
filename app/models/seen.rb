@@ -29,7 +29,7 @@ class Seen < ActiveRecord::Base
     matches
   end
 
-  def self.all_seens(author_id)
+  def self.all_seens(author_id = nil)
     matches = self.active
     unless author_id.blank?
       matches = self.where :author_id => author_id
