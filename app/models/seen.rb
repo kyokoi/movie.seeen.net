@@ -30,7 +30,10 @@ class Seen < ActiveRecord::Base
   end
 
   def self.all_seens(author_id)
-    matches = self.where :negative => 0, :author_id => author_id
+    matches = self.active
+    unless author_id.blank?
+      matches = self.where :author_id => author_id
+    end
     matches = matches.where self.no_wish
     matches
   end
