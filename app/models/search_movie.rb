@@ -18,7 +18,7 @@ class SearchMovie < ActiveResource::Base
     words = @keywords.gsub '　', ' '
 
     queries = words.split(/ /).map do |word|
-      "(name:#{word} OR outline:#{word})"
+      "(name:#{word} OR name_ja:#{word} OR outline:#{word})"
     end
 
     offset = @offset || 0
