@@ -23,7 +23,7 @@ class SearchMovie < ActiveResource::Base
     end
 
     offset = @offset || 0
-    query  = queries.join(' AND ')
+    query  = queries.join(' AND ') + '&sort=seen_count+desc'
 
     json = nil
     http = Net::HTTP.new BASE_HOST, BASE_PORT
