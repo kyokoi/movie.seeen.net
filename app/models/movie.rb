@@ -21,7 +21,17 @@ class Movie < ActiveRecord::Base
     ids = response['docs'].map do |element|
       element['id']
     end
-    matches = Movie.active.where :id => ids
+
+    matches = []
+    ids.each do |id|
+      begin
+        match = Movie.active.find id
+        matches << match unless match.blank?
+      rescue Exception => e
+        logger.error e
+      end
+    end
+    matches
   end
 
   def self.text_search(word, offset, matches = Movie)
