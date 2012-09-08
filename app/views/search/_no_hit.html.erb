@@ -1,6 +1,12 @@
-<div>検索結果が０件でした。<br />検索条件を変えてもう一度検索しましょう。</div>
+<div><strong><%= params[:search][:word] %></strong>に一致する映画が見つかりませんでした。</div>
 
+<h3>検索のヒント：</h3>
 <ul>
-<li><%= form_tag search_movies_path, :method => "get" do -%><%= text_field_tag 'search[word]', "", :size => 12 %><%= image_submit_tag('layout/search.png') %><% end %></li>
+<li>キーワードに誤字・脱字がないか確認してみます。</li>
+<li>別のキーワードで試してみます。 ※映画名、監督名、俳優名など</li>
 </ul>
 
+<%= form_tag search_movies_path, :method => "get" do -%>
+<%= text_field_tag 'search[word]', params[:search][:word], :id => "search_box_for_firster", :size => 16 %>
+<%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
+<% end -%>

@@ -9,7 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
 */
 
 #headline
@@ -186,7 +185,21 @@ clearfix:after {
 
 h2
 {
-  margin: 5px;
+  margin-top: 10px;
+  padding: 4px;
+
+  color: #ffffff;
+  font-size: large;
+  font-weight: bold;
+}
+h3
+{
+  border-bottom: solid 1px #117700;
+  margin-top: 10px;
+
+  color: #339900;
+  font-size: large;
+  font-weight: bold;
 }
 
 table.tableout
@@ -272,15 +285,6 @@ emphasis
 {
   margin: 24px 5px;
 }
-#summary_of_recently_movie h3
-{
-  border-bottom: solid 1px #117700;
-  margin-top: 10px;
-
-  color: #339900;
-  font-size: large;
-  font-weight: bold;
-}
 #summary_of_recently_movie h3 img
 {
   vertical-align: middle;
@@ -303,3 +307,13 @@ emphasis
 {
   height: 34px;
 }
+
+#search_box_for_firster
+{
+  font-size: large;
+  width: 220px;
+  height: 32px;
+  margin: 8px 0px;
+  padding: 0px;
+}
+
