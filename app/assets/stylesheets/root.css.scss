@@ -3,47 +3,25 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 a { text-decoration: none; }
-section .login a:link    {text-decoration: underline; color: #339900; }
-section .login a:visited {text-decoration: underline; color: #339900; }
-section .login a:active  {text-decoration: underline; color: #339900; }
-section .login a:hover   {text-decoration: underline; color: #339900; }
 
-#login_service
-{
+#login_service {
   margin: 5px;
-}
-#login_service li
-{
-  display: inline;
-}
 
-h1
-{
-  color: #339900;
-  font-size: x-large;
-  font-weight: bold;
+  li {
+    display: inline;
+  }
 
-  margin: 10px;
-  padding: 5px 5px 0px 2px;
-
-  border-bottom: solid 1px #339900;
-}
-h1 img
-{
-  vertical-align: middle;
+  .login a:link    {text-decoration: underline; color: #339900; }
+  .login a:visited {text-decoration: underline; color: #339900; }
+  .login a:active  {text-decoration: underline; color: #339900; }
+  .login a:hover   {text-decoration: underline; color: #339900; }
 }
 
-section
-{
+section {
   margin: 5px;
-}
-section p
-{
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
 
-.notice
-{
-  font-size: x-small;
+  p {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
 }

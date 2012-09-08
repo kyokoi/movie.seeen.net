@@ -51,7 +51,6 @@ class SeensController < ApplicationController
   # GET /seens
   # GET /seens.json
   def index
-
     @seens = Seen.where(:movie_id => @movie.id)
     @seens = @seens.active
 

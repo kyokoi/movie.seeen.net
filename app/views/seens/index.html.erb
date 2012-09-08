@@ -1,6 +1,8 @@
-<%= render 'movie_title' %>
+<h1><%= @movie.name_of_japan %></h1>
 
-<div><%= flash[:notice] %></div>
+<% unless flash[:notice].blank? -%>
+<div class="active_tile"><%= flash[:notice] %></div>
+<% end -%>
 
 <%= render 'movie' -%>
 
@@ -69,9 +71,6 @@
 <% end -%>
 <% end -%>
 <% end -%>
-</div>
-<div class="navigation_allow">
-<%= image_tag('layout/arrow.png') %>
 </div>
 </div>
 <% end %>
