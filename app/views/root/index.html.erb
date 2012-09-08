@@ -1,16 +1,11 @@
-<navi>
 <h1><%= image_tag 'layout/logo_40.png', :size => '40x40', :alt => "映画箱" %> 映画を記録・管理</h1>
 
-<section>
 <% if @author.guest? -%>
-
 <%= link_to about_path do -%>
 <h2 class="contents_tile"><%= linksym.html_safe %>ここで出来ることは？</h2>
 <p>見た映画・見たい映画をを記録・管理することが出来ます。<br />すべて無料で利用できます。</p>
 <% end -%>
-</section>
 
-<section>
 <%= image_tag('layout/how_to_search.png') %>
 
 <p>
@@ -51,11 +46,7 @@
 </ul>
 
 </div>
-
 <% end -%>
-</section>
-
-</navi>
 
 <% if Rails.env == 'production' -%>
 <script type="text/javascript"><!--
