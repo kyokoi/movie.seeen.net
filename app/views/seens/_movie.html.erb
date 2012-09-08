@@ -4,7 +4,7 @@
 <div class="movie_outline"><%= @movie.outline %></div>
 <div>公開：<%= @movie.open_date.strftime('%Y') %>年</div>
 <div>上映時間：<%= @movie.show_time %>分</div>
-<% if action_name == 'index' -%>
+<% if Rails.env == 'production' && action_name == 'index' -%>
 <div id="google_plus_setup">
 <g:plusone size="medium" href="<%= request.url %>"></g:plusone>
 </div>

@@ -15,6 +15,7 @@ class SearchMovie < ActiveResource::Base
   attr_accessor :keywords, :offset, :limit
 
   def pull
+    @keywords = @keywords || ''
     words = @keywords.gsub '　', ' '
 
     queries = words.split(/ /).map do |word|

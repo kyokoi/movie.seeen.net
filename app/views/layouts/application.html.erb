@@ -66,6 +66,7 @@
 </div>
 <% end -%>
 
+<% if Rails.env == 'production' -%>
 <!-- adsense -->
 <script type="text/javascript"><!--
 google_ad_client = "ca-pub-1453758758198931";
@@ -78,6 +79,7 @@ google_ad_height = 50;
 <script type="text/javascript"
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
+<% end -%>
 
 <!-- g+ -->
 <script type="text/javascript">

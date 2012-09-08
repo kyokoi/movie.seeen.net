@@ -151,17 +151,17 @@ date_before_a_month = current_date - 1.month
 date_before_a_year  = current_date - 1.year
 date_before_older   = current_date - 200.year
 
-seen_count('weekly_seen',  '映画を見た人ランキング（過去１週間）', date_before_a_week, monitor)
-seen_count('monthly_seen', '映画を見た人ランキング（過去１ヶ月）', date_before_a_month, monitor)
-seen_count('yearly_seen',  '映画を見た人ランキング（過去１年間）', date_before_a_year, monitor)
-seen_count('all_seen',     '映画を見た人ランキング（過去全て）',   date_before_older , monitor)
-movie_count('weekly_movie',  '見られた映画ランキング（過去１週間）', date_before_a_week, monitor)
-movie_count('monthly_movie', '見られた映画ランキング（過去１ヶ月）', date_before_a_month, monitor)
-movie_count('yearly_movie',  '見られた映画ランキング（過去１年間）', date_before_a_year, monitor)
-movie_count('all_movie',     '見られた映画ランキング（過去全て）',   date_before_older,  monitor)
+seen_count('weekly_seen',  '見た人ランキング（過去１週間）', date_before_a_week, monitor)
+seen_count('monthly_seen', '見た人ランキング（過去１ヶ月）', date_before_a_month, monitor)
+seen_count('yearly_seen',  '見た人ランキング（過去１年間）', date_before_a_year, monitor)
+seen_count('all_seen',     '見た人ランキング（過去全て）',   date_before_older , monitor)
+movie_count('weekly_movie',  '見た映画ランキング（過去１週間）', date_before_a_week, monitor)
+movie_count('monthly_movie', '見た映画ランキング（過去１ヶ月）', date_before_a_month, monitor)
+movie_count('yearly_movie',  '見た映画ランキング（過去１年間）', date_before_a_year, monitor)
+movie_count('all_movie',     '見た映画ランキング（過去全て）',   date_before_older,  monitor)
 stars_count('stars',     'スター',     nil, monitor)
 wishs_count('wishs',     '見たい映画', nil, monitor)
-cinemas_count('cinemas', '見たい映画', nil, monitor)
+cinemas_count('cinemas', '映画館',     nil, monitor)
 
 monitor.aging
 

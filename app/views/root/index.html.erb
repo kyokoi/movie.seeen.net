@@ -57,6 +57,7 @@
 
 </navi>
 
+<% if Rails.env == 'production' -%>
 <script type="text/javascript"><!--
 google_ad_client = "ca-pub-1453758758198931";
 /* トップ：中 */
@@ -68,6 +69,7 @@ google_ad_height = 50;
 <script type="text/javascript"
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
+<% end -%>
 
 <div id="summary_of_recently_movie">
 <h2 class="contents_tile">最近見られてる映画</h2>
