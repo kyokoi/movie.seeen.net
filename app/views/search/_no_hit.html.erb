@@ -12,6 +12,7 @@
 <%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
 <% end -%>
 
+<% unless @author.guest? -%>
 <h3>映画が見つからない</h3>
 <p>
 お探しの映画が見つからない場合、映画箱に登録されていない可能性があります。<br />
@@ -23,7 +24,7 @@
 <h3>投稿を受け付けました。</h3>
 <p>
 投稿ありがとうございます。なるべく早急に対応します。
-</p>
+/p>
 <% else -%>
 <%= form_for @report do |f| -%>
 <%= f.text_area :comment, :id => "search_box_for_firster", :placeholder => "お探しの映画名を入力" %>
@@ -31,4 +32,4 @@
 <%= hidden_field_tag :return_url, request.fullpath %>
 <% end -%>
 <% end -%>
-
+<% end -%>
