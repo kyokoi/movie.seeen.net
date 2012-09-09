@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class AboutController < ApplicationController
   def index
     page_title "映画箱：観た映画管理サイト　観たい映画管理サイト"
