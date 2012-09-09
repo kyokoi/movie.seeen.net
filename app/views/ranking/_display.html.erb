@@ -8,9 +8,15 @@
 <% items[:set][0, limit].each.with_index(1) do |ranking, index| -%>
 <tr>
 <td><%= index %></td>
-<td class="contents"><%= link_to ranking[:link] do -%>
+<td class="contents">
+<% if ranking[:link].blank? -%>
 <bow>›</bow><%= ranking[:name] -%><% if @author[:name] == ranking[:name] %><%= image_tag('layout/stars_on.png') %><% end %>
-<% end -%></td>
+<% else -%>
+<%= link_to ranking[:link] do -%>
+<bow>›</bow><%= ranking[:name] -%><% if @author[:name] == ranking[:name] %><%= image_tag('layout/stars_on.png') %><% end %>
+<% end -%>
+<% end -%>
+</td>
 <td class="number"><%= ranking[:number] %></td>
 </tr>
 <% end -%>
