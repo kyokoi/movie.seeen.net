@@ -7,6 +7,7 @@ class MyController < ApplicationController
 
   def activity
     page_title "あなたの映画活動"
+    description "年間、月間に映画をどれくらい見たかが分かります。意外に忘れてますよ。"
 
     @my = Author.active.where(:id => params[:author_id]).first
     if @my.blank?
@@ -18,7 +19,8 @@ class MyController < ApplicationController
   end
 
   def summary
-    page_title "あなたの映画メモ"
+    page_title "あなたの映画管理"
+    description "お気に入りの映画、見たい映画、見たことある映画、あなたの映画嗜好に近い人たちが分かります。"
 
     @my = Author.active.where(:id => params[:author_id]).first
     if @my.blank?

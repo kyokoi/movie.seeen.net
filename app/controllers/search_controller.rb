@@ -144,8 +144,8 @@ class SearchController < ApplicationController
     matches = Movie.search search[:word], offset, EACH_LIMIT_WHEN_SEARCH do |response|
       search_count = response['numFound']
     end
-    search_condition "#{search[:word].to_s}の検索結果"
-    page_title       "#{search[:word].to_s}の検索結果"
+    search_condition "「#{search[:word].to_s}」の検索結果"
+    page_title       "「#{search[:word].to_s}」の検索結果"
 
     template = 'no_hit'
     template = 'search_to_movie' if search_count > 0

@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
-<title><%= @page_title || '映画箱：見た映画を記録しよう！' %></title>
-<meta name="description" content="見たい映画を記録する。見た映画を記録する。思い出の映画を忘れないように履歴をメモしよう。" />
-<meta name="keywords" content="映画管理,映画記録,映画日記,見た映画,見たい映画,観た映画,観たい映画,映画箱<%= ",#{@movie.name_of_japan}" if @movie %>" />
+<%= render :partial => 'layouts/head', :locals => {
+  :title       => @meta[:title],
+  :description => @meta[:description],
+  :keywords    => @meta[:keywords].join(',')
+} -%>
 <%= stylesheet_link_tag "reset", "application", controller_name %>
 <%= javascript_include_tag "application" %>
 <%= csrf_meta_tags %>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
 <link href="/assets/layout/logo_300.png" rel="apple-touch-icon-precomposed">
 <%= render :partial => 'layouts/ogp', :locals => {
-  :title       => @page_title,
-  :description => '映画箱：見たい映画を記録する。見た映画を記録する。思い出の映画を忘れないように履歴をメモしよう。',
+  :title       => @meta[:title],
+  :description => @meta[:description],
   :url         => request.url,
   :app_id      => '362797203743008'
-} %>
+} -%>
 </head>
 <body>
 

@@ -7,13 +7,39 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  before_filter :logged_in?
+  before_filter :logged_in?, :meta_initialize
 
 
   protected
 
   def page_title(message)
-    @page_title = "映画箱#{'：' unless message.blank? }#{message}"
+    @meta[:title] = "映画箱#{'：' unless message.blank? }#{message}"
+  end
+
+  def description(message)
+    @meta[:description] = message
+  end
+
+  def keywords(message)
+    @meta[:keywords].unshift message
+  end
+
+  def meta_initialize
+    @meta = {
+      :title        => '映画箱：見た映画を記録しよう',
+      :description  => "見たい映画を記録する。見た映画を記録する。思い出の映画を忘れないように履歴をメモしよう。",
+      :keywords     => [
+        '映画メモ',
+        '映画管理',
+        '映画記録',
+        '映画日記',
+        '見た映画',
+        '見たい映画',
+        '観た映画',
+        '観たい映画',
+        '映画箱'
+      ]
+    }
   end
 
   def logged_in?

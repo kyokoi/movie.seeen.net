@@ -8,28 +8,62 @@ class RankingController < ApplicationController
 
 
   def seen
-    page_title '最近映画を見ている人ランキング'
     @rankings = fetch_ranking [:weekly_seen, :monthly_seen, :yearly_seen, :all_seen]
+
+    page_title '映画を見ている人のランキング'
+    description "映画をよく見ている人のランキングです。"
   end
 
   def movie
-    page_title '最近よく見られている映画ランキング'
     @rankings = fetch_ranking [:weekly_movie, :monthly_movie, :yearly_movie, :all_movie]
+
+    page_title '映画のランキング'
+
+    top_three = @rankings[:weekly_movie][:set][0, 3].map{|movie| movie[:name]}
+    description "最近は、#{top_three.join('、')} がよく見られています。"
+    top_three.each do |movie_name|
+      keywords movie_name
+    end
+    keywords '映画のランキング'
   end
 
   def star
-    page_title 'お気に入りが多い映画ランキング'
     @rankings = fetch_ranking [:stars]
+
+    page_title 'お気に入りの映画ランキング'
+
+    top_three = @rankings[:stars][:set][0, 3].map{|movie| movie[:name]}
+    description "#{top_three.join('、')} がお気に入りによく登録されています。"
+    top_three.each do |movie_name|
+      keywords movie_name
+    end
+    keywords 'お気に入りの映画ランキング'
   end
 
   def wish
-    page_title '見たいと思われている映画ランキング'
     @rankings = fetch_ranking [:wishs]
+
+    page_title "観たい映画のランキング"
+
+    top_three = @rankings[:wishs][:set][0, 3].map{|movie| movie[:name]}
+    description "最近は、#{top_three.join('、')} が人気です。"
+    top_three.each do |movie_name|
+      keywords movie_name
+    end
+    keywords '見たい映画ランキング'
   end
 
   def cinema
-    page_title '映画館ランキング'
     @rankings = fetch_ranking [:cinemas]
+
+    page_title '映画館ランキング'
+
+    top_three = @rankings[:cinemas][:set][0, 3].map{|movie| movie[:name]}
+    description "#{top_three.join('、')} が人気の映画館です。"
+    top_three.each do |movie_name|
+      keywords movie_name
+    end
+    keywords '映画館ランキング'
   end
 
   def detail
@@ -54,5 +88,12 @@ class RankingController < ApplicationController
     end
     page_title kind_of_ranking[kind.to_sym]
     @rankings = catch_data kind
+
+    logger.info @rankings.inspect
+    top_three = @rankings[:set][0, 3].map{|movie| movie[:name]}
+    description "#{top_three.join('、')} …のランキング１００位まで。"
+    top_three.each do |movie_name|
+      keywords movie_name
+    end
   end
 end

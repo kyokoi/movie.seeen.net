@@ -122,7 +122,7 @@ class SeensController < ApplicationController
 
   # GET /seens/1/edit
   def edit
-    page_title "#{@movie.name_of_japan} をメモする"
+    page_title "#{@movie.name_of_japan} を記録する"
 
     author = logged_in?
     if author.guest?
@@ -219,7 +219,9 @@ class SeensController < ApplicationController
 
   def fixed_movie
     @movie = Movie.find_by_id_and_negative(params[:movie_id], 0)
-    page_title @movie.name_of_japan
+    page_title "映画箱：#{@movie.name_of_japan}の映画を見た人"
+    description "#{@movie.name_of_japan}を観たら記録しよう。#{@movie.name_of_japan}を観たい映画に登録しよう。"
+    keywords   @movie.name_of_japan
   end
 
   def select_watch_areas
