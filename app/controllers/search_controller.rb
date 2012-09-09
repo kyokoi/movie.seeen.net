@@ -51,6 +51,9 @@ class SearchController < ApplicationController
 
   def movies
     @matches, @search_count, @template = movies_search params[:search], 0
+    unless @matches.count > 0
+      @report = Report.new
+    end
     render 'movies'
   end
 

@@ -262,8 +262,13 @@ emphasis {
   color: $site-color;
   font-weight: bold;
 }
-.notice {
-  font-size: x-small;
+notice {
+  color: #666666;
+  font-size: small;
+}
+
+.list li {
+  margin: 7px;
 }
 
 .contents_tile {
@@ -299,6 +304,7 @@ emphasis {
   .actions {
     background-color: #eeeeee;
     border: solid 1px #cccccc;
+    margin-bottom: 10px;
     font-size: normal;
   }
   .each_activity {

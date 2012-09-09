@@ -8,6 +8,7 @@ class Author < ActiveRecord::Base
   include ApplicationModel
 
   has_many :seens
+  has_many :reports
   has_many :monthly_seens
 
 

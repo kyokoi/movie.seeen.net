@@ -1,0 +1,25 @@
+<h1>Listing reports</h1>
+
+<div>unresolves:<%= @unresolves.count %></div>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>スターテス</th>
+    <th>コメント</th>
+    <th>投稿者名</th>
+    <th>対応者名</th>
+  </tr>
+
+<% @reports.each do |report| %>
+  <tr>
+    <td><%= report.id %></td>
+    <td><%= report.condition %></td>
+    <td><%= simple_format report.comment %></td>
+    <td><%= report.author.name %></td>
+    <td><%= report.resolver %></td>
+    <td><%= link_to 'Edit', edit_report_path(report) %></td>
+    <td><%= link_to 'Destroy', report, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>

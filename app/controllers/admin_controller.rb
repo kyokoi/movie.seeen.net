@@ -14,6 +14,8 @@ class AdminController < ApplicationController
         logger.info "Not load file at #{path}"
       end
     end
+
+    @unresolves = Report.unresolves
   end
 
   def messages

@@ -32,14 +32,14 @@
 
 <h2 class="contents_tile">映画を探す</h2>
 <div>
+<h3>キーワードで探す</h3>
 <%= form_tag search_movies_path, :method => "get" do -%>
 <p>
-<h3>キーワードで探す</h3>
 <%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :id => "search_box_for_firster", :placeholder => "映画名や俳優名を入力", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
 </p>
 <% end -%>
-<ul>
 <h3>ランキングから探す</h3>
+<ul class="list">
 <li><%= link_to ranking_movie_path, :id => 'to_ranking' do %><%= linksym.html_safe %>最近見られている映画</li><% end %>
 <li><%= link_to ranking_star_path,  :id => 'to_ranking' do %><%= linksym.html_safe %>お気に入りに登録されている映画</li><% end %>
 <li><%= link_to ranking_wish_path,  :id => 'to_ranking' do %><%= linksym.html_safe %>見たい映画<% end %></li>

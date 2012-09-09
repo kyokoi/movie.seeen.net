@@ -1,12 +1,34 @@
-<div><strong><%= params[:search][:word] %></strong>に一致する映画が見つかりませんでした。</div>
+<div><emphasis><%= params[:search][:word] %></emphasis>に一致する映画が見つかりませんでした。</div>
 
-<h3>検索のヒント：</h3>
+<% else -%>
+<h3>検索のヒント</h3>
 <ul>
 <li>キーワードに誤字・脱字がないか確認してみます。</li>
-<li>別のキーワードで試してみます。 ※映画名、監督名、俳優名など</li>
+<li>別のキーワードで試してみます。<br /><notice>※映画名、監督名、俳優名など</notice></li>
 </ul>
 
 <%= form_tag search_movies_path, :method => "get" do -%>
 <%= text_field_tag 'search[word]', params[:search][:word], :id => "search_box_for_firster", :size => 16 %>
 <%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
 <% end -%>
+
+<h3>映画が見つからない</h3>
+<p>
+お探しの映画が見つからない場合、映画箱に登録されていない可能性があります。<br />
+その場合はぜひ映画名を教えて下さい。<br />
+以下の投稿フォームに映画名を入れて送信していただければ数時間以内に対応いたします。
+</p>
+
+<% unless params[:under_survey].blank? -%>
+<h3>投稿を受け付けました。</h3>
+<p>
+投稿ありがとうございます。なるべく早急に対応します。
+</p>
+<% else -%>
+<%= form_for @report do |f| -%>
+<%= f.text_area :comment, :id => "search_box_for_firster", :placeholder => "お探しの映画名を入力" %>
+<%= f.submit :src => '/assets/layout/megane.gif', :type => :image, :width => 34, :height => 34 %>
+<%= hidden_field_tag :return_url, request.fullpath %>
+<% end -%>
+<% end -%>
+
