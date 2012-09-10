@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
 
-  INPUT_PATH = '/usr/local/apps/movie_seen/data/ranking/'
+  INPUT_PATH = "#{Rails.root.to_s}/data/ranking/"
   SUPER_USERS = [1, 6, 7, 8, 17, 47]
 
   protect_from_forgery

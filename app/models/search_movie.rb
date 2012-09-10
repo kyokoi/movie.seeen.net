@@ -7,10 +7,10 @@ class SearchMovie < ActiveResource::Base
   BASE_HOST    = 'shma.jp'
   BASE_PORT    = 8983
   BASE_PATH    = '/solr/collection1/select'
-  DEFAULT_ROWS = 2
+  SPECIALS     = '+ * ~ ! ( ) : { } [ ]'
 
-  self.logger       = Logger.new('/usr/local/apps/movie_seen/log/development.log')
-  self.timeout      = 3
+  self.logger  = Logger.new("#{Rails.root.to_s}/log/#{Rails.env}.log")
+  self.timeout = 3
 
   attr_accessor :keywords, :offset, :limit
 
@@ -19,6 +19,12 @@ class SearchMovie < ActiveResource::Base
     words = @keywords.gsub '　', ' '
 
     queries = words.split(/ /).map do |word|
+      SPECIALS.split(' ').each do |char|
+        word.gsub! char, ''
+      end
+      word.gsub! ' ', ''
+      next if word.blank?
+
       "(name:#{word} OR name_ja:#{word} OR outline:#{word})"
     end
 
