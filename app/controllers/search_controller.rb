@@ -55,6 +55,9 @@ class SearchController < ApplicationController
       @report = Report.new
     end
     render 'movies'
+  rescue Exception => e
+    logger.error e
+    render 'movies_error'
   end
 
   def movies_list
