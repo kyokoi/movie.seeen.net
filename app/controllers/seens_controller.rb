@@ -71,7 +71,7 @@ class SeensController < ApplicationController
       title = '見たい'
       @seens = @seens.where Seen.wish
     else
-      title = '見たことある'
+      title = '見たことある全ての'
       @seens = @seens.where Seen.no_wish
     end
     @seens = @seens.order("date desc");
