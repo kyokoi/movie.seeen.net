@@ -25,7 +25,7 @@ class SearchMovie < ActiveResource::Base
       word.gsub! ' ', ''
       next if word.blank?
 
-      "(name:#{word} OR name_ja:#{word} OR outline:#{word})"
+      "(name:#{word} OR name_ja:#{word} OR outline:#{word} OR comment:#{word})"
     end
 
     offset = @offset || 0
