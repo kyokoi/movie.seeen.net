@@ -12,7 +12,7 @@ class RootController < ApplicationController
 
     # posts
     @posts = Story.active.limit INDEX_STORIES_LIMIT
-    @posts = @posts.order "release_at, created_at DESC"
+    @posts = @posts.order "release_at DESC"
 
     @weekly = fetch_ranking [:weekly_movie]
     @weekly[:weekly_movie][:set].slice!(INDEX_SUMMARY_MOVIE_LIMIT..-1)
