@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  BATCH_MESSAGE_PATH = '/usr/local/apps/movie_seen/data/monitor_of_batches/'
+  BATCH_MESSAGE_PATH = "#{Rails.root.to_s}/data/monitor_of_batches/"
 
   layout 'admin'
 

@@ -51,11 +51,15 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_into_admin(author)
-    unless SUPER_USERS.include? author.id
+    unless special_user? author
       redirect_to root_path
       return
     end
     author
+  end
+
+  def special_user?(author)
+    SUPER_USERS.include? author.id
   end
 
   def authorize

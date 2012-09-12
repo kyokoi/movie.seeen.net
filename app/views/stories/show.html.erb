@@ -1,0 +1,16 @@
+<%= link_to 'Edit', edit_story_path(@story) %> |
+<%= link_to 'Back', stories_path %>
+
+<p id="notice"><%= notice %></p>
+
+<ul>
+  <li><%= @story.id %></li>
+  <li><%= @story.title %></li>
+  <li><%= simple_format @story.display %></li>
+  <li><%= @story.author.name %></li>
+  <li><%= @story.release_at %></li>
+  <li><%= @story.negative %></li>
+  <li><%= @story.created_at %></li>
+  <li><%= @story.updated_at %></li>
+</ul>
+

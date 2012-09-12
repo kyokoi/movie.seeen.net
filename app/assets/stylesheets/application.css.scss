@@ -267,8 +267,27 @@ notice {
   font-size: small;
 }
 
+.outline {
+  font-size: large;
+  margin: 10px 0px 2px 0px;
+}
+.read_more {
+  color: $site-color;
+  font-size: x-small;
+  font-weight: bold;
+}
+
+.list {
+  list-style-type: none
+}
 .list li {
   margin: 7px;
+}
+.back_path {
+  margin: 10px;
+  color: $site-color;
+  font-weight: bold;
+  font-size: small;
 }
 
 .contents_tile {

@@ -13,7 +13,11 @@
 }
 
 #admin_headline li {
+  font-weight: bold;
   display: inline;
+}
+#admin_headline li a{
+  padding: 10px;
 }
 
 h1 {

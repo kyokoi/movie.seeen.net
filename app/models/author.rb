@@ -9,6 +9,7 @@ class Author < ActiveRecord::Base
 
   has_many :seens
   has_many :reports
+  has_many :stories
   has_many :monthly_seens
 
 

@@ -1,6 +1,9 @@
 # encoding: utf-8
 
 module ApplicationHelper
+
+    LINK_MOVIE = /(\#\d+)\s/
+
   def path_by_author(path, author)
     if author.guest?
       path = 'movies/_noimage.jpg'
@@ -45,5 +48,32 @@ module ApplicationHelper
 
   def in_total_of_seens(month)
     month.map{|seen| seen.all}.inject(0){|sum, i| sum + i}
+  end
+
+  def display_story(contents, &block)
+    replaced_contents = ''
+    contents.to_s.split("\n").each do |line|
+      unless line =~ LINK_MOVIE
+        replaced_contents << "#{line}\n"
+        next
+      end
+
+      replacement = $1
+      movie_id    = replacement.gsub '#', ''
+      movie       = Movie.active.where(:id => movie_id).first
+      if movie.blank?
+        replaced_contents << "#{line}\n"
+        next
+      end
+
+      banner = capture(movie, &block)
+
+      #line.gsub! replacement, link_to(movie.name_of_japan, movie_seens_path(movie.id))
+      line.gsub! replacement, banner
+
+      replaced_contents << "#{line}\n"
+    end
+
+    concat raw(simple_format(replaced_contents))
   end
 end

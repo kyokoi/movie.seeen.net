@@ -1,0 +1,12 @@
+<h1><%= image_tag 'layout/logo_40.png', :size => '40x40', :alt => "映画箱" %>  特集記事</h1>
+
+<ul class="list">
+<% @posts.each do |story| -%>
+<li>
+<%= link_to post_story_path story.id do -%>
+<div class="outline"><%= story.release_at.strftime('%Y年%m月%d日') %><br /><%= raw "#{truncate(story.contents, :length => 56)}<span class='read_more'>続きを読む</span>"  %></div>
+</li>
+<% end -%>
+<% end -%>
+</ul>
+

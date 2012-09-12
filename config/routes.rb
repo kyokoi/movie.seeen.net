@@ -13,6 +13,9 @@ MovieSeen::Application.routes.draw do
   match '/my/:author_id/activity' => 'My#activity', :as => 'my_activity'
   match '/my/:author_id/summary'  => 'My#summary',  :as => 'my_summary'
 
+  match 'post'           => 'Post#index', :as => 'post_index'
+  match 'post/:story_id' => 'Post#story', :as => 'post_story'
+
   match 'about'                      => 'About#index'
 
   match 'ranking/seen'         => 'Ranking#seen',   :as => 'ranking_seen'
@@ -31,8 +34,6 @@ MovieSeen::Application.routes.draw do
     resources :seens
   end
 
-  resources :reports, :except => [:new, :show]
-
   scope '/admin' do
     get '/'                                   => 'Admin#index',    :as => 'admin'
     get '/admin/messages/:target/:message_id' => 'Admin#messages', :as => 'admin_messages'
@@ -40,6 +41,8 @@ MovieSeen::Application.routes.draw do
       resources :affiliates, :except => [:show, :index]
     end
     resources :tags
+    resources :reports, :except => [:new, :show]
+    resources :stories
   end
 
   # The priority is based upon order of creation:
