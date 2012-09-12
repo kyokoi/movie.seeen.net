@@ -6,7 +6,7 @@ class PostController < ApplicationController
     keywords "特集記事一覧"
     description "気になる映画は公開直前の映画、今見ておきたい映画をその時その時に合わせた内容で記事にしました。"
 
-    @posts = Story.active.order "release_at, created_at DESC"
+    @posts = Story.active.order "release_at DESC"
   end
 
   def story
