@@ -17,6 +17,25 @@ class Author < ActiveRecord::Base
     self.uid.blank?
   end
 
+  def facebooker?
+    self.belong? [:facebook]
+  end
+
+  def twitterian?
+    self.belong? [:twitter]
+  end
+
+  def googlist?
+    self.belong? [:google_oauth2]
+  end
+
+  def belong?(service_name = nil)
+    if service_name.blank?
+      service_name = [:facebook, :twitter, :google_oauth2]
+    end
+    service_name.include? self.provider.to_sym
+  end
+
   def self.authorize(auth)
     author = active.where(
       :provider => auth['provider'], :uid => auth['uid']

@@ -57,12 +57,11 @@
 <%= seen.author.name %>
 <% end -%>
 </div>
-<div>
-<% unless seen.wish? %>&nbsp;見た日：<%= seen.date.strftime('%Y/%m/%d') %><% end -%>
-</div>
+
 <% unless seen.wish? -%>
-<div><%= image_tag(stars(seen.evaluation)) %><%= seen.acondition_tag.name %></div>
-<div><%= seen.comment %></div>
+<div><%= image_tag(stars(seen.evaluation)) %><%= seen.acondition_tag.name %><% unless seen.wish? %>&nbsp;<%= seen.date.strftime('%Y/%m/%d') %><% end -%></div>
+
+<div><%= simple_format seen.comment %></div>
 <% if seen.author.uid == session[:uid] && seen.author.provider == session[:provider] && !(seen.wish?) -%>
 <div>
 <span><%= link_to '修正する', edit_movie_seen_path(@movie.id, seen), :class => 'active_tile edit_link' %></span>

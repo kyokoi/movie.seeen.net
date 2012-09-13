@@ -27,7 +27,7 @@ class SeensController < ApplicationController
 
     respond_to do |format|
       if seen.save
-        format.html { redirect_to movie_seens_path, notice: '見たい映画を追加しました' }
+        format.html { redirect_to movie_seens_path(:narrow => 'wish'), notice: '見たい映画を追加しました' }
       else
         format.html { redirect_to movie_seens_path, notice: 'Addition miss' }
       end
