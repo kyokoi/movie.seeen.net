@@ -14,21 +14,19 @@
 
 <% if @author.guest? -%>
 <%= link_to about_path do -%>
-<h2 class="contents_tile"><%= linksym.html_safe %>ここで出来ることは？</h2>
+<h2 class="contents_tile"><%= linksym.html_safe %>映画を検索しよう！</h2>
 <p>見た映画・見たい映画をを記録・管理することが出来ます。<br />すべて無料で利用できます。</p>
 <% end -%>
 
 <%= image_tag('layout/how_to_search.png') %>
 
 <p>
-まずは映画を探しましょう。<br />
-あなたが見た映画はなんですか？見たい映画は？映画名かキーワードを入力してください。<br />
+あなたが見た映画はなんですか？見たい映画は？
 </p>
 <%= form_tag search_movies_path, :method => "get" do -%>
 <%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :id => "search_box_for_firster", :placeholder => "映画名や俳優名を入力", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
 <% end -%>
-<p>探している映画が見つかったらコメントをつけて記録・管理しましょう。<br />見たい映画はすぐに記録することができます。</p>
-
+<p>映画が見つかったらコメントをつけて記録・管理しましょう。<br />見たい映画はすぐに記録することができます。</p>
 
 <div id="login_service">
 <div>映画を記録するときには<emphasis>ログイン</emphasis>が必要です。</div>
