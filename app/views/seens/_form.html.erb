@@ -65,6 +65,7 @@
 <div id="memo" style="width: 100%; background-color: #eeeeee;">メモ</div>
 <%= f.text_area :comment, :size => "32x4" %>
 </div>
+<%= check_box_tag 'post_flag', "1", true %>Facebookに投稿する
 <div class="actions">
   <%= f.submit 'みた' %>
 </div>
