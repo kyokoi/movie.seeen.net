@@ -17,7 +17,7 @@
     <td>
       <div><%= story.author.name %></div>
       <div><%= story.title %></div>
-      <div><%= simple_format story.contents %></div>
+      <div><%= simple_format truncate(story.contents, :length => 150) %></div>
     </td>
     <td><%= story.negative %></td>
     <td>

@@ -7,6 +7,7 @@ class Movie < ActiveRecord::Base
 
   has_many :seens
   has_many :affiliates
+  has_and_belongs_to_many :stories
 
   def self.search(word, offset, limit)
     search = SearchMovie.new

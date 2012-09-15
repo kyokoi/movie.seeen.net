@@ -64,14 +64,14 @@ class SeensController < ApplicationController
       @seens = @seens.where Seen.star
       title = 'お気に入りに登録している'
     when 'seen'
-      title = '見たことある'
+      title = '見た'
       @seens = @seens.where Seen.no_star
       @seens = @seens.where Seen.no_wish
     when 'wish'
       title = '見たい'
       @seens = @seens.where Seen.wish
     else
-      title = '見たことある全ての'
+      title = '見たことある'
       @seens = @seens.where Seen.no_wish
     end
     @seens = @seens.order("date desc");
@@ -219,9 +219,9 @@ class SeensController < ApplicationController
 
   def fixed_movie
     @movie = Movie.find_by_id_and_negative(params[:movie_id], 0)
-    page_title "映画箱：#{@movie.name_of_japan}の映画を見た人"
+    page_title  "映画箱：#{@movie.name_of_japan}の映画を見た人"
     description "#{@movie.name_of_japan}を観たら記録しよう。#{@movie.name_of_japan}を観たい映画に登録しよう。"
-    keywords   @movie.name_of_japan
+    keywords    @movie.name_of_japan
   end
 
   def select_watch_areas
