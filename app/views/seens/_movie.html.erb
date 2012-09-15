@@ -6,7 +6,7 @@
 <% if @movie.stories.count > 0 -%>
 <div class="story">特集記事</div>
 <ul class="info">
-<% @movie.stories.each do |story| -%>
+<% @movie.stories.order('release_at DESC').each do |story| -%>
 <li><%= link_to post_story_path story do %><bow>›</bow><%= story.title %><% end %></li>
 <% end -%>
 </ul>
