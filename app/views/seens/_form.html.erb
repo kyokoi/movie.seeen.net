@@ -21,7 +21,7 @@
 </div>
 
 <div id="watch_on_place">
-<span>見た場所を選択する</span>
+<span class="linkable">›</span><span>見た場所を選択する</span>
 <span id="acondition_value"><%= @seen.acondition_tag.name %></span>
 </div>
 
@@ -58,13 +58,14 @@
 
 <div id="seen_star">
 <div>
-<%= image_tag("layout/stars_on.png", :id => "stars_on") %><%= image_tag("layout/stars_off.png", :id => "stars_off") %><%= f.hidden_field :evaluation, :id => :evaluation %>お気に入りの映画にスターを
+<span class="linkable">›</span> <%= image_tag("layout/stars_on.png", :id => "stars_on") %><%= image_tag("layout/stars_off.png", :id => "stars_off") %><%= f.hidden_field :evaluation, :id => :evaluation %>お気に入りの映画にスターを
 </div>
 </div>
 
 <div id="memo" style="width: 100%; background-color: #eeeeee;">メモ</div>
 <%= f.text_area :comment, :size => "32x4" %>
 </div>
+<%= check_box_tag 'post_flag', "1", true %>Facebookに投稿する
 <div class="actions">
   <%= f.submit 'みた' %>
 </div>
