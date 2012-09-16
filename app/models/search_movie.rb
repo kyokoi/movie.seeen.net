@@ -29,7 +29,7 @@ class SearchMovie < ActiveResource::Base
     end
 
     offset = @offset || 0
-    query  = queries.join(' AND ') + '&sort=seen_count desc'
+    query  = queries.join(' AND ') + '&sort=seen_count desc,open_date asc'
 
     json = nil
     http = Net::HTTP.new BASE_HOST, BASE_PORT
@@ -54,7 +54,13 @@ class SearchMovie < ActiveResource::Base
 
     header   = json['responseHeader']
     response = json['response']
-
+    nohit    = Logger.new("#{Rails.root.to_s}/log/search_failed.log")
+    hit      = Logger.new("#{Rails.root.to_s}/log/search_success.log")
+    if json['response']['numFound'] == 0
+      nohit.warn "#{Time.now}\t#{words}"
+    else
+      hit.warn "#{words}"
+    end
     return header, response
   end
 end
