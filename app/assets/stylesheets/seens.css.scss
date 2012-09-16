@@ -188,3 +188,39 @@ $active-color-sub:   #DAA520;
   margin-top: 6px;
   margin-bottom: 2px;
 }
+
+.ranking_list li{
+  display: inline-block;
+  width: 32.26%;
+  height: 50px;
+  text-align: center;
+  vertical-align: bottom;
+  border-left: 1px solid #d7d8da;
+  box-sizing: border-box;
+}
+
+.ranking_list li a{
+  display: block;
+  border-left:1px solid #fff;
+  width: 99.9%;
+  height: 100%;
+}
+
+.ranking_list dt{
+  font-size: large;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 8px;
+  color: #339900;
+}
+
+.ranking_list_right{
+  border-right: 1px solid #d7d8da;
+}
+
+.ranking_list dd{
+  font-size: large;
+  font-weight: bold;
+  color: #E87800;
+}
+
