@@ -2,36 +2,36 @@
 <div class="rightside">
 <div class="ranking_list">
 <ul>
-  <li>
-    <%= link_to ranking_movie_path() do %>
-    <dl>
-      <dt>見た</dt>
-        <dd>
-          <%= @display_seens_rank %>
-        </dd>
-    </dl>
-    <% end %>
-  </li>
-  <li>
-    <%= link_to ranking_wish_path() do %>
-    <dl>
-      <dt><span>見たい<span></dt>
-        <dd>
-          <span><%= @display_wish_rank %></span>
-        </dd>
-    </dl>
-    <% end %>
-  </li>
-  <li class="ranking_list_right">
-    <%= link_to ranking_star_path() do %>
-    <dl>
-      <dt>お気に入り</dt>
-        <dd>
-          <%= @display_star_rank %>
-        </dd>
-    </dl>
-    <% end %>
-  </li>
+<li>
+<%= link_to ranking_movie_path() do -%>
+<dl>
+<dt>見た</dt>
+<dd>
+<%= @display_seens_rank %>
+</dd>
+</dl>
+<% end %>
+</li>
+<li>
+<%= link_to ranking_wish_path() do %>
+<dl>
+<dt><span>見たい<span></dt>
+<dd>
+<%= @display_wish_rank %>
+</dd>
+</dl>
+<% end -%>
+</li>
+<li class="ranking_list_right">
+<%= link_to ranking_star_path() do -%>
+<dl>
+<dt>お気に入り</dt>
+<dd>
+<%= @display_star_rank %>
+</dd>
+</dl>
+<% end -%>
+</li>
 </div>
 </div>
 
