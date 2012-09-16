@@ -3,7 +3,7 @@
 <% unless flash[:notice].blank? -%>
 <div class="active_tile"><%= flash[:notice] %></div>
 <% end -%>
-
+<%= render 'movie_ranking' -%>
 <%= render 'movie' -%>
 
 <%= render 'affiliate' -%>
