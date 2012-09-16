@@ -1,5 +1,3 @@
-<div id="search_items">
-
 <% if @search_condition -%>
 <div id="search_condition">
 <%= @search_condition %>
@@ -8,7 +6,7 @@
 
 <% if @monthly -%>
 <div id="authors_activity">
-<%= link_to my_activity_path(@monthly.author_id) do %><span class="linkable">›</span>今月は映画を<strong><%= @monthly.all %></strong>本見ています。<% end %>
+<%= link_to my_activity_path(@monthly.author_id) do %><%= linksym.html_safe %>今月は映画を<strong><%= @monthly.all %></strong>本見ています。<% end %>
 </div>
 <% end -%>
 
@@ -27,10 +25,8 @@
 <% end -%>
 </div>
 
-<div id="summary_of_recently_movie">
+<div class="display_movies">
 <%= render :partial => @template, :locals => {:items => @matches} %>
 </div>
 
 <%= render 'next_page' %>
-</div>
-

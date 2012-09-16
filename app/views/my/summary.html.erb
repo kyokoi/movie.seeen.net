@@ -10,10 +10,10 @@
 
 <div class="outside">
 <you><%= image_tag(path_by_author(@my.image, @author), :size => '50x50') %></you>
-<p><%= link_to my_activity_path @my.id do %>今月見た映画(<%= @monthly.all %>)<br /><span class="linkable">›</span>詳細<% end %></p>
+<p><%= link_to my_activity_path @my.id do %>今月見た映画(<%= @monthly.all %>)<br /><%= linksym.html_safe %>詳細<% end %></p>
 </div>
 
-<div id="summary_of_recently_movie">
+<div class="display_movies">
 
 <% unless @star_seen.blank? -%>
 <%= render(:partial => 'block', :locals => {
@@ -54,7 +54,7 @@
 </h2>
 <div class="recommend_user">
 <% @recommend_users.each do |user| -%>
-<%= link_to my_summary_path user[:id] do %><span class="linkable">›</span><span><%= user[:name] %>(<%= user[:approximation] %>％)</span><% end %>
+<%= link_to my_summary_path user[:id] do %><%= linksym.html_safe %><span><%= user[:name] %>(<%= user[:approximation] %>％)</span><% end %>
 <% end -%>
 </div>
 <% end -%>

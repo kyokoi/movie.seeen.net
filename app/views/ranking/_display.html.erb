@@ -10,10 +10,10 @@
 <td><%= index %></td>
 <td class="contents">
 <% if ranking[:link].blank? -%>
-<bow>›</bow><%= ranking[:name] -%><% if @author[:name] == ranking[:name] %><%= image_tag('layout/stars_on.png') %><% end %>
+<%= linksym.html_safe %><%= ranking[:name] -%><% if @author[:name] == ranking[:name] %><%= image_tag('layout/stars_on.png') %><% end %>
 <% else -%>
 <%= link_to ranking[:link] do -%>
-<bow>›</bow><%= ranking[:name] -%><% if @author[:name] == ranking[:name] %><%= image_tag('layout/stars_on.png') %><% end %>
+<%= linksym.html_safe %><%= ranking[:name] -%><% if @author[:name] == ranking[:name] %><%= image_tag('layout/stars_on.png') %><% end %>
 <% end -%>
 <% end -%>
 </td>
@@ -23,7 +23,7 @@
 </table>
 <% if limit < items[:set].size -%>
 <%= link_to ranking_detail_path(items[:title], :return => request.fullpath) do -%>
-<bow>›</bow>ランキングをもっと見る...
+<%= linksym.html_safe %>ランキングをもっと見る...
 <% end -%>
 <% end -%>
 </div>

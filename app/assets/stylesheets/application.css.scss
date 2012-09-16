@@ -249,7 +249,7 @@ table.tableout {
   }
 }
 
-bow {
+.bow {
   color: #E47911;
   font-family: arial,helvetica,osaka,"MS PGothic",sans-serif;
   font-size: 120%;
@@ -305,11 +305,7 @@ notice {
   background: -webkit-gradient(linear, left top, left bottom, from($active-color-sub), to($active-color));
 }
 
-.each_summary_of_recently_movie {
-  margin-bottom: 30px;
-}
-
-#summary_of_recently_movie {
+.display_movies {
   margin: 24px 0px;
   h3 img {
     vertical-align: middle;
@@ -330,6 +326,10 @@ notice {
     height: 34px;
   }
 }
+.each_movie {
+  margin-bottom: 30px;
+}
+
 
 #search_box_for_firster {
   font-size: large;

@@ -84,11 +84,11 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <% end -%>
 </ul>
 
-<div id="summary_of_recently_movie">
+<div class="display_movies">
 <h2 class="contents_tile">最近見られてる映画</h2>
 
 <% @weekly[:weekly_movie][:set].each do |movie| -%>
-<div class="each_summary_of_recently_movie">
+<div class="each_movie">
 
 <%= link_to movie_seens_path movie[:id] do -%>
 <h3><%= movie[:name] %><% if movie[:stars] > 0 %><%= image_tag('layout/stars_on.png') %><span>(<%= movie[:stars] %>)</span><% end %></h3>

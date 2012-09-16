@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def linksym
-    simbol_string = '<bow>›</bow>'
+    simbol_string = '<span class="bow">›</span>'
   end
 
   def stars(evaluation)
@@ -50,7 +50,7 @@ module ApplicationHelper
 
   def display_story(story, &block)
     contents = story.search_movie do |line, mark, movie|
-      banner = capture(movie, &block)
+      banner = capture(movie, &block).gsub(/\n/, '')
       line.gsub! mark, banner
     end
     concat raw(simple_format(contents))

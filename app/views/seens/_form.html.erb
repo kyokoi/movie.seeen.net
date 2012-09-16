@@ -21,7 +21,7 @@
 </div>
 
 <div id="watch_on_place">
-<span class="linkable">›</span><span>見た場所を選択する</span>
+<%= linksym.html_safe %><span>見た場所を選択する</span>
 <span id="acondition_value"><%= @seen.acondition_tag.name %></span>
 </div>
 
@@ -31,7 +31,7 @@
 <h2>見たことがある場所</h2>
 <ul>
 <% @useful_areas.each do |area| -%>
-<li id="watch_area_used-<%= area.id %>"><span class="linkable">›</span><%= area.name %></li>
+<li id="watch_area_used-<%= area.id %>"><%= linksym.html_safe %><%= area.name %></li>
 <% end %>
 </ul>
 </div>
@@ -40,14 +40,14 @@
 <h2>都道府県を選択</h2>
 <ul class="areas">
 <% @watch_areas.each do |area| -%>
-<li id="area-<%= area[:area_id] %>"><a><span class="linkable">›</span><%= area[:area_name] %></a></li>
+<li id="area-<%= area[:area_id] %>"><a><%= linksym.html_safe %><%= area[:area_name] %></a></li>
 <% end -%>
 </ul>
 <div id="watch_area_cinemas">
 <% @watch_areas.each do |area| -%>
 <ul id="watch_area-<%= area[:area_id] %>">
 <% area[:cinemas].each do |cinema| -%>
-<li id="watch_area_cinema-<%= cinema.id %>"><a><span class="linkable">›</span><%= cinema.name %></a></li>
+<li id="watch_area_cinema-<%= cinema.id %>"><a><%= linksym.html_safe %><%= cinema.name %></a></li>
 <% end -%>
 </ul>
 <% end -%>
@@ -58,14 +58,13 @@
 
 <div id="seen_star">
 <div>
-<span class="linkable">›</span> <%= image_tag("layout/stars_on.png", :id => "stars_on") %><%= image_tag("layout/stars_off.png", :id => "stars_off") %><%= f.hidden_field :evaluation, :id => :evaluation %>お気に入りの映画にスターを
+<%= linksym.html_safe %><%= image_tag("layout/stars_on.png", :id => "stars_on") %><%= image_tag("layout/stars_off.png", :id => "stars_off") %><%= f.hidden_field :evaluation, :id => :evaluation %>お気に入りの映画にスターを
 </div>
 </div>
 
 <div id="memo" style="width: 100%; background-color: #eeeeee;">メモ</div>
 <%= f.text_area :comment, :size => "32x4" %>
 </div>
-<%= check_box_tag 'post_flag', "1", true %>Facebookに投稿する
 <div class="actions">
   <%= f.submit 'みた' %>
 </div>

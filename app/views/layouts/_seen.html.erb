@@ -1,5 +1,5 @@
 <% items.each do |seen| -%>
-<div class="each_summary_of_recently_movie">
+<div class="each_movie">
 
 <%= link_to movie_seens_path(:movie_id => seen.movie.id) do -%>
 <h3><% unless seen.wish? %><%= image_tag stars(seen.evaluation) %><% end %><%= seen.movie.name_of_japan %></h3>
@@ -15,8 +15,8 @@
 </div>
 
 <div class="actions">
-<span>見た<% if 0 < seen.movie.seen_users.count %>(<%= seen.movie.seen_users.count %>)<% end %></span>
-<span>見たい<% if 0 < seen.movie.wish_users.count %>(<%= seen.movie.wish_users.count %>)<% end %></span>
+<%= linksym.html_safe %><span>見た<% if 0 < seen.movie.seen_users.count %>(<%= seen.movie.seen_users.count %>)<% end %></span>
+<%= linksym.html_safe %><span>見たい<% if 0 < seen.movie.wish_users.count %>(<%= seen.movie.wish_users.count %>)<% end %></span>
 </div>
 
 <% end -%>

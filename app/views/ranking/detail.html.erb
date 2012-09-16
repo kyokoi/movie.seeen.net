@@ -9,7 +9,7 @@
 <% else -%>
 <%= link_to params[:return] do -%>
 <div>
-<span class="linkable">›</span>戻る
+<%= linksym.html_safe %>戻る
 </div>
 <% end -%>
 
@@ -17,7 +17,7 @@
 
 <%= link_to params[:return] do -%>
 <div>
-<span class="linkable">›</span>戻る
+<%= linksym.html_safe %>戻る
 </div>
 <% end -%>
 <% end -%>

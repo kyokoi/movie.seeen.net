@@ -2,14 +2,26 @@
 <h2 class='contents_tile'><%= @story.title %></h2>
 <div class='notice'><%= @story.release_at.strftime('%Y年%m月%d日') %></div>
 <div class="outline">
-<% display_story(@story) do |movie| -%>
 
-<%= link_to movie_seens_path movie.id  do -%>
+<% display_story(@story) do |movie| -%>
+<div class="display_movies">
+<div class="each_movie">
+<%= link_to movie_seens_path movie.id do -%>
 <h3><%= movie.name_of_japan %></h3>
 <% end -%>
+<div class="actions">
+<%= link_to "/movie/#{movie.id}/seens/new" do -%>
+<%= linksym.html_safe %><span>見た<% if movie.seen_users.count > 0 %>(<%= movie.seen_users.count %>)<% end %></span>
+<% end -%>
+<%= link_to movie_wish_new_path movie.id do -%>
+<%= linksym.html_safe %><span>見たい<% if movie.wish_users.count > 0 %>(<%= movie.wish_users.count %>)<% end %></span>
 <% end -%>
 </div>
+<% end -%>
+</div>
+</div>
 
+</div>
 <div class="back_path">
 <%= link_to '戻る', post_index_path %>
 </div>

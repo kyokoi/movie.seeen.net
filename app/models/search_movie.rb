@@ -33,6 +33,8 @@ class SearchMovie < ActiveResource::Base
 
     json = nil
     http = Net::HTTP.new BASE_HOST, BASE_PORT
+    http.open_timeout = 1
+    http.read_timeout = 1
     http.start do |conn|
       params = {
         :q     => '*:*',
