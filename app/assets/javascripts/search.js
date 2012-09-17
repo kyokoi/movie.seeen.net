@@ -8,7 +8,7 @@ $(function(){
     "ajax:success",
     function(data, status, xhr) {
       $('#next_page').remove();
-      $('.display_movies').append($(status));
+      $('#display_movies').append($(status));
     }
   );
   $('#next_page').live(
