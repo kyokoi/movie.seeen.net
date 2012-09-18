@@ -14,47 +14,44 @@
 
 <% if @author.guest? -%>
 <%= link_to about_path do -%>
-<h2 class="contents_tile"><%= linksym.html_safe %>映画を検索しよう！</h2>
+<h2><%= linksym.html_safe %>映画を検索しよう！</h2>
 <p>見た映画・見たい映画をを記録・管理することが出来ます。<br />すべて無料で利用できます。</p>
 <% end -%>
 
 <%= image_tag('layout/how_to_search.png') %>
 
-<p>
-あなたが見た映画はなんですか？見たい映画は？
-</p>
+<p>あなたが見た映画はなんですか？見たい映画は？</p>
 <%= form_tag search_movies_path, :method => "get" do -%>
+<p class="finish">
 <%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :id => "search_box_for_firster", :placeholder => "映画名や俳優名を入力", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
+</p>
 <% end -%>
-<p>映画が見つかったらコメントをつけて記録・管理しましょう。<br />見たい映画はすぐに記録することができます。</p>
+<p>映画が見つかったらコメントをつけて記録・管理しましょう。</p>
 
-<div id="login_service">
-<div>映画を記録するときには<emphasis>ログイン</emphasis>が必要です。</div>
-<ul>
+<p>映画を記録するときには<emphasis>ログイン</emphasis>が必要です。</p>
+<ul class="login_service">
 <li><%= link_to image_tag("layout/icon_facebook.png"), login_path(:provider => 'facebook',      :origin => @return_url) %></li>
 <li><%= link_to image_tag("layout/icon_google.gif"),   login_path(:provider => 'google_oauth2', :origin => @return_url) %></li>
 <li><%= link_to image_tag("layout/icon_twitter.png"),  login_path(:provider => 'twitter',       :origin => @return_url) %></li>
 </ul>
-<div class="notice">またログインしていない場合、一部のコンテンツは閲覧できません。ご利用は完全に無料です。</div>
-</div>
+<p class="finish">またログインしていない場合、一部のコンテンツは閲覧できません。ご利用は完全に無料です。</p>
 
 <% else -%>
 
-<h2 class="contents_tile">映画を探す</h2>
-<div>
+<h2>映画を探す</h2>
 <h3>キーワードで探す</h3>
 <%= form_tag search_movies_path, :method => "get" do -%>
-<p>
+<p class="paragraph">
 <%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :id => "search_box_for_firster", :placeholder => "映画名や俳優名を入力", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
 </p>
 <% end -%>
+
 <h3>ランキングから探す</h3>
-<ul class="list">
-<li><%= link_to ranking_movie_path, :id => 'to_ranking' do %><%= linksym.html_safe %>最近見られている映画</li><% end %>
-<li><%= link_to ranking_star_path,  :id => 'to_ranking' do %><%= linksym.html_safe %>お気に入りに登録されている映画</li><% end %>
-<li><%= link_to ranking_wish_path,  :id => 'to_ranking' do %><%= linksym.html_safe %>見たい映画<% end %></li>
+<ul class="list finish">
+<%= link_to ranking_movie_path do %><li><%= linksym.html_safe %>最近見られている映画</li><% end %>
+<%= link_to ranking_star_path  do %><li><%= linksym.html_safe %>お気に入りに登録されている映画</li><% end %>
+<%= link_to ranking_wish_path  do %><li><%= linksym.html_safe %>見たい映画</li><% end %>
 </ul>
-</div>
 
 <% end -%>
 
@@ -73,42 +70,35 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <% end -%>
 
 <%= link_to post_index_path do -%>
-<h2 class="contents_tile">特集記事</h2>
+<h2>特集記事</h2>
 <% end -%>
-<ul class="list">
+<ul class="list finish">
 <% @posts.each do |story| -%>
 <%= link_to post_story_path story.id do -%>
-<li><%= story.release_at.strftime('%Y年%m月%d日') %><br />
-<%= raw "#{truncate(story.title, :length => 56)}<span class='read_more'>続きを読む</span>"  %></li>
+<li><%= linksym.html_safe %><%= raw "#{truncate(story.title, :length => 56)}" %></li>
 <% end -%>
 <% end -%>
 </ul>
 
-<div class="display_movies">
-<h2 class="contents_tile">最近見られてる映画</h2>
-
+<h2>最近見られてる映画</h2>
 <% @weekly[:weekly_movie][:set].each do |movie| -%>
-<div class="each_movie">
 
 <%= link_to movie_seens_path movie[:id] do -%>
 <h3><%= movie[:name] %><% if movie[:stars] > 0 %><%= image_tag('layout/stars_on.png') %><span>(<%= movie[:stars] %>)</span><% end %></h3>
-<div class="outline"><%= truncate(movie[:outline], :length => 56) %></div>
+<p><%= truncate(movie[:outline], :length => 56) %></p>
 <% end -%>
 
-<div class="actions">
+<p class="actions">
 <%= link_to "/movie/#{movie[:id]}/seens/new" do %><%= linksym.html_safe %><span>見た<% if movie[:watch] > 0 %>(<%= movie[:watch] %>)<% end %></span><% end %>
 <%= link_to movie_wish_new_path movie[:id] do %><%= linksym.html_safe %><span>見たい<% if movie[:wish] > 0 %>(<%= movie[:wish] %>)<% end %></span><% end %>
-</div>
+</p>
 
-<div class="activity">
+<p class="activity finish">
 <% movie[:seens].each do |seen| -%>
 <%= link_to my_summary_path seen.author_id do -%>
 <span><%= image_tag(path_by_author(seen.author.image, @author), :size => '32x32') %></span>
 <% end -%>
 <% end -%>
-</div>
+</p>
 
-</div>
 <% end -%>
-
-</div>

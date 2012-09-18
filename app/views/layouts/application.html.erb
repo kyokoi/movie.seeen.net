@@ -31,7 +31,7 @@
 <%= image_tag('layout/megane.gif', :size => '34x34', :id => 'headline_search_trigger', :class => 'logo') %>
 </div>
 <div id='service_logo'>
-<%= link_to ranking_movie_path, :id => 'to_ranking' do %><span><%= linksym.html_safe %>ランキング</span><% end %>
+<%= link_to ranking_movie_path do %><%= linksym.html_safe %>ランキング<% end %>
 <%= link_to '/' do -%>
 <%= image_tag 'layout/logo_40.png', :size => '34x34', :class => 'logo' %>
 <% end -%>
@@ -47,9 +47,7 @@
 
 </div>
 
-<container>
 <%= yield %>
-</container>
 
 <% if @author -%>
 <div id="footerline">

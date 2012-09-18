@@ -1,28 +1,22 @@
 <h1><%= image_tag 'layout/logo_40.png', :size => '40x40', :alt => "映画箱" %> 特集記事</h1>
-<h2 class='contents_tile'><%= @story.title %></h2>
-<div class='notice'><%= @story.release_at.strftime('%Y年%m月%d日') %></div>
-<div class="outline">
+<h2><%= @story.title %></h2>
+<p><%= @story.release_at.strftime('%Y年%m月%d日') %></p>
 
 <% display_story(@story) do |movie| -%>
-<div class="display_movies">
-<div class="each_movie">
 <%= link_to movie_seens_path movie.id do -%>
-<h3><%= movie.name_of_japan %></h3>
+<h3>a<%= movie.name_of_japan %></h3>
 <% end -%>
-<div class="actions">
+<p class="actions">
 <%= link_to "/movie/#{movie.id}/seens/new" do -%>
 <%= linksym.html_safe %><span>見た<% if movie.seen_users.count > 0 %>(<%= movie.seen_users.count %>)<% end %></span>
 <% end -%>
 <%= link_to movie_wish_new_path movie.id do -%>
 <%= linksym.html_safe %><span>見たい<% if movie.wish_users.count > 0 %>(<%= movie.wish_users.count %>)<% end %></span>
 <% end -%>
-</div>
+</p>
 <% end -%>
-</div>
-</div>
 
-</div>
-<div class="back_path">
+<p class="back_path">
 <%= link_to '戻る', post_index_path %>
-</div>
+</p>
 

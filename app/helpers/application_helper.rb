@@ -52,6 +52,7 @@ module ApplicationHelper
     contents = story.search_movie do |line, mark, movie|
       banner = capture(movie, &block).gsub(/\n/, '')
       line.gsub! mark, banner
+      line
     end
     concat raw(simple_format(contents))
   end

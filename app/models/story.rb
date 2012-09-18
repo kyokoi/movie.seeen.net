@@ -11,7 +11,7 @@ class Story < ActiveRecord::Base
   has_and_belongs_to_many :movies
 
   def search_movie
-    replaced_contents = self.contents.to_s.split("\n").each do |line|
+    replaced_contents = self.contents.to_s.split("\n").map do |line|
       next line unless line =~ LINK_MOVIE
 
       replacement = $1

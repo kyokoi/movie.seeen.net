@@ -1,29 +1,24 @@
 <div id="display_movies">
 <% @matches.each do |movie| -%>
-<div class="each_movie">
-
 <%= link_to movie_seens_path(:movie_id => movie.id) do -%>
 
 <h3><%= movie.name_of_japan %></h3>
-<div class="outline"><%= truncate(movie[:outline], :length => 56) %><div><%= movie.open_date.strftime('%Y') %>年 <%= movie.category_tag.map{|tag| tag.name }.join(' ') %></div></div>
+<p><%= truncate(movie[:outline], :length => 56) %></p>
 
+<p class="actions<% unless movie.stories.count > 0 %> finish<% end %>">
+<%= link_to "/movie/#{movie[:id]}/seens/new" do %><%= linksym.html_safe %><span>見た<% if 0 < movie.seen_users.count %>(<%= movie.seen_users.count %>)<% end %></span><% end %>
+<%= link_to movie_wish_new_path movie[:id] do %><%= linksym.html_safe %><span>見たい<% if 0 < movie.wish_users.count %>(<%= movie.wish_users.count %>)<% end %></span><% end %>
+</p>
 
 <% if movie.stories.count > 0 -%>
-<emphasis>特集記事</emphasis>
-<ul class="list">
+<p class="emphasis">特集記事</p>
+<ul class="finish list">
 <% movie.stories.each do |story| -%>
 <li><%= link_to post_story_path(story) do -%><%= linksym.html_safe %><%= story.title -%><% end %></li>
 <% end -%>
 </ul>
 <% end -%>
 
-<div class="actions">
-<%= link_to "/movie/#{movie[:id]}/seens/new" do %><%= linksym.html_safe %><span>見た<% if 0 < movie.seen_users.count %>(<%= movie.seen_users.count %>)<% end %></span><% end %>
-<%= link_to movie_wish_new_path movie[:id] do %><%= linksym.html_safe %><span>見たい<% if 0 < movie.wish_users.count %>(<%= movie.wish_users.count %>)<% end %></span><% end %>
-</div>
-
 <% end -%>
-
-</div>
 <% end -%>
 </div>

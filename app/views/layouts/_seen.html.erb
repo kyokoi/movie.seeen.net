@@ -1,24 +1,17 @@
 <% items.each do |seen| -%>
-<div class="each_movie">
-
 <%= link_to movie_seens_path(:movie_id => seen.movie.id) do -%>
+
 <h3><% unless seen.wish? %><%= image_tag stars(seen.evaluation) %><% end %><%= seen.movie.name_of_japan %></h3>
-
-<div class="outline">
-<div><%= truncate(seen.movie.outline, :length => 56) %></div>
 <% unless seen.wish? -%>
-<div>
-<%= seen.date.strftime('%Y/%m/%d') %>
-<%= seen.acondition_tag.name %>
-</div>
+<p><%= seen.date.strftime('%Y/%m/%d') %>&nbsp;<%= seen.acondition_tag.name %></p>
 <% end -%>
-</div>
 
-<div class="actions">
+<p><%= truncate(seen.movie.outline, :length => 56) %></p>
+
+<p class="actions finish">
 <%= linksym.html_safe %><span>見た<% if 0 < seen.movie.seen_users.count %>(<%= seen.movie.seen_users.count %>)<% end %></span>
 <%= linksym.html_safe %><span>見たい<% if 0 < seen.movie.wish_users.count %>(<%= seen.movie.wish_users.count %>)<% end %></span>
-</div>
+</p>
 
 <% end -%>
-</div>
 <% end %>

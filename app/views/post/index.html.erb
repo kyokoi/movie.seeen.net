@@ -4,7 +4,7 @@
 <% @posts.each do |story| -%>
 <li>
 <%= link_to post_story_path story.id do -%>
-<div class="outline"><%= story.release_at.strftime('%Y年%m月%d日') %><br /><%= raw "#{truncate(story.contents, :length => 56)}<span class='read_more'>続きを読む</span>"  %></div>
+<%= story.release_at.strftime('%Y年%m月%d日') %><br /><%= linksym.html_safe %><%= raw "#{truncate(story.title, :length => 56)}<span class='read_more'>全て読む</span>" %>
 </li>
 <% end -%>
 <% end -%>

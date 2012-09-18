@@ -12,7 +12,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 <% end -%>
 
-<h2 class="contents_tile"><%= params[:search][:word] %> の検索結果 (<%= number_with_delimiter(@search_count) %>)</h2>
+<h2><%= params[:search][:word] %> の検索結果 (<%= number_with_delimiter(@search_count) %>)</h2>
 <%= render @template %>
 <%= render 'next_page' %>
 </div>

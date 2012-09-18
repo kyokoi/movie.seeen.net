@@ -47,6 +47,14 @@ class ApplicationController < ActionController::Base
     provider ||= session[:provider]
 
     @author = Author.find_by_uid_and_provider_and_negative(uid, provider, 0)
+#    @author = Author.new do |author|
+#      author.id  = 1
+#      author.uid = '1072433145'
+#      author.name = 'Manabu Oshiro'
+#      author.email = 'shirodai@gmail.com'
+#      author.image = 'http://graph.facebook.com/1072433145/picture?type=square'
+#      author.provider = 'facebook'
+#    end
     @author ||= Author.create_guest
   end
 
