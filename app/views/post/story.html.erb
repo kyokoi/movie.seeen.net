@@ -4,7 +4,7 @@
 
 <% display_story(@story) do |movie| -%>
 <%= link_to movie_seens_path movie.id do -%>
-<h3>a<%= movie.name_of_japan %></h3>
+<h3><%= movie.name_of_japan %></h3>
 <% end -%>
 <p class="actions">
 <%= link_to "/movie/#{movie.id}/seens/new" do -%>

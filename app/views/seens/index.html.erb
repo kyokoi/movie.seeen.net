@@ -43,7 +43,7 @@
 <%= link_to my_summary_path seen.author.id do -%>
 <div class="result_of_same_movie_seener<% if seen.wish? %> with_wish<% end %>">
 <div class="leftside">
-<%= image_tag(path_by_author(seen.author.image, @author), :size => '64x64') %>
+<%= image_tag(path_by_author(seen.author.image, @author), :size => '34x34') %>
 </div>
 <div class="rightside">
 <div>
@@ -59,7 +59,7 @@
 </div>
 
 <% unless seen.wish? -%>
-<div><%= image_tag(stars(seen.evaluation)) %><%= seen.acondition_tag.name %><% unless seen.wish? %>&nbsp;<%= seen.date.strftime('%Y/%m/%d') %><% end -%></div>
+<div><%= image_tag(stars(seen.evaluation)) %><span><%= seen.acondition_tag.name %><%= seen.date.strftime('%Y/%m/%d') %></span></div>
 
 <div><%= simple_format seen.comment %></div>
 <% if seen.author.uid == session[:uid] && seen.author.provider == session[:provider] && !(seen.wish?) -%>
