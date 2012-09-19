@@ -1,9 +1,17 @@
 <div id="movie_detail">
 <ul class="info">
-<span>公開：<%= @movie.open_date.strftime('%Y') %>年&nbsp;上映時間：<%= @movie.show_time %>分</span>
+<li><span>公開：<%= @movie.open_date.strftime('%Y') %>年&nbsp;上映時間：<%= @movie.show_time %>分</span></li>
 </ul>
 
-<div class="rightside">
+<% if @movie.stories.count > 0 -%>
+<div class="story">特集記事</div>
+<ul class="info">
+<% @movie.stories.order('release_at DESC').each do |story| -%>
+<li><%= link_to post_story_path story do %><%= linksym.html_safe %><%= story.title %><% end %></li>
+<% end -%>
+</ul>
+<% end -%>
+
 <div class="story">あらすじ</div>
 <div class="movie_outline"><%= @movie.outline %></div>
 
@@ -18,6 +26,5 @@
 <% end -%>
 <% end -%>
 
-</div>
 </div>
 

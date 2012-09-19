@@ -8,17 +8,12 @@ $active-color:       #8B5A00;
 $active-color-sub:   #DAA520;
 
 #movie_detail {
+  margin: 5px;
   background-color: #ffffff;
-  .rightside {
-    display: table-cell;
-  }
-  .rightside .movie_outline {
-    font-size: large;
-  }
 }
 
 .info {
-  margin: 5px 0px;
+  margin: 2px 0px 10px 0px;
   span {
     color: $site-color;
     font-size: small;
@@ -28,7 +23,7 @@ $active-color-sub:   #DAA520;
 .story {
   color: $site-color;
   font-size: small;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
 }
 
 

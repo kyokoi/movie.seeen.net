@@ -2,7 +2,7 @@
 
 class RootController < ApplicationController
 
-  INDEX_STORIES_LIMIT        = 3
+  INDEX_STORIES_LIMIT        = 5
   INDEX_SUMMARY_MOVIE_LIMIT  = 10
   INDEX_SUMMARY_AUTHOR_LIMIT = 10
 

@@ -8,7 +8,7 @@ class StoriesController < AdminController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.active.order "release_at, created_at DESC"
+    @stories = Story.active.order "release_at DESC"
 
     respond_to do |format|
       format.html # index.html.erb

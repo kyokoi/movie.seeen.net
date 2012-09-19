@@ -1,8 +1,7 @@
-<navi id="how_to_use">
 <h2>このサービスの使い方</h2>
-<h3>見たい映画をメモできます。</h3>
-<h3>見た映画を記録できます。</h3>
-<p><%= link_to 'こちらのページを参照してください。', about_path %></p>
+<p>見たい映画をメモできます。</p>
+<p>見た映画を記録できます。</p>
+<p class="finish"><%= link_to 'こちらのページを参照してください。', about_path %></p>
 
 <h3>最初に見たい映画・見たばかりの映画を探しましょう。</h3>
 <p>
@@ -10,4 +9,3 @@
 検索はすべてのページの右上にある検索ボックスからも行えます。
 <%= form_tag search_movies_path, :method => "get" do -%><%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :size => 12 %><%= image_submit_tag('layout/search.png') %><% end %>
 <p>
-</navi>

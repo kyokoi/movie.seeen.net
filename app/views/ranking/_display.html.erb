@@ -1,19 +1,19 @@
 <% unless items[:set].blank? -%>
 <div class="ranking_box">
-<h2 class="contents_tile"><%= items[:display] %></h2>
+<h2><%= items[:display] %></h2>
 <table class="tableout">
 <tr>
-<th>順位</th><th>名前</th><th>見た回数</th>
+<th>順位</th><th>名前</th><th>回数</th>
 </tr>
 <% items[:set][0, limit].each.with_index(1) do |ranking, index| -%>
 <tr>
 <td><%= index %></td>
 <td class="contents">
 <% if ranking[:link].blank? -%>
-<bow>›</bow><%= ranking[:name] -%><% if @author[:name] == ranking[:name] %><%= image_tag('layout/stars_on.png') %><% end %>
+<%= linksym.html_safe %><%= ranking[:name] -%><% if @author[:name] == ranking[:name] %><%= image_tag('layout/stars_on.png') %><% end %>
 <% else -%>
 <%= link_to ranking[:link] do -%>
-<bow>›</bow><%= ranking[:name] -%><% if @author[:name] == ranking[:name] %><%= image_tag('layout/stars_on.png') %><% end %>
+<%= linksym.html_safe %><%= ranking[:name] -%><% if @author[:name] == ranking[:name] %><%= image_tag('layout/stars_on.png') %><% end %>
 <% end -%>
 <% end -%>
 </td>
@@ -23,7 +23,7 @@
 </table>
 <% if limit < items[:set].size -%>
 <%= link_to ranking_detail_path(items[:title], :return => request.fullpath) do -%>
-<bow>›</bow>ランキングをもっと見る...
+<%= linksym.html_safe %>ランキングをもっと見る...
 <% end -%>
 <% end -%>
 </div>
