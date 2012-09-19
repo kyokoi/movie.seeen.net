@@ -109,6 +109,7 @@ def wishs_count(title, display, target_date, monitor)
   rs = ActiveRecord::Base.connection.execute(sql);
   rs.each do |row|
     result_set[:set] << {
+      :id     => row[0],
       :name   => row[1],
       :number => row[2],
       :link   => "/movie/#{row[0]}/seens"
