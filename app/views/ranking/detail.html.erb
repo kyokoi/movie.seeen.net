@@ -8,16 +8,16 @@
 </div>
 <% else -%>
 <%= link_to params[:return] do -%>
-<div>
+<p class="finish move">
 <%= linksym.html_safe %>戻る
-</div>
+</p>
 <% end -%>
 
 <%= render :partial => 'display', :locals => {:items => @rankings, :limit => @display} %>
 
 <%= link_to params[:return] do -%>
-<div>
+<p class="finish move">
 <%= linksym.html_safe %>戻る
-</div>
+</p>
 <% end -%>
 <% end -%>

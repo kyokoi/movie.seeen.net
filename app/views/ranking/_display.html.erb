@@ -23,7 +23,9 @@
 </table>
 <% if limit < items[:set].size -%>
 <%= link_to ranking_detail_path(items[:title], :return => request.fullpath) do -%>
+<p class="finish move">
 <%= linksym.html_safe %>ランキングをもっと見る...
+</p>
 <% end -%>
 <% end -%>
 </div>

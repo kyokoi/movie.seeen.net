@@ -289,12 +289,6 @@ notice {
   border-top: solid 1px #cecece;
   #border-bottom: solid 1px #cecece;
 }
-.back_path {
-  margin: 10px;
-  color: $site-color;
-  font-weight: bold;
-  font-size: small;
-}
 
 .ad {
   margin: 10px 0px;
@@ -330,10 +324,17 @@ notice {
   font-size: normal;
 }
 .move {
+  a:link { color: #000000; }
+  a:visited { color: #000000; }
+  a:active { color: #000000; }
+  a:hover { color: #000000; }
+
+  color: #000000;
+  margin-top: 8px;
   padding: 8px 4px;
-  color: #ffffff;
   -webkit-border-radius: 2px;
   border-radius: 2px;
+  border: solid 1px #cccccc;
   background-color: #efefef;
   background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#cccccc));
 }

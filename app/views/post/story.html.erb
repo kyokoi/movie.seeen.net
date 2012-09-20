@@ -33,7 +33,9 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </p>
 <% end -%>
 
-<p class="back_path">
-<%= link_to '戻る', post_index_path %>
+<%= link_to post_index_path do -%>
+<p class="finish move">
+<%= linksym.html_safe %><span>特集記事一覧へ</span>
 </p>
+<% end -%>
 

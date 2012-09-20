@@ -3,15 +3,17 @@
 <% if @author.guest? -%>
 <%= author_name_for_unlogin_user @star_seen, @wish_seen, @recently_seen -%>
 <% else -%>
+<%= image_tag(path_by_author(@my.image, @author), :size => '50x50') %>
 <%= @my.name %>
 <% end -%>
 </h1>
 </div>
 
-<div class="outside">
-<you><%= image_tag(path_by_author(@my.image, @author), :size => '50x50') %></you>
-<p><%= link_to my_activity_path @my.id do %>今月見た映画(<%= @monthly.all %>)<br /><%= linksym.html_safe %>詳細<% end %></p>
-</div>
+<%= link_to my_activity_path @my.id do -%>
+<p class="finish move">
+今月見た映画(<%= @monthly.all %>)
+</p>
+<% end -%>
 
 <div class="display_movies">
 
@@ -49,13 +51,13 @@
 
 <% unless @author.guest? -%>
 <% unless @recommend_users.blank? -%>
-<h2 class="title_name">
-<span class="title_name_main">おすすめユーザ</span>
-</h2>
-<div class="recommend_user">
+<h2>おすすめユーザ</h2>
+<ul class="list">
 <% @recommend_users.each do |user| -%>
-<%= link_to my_summary_path user[:id] do %><%= linksym.html_safe %><span><%= user[:name] %>(<%= user[:approximation] %>％)</span><% end %>
+<%= link_to my_summary_path user[:id] do -%>
+<li><%= linksym.html_safe %><span><%= user[:name] %>(<%= user[:approximation] %>％)</span></li>
+<% end %>
 <% end -%>
-</div>
+</ul>
 <% end -%>
 <% end -%>

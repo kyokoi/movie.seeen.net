@@ -2,51 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.outside
-{
-  margin: 5px;
-  height: 60px;
-}
-.outside you
-{
-  width: 60px;
-  vertical-align: middle;
-  float: left;
-}
-.outside p
-{
-  font-size: normal;
-}
-
-.title_name
-{
-  margin: 0px 5px;
-  padding: 5px;
-  background-color: #55bb00;
-  border-style: solid;
-  border-color: #339900 #ffffff;
-  border-width: 1px 0px;
-  color: #ffffff;
-}
-.title_name_main
-{
-  font-size: large;
-  font-weight: bold;
-}
-.title_name_more
-{
-  font-size: small;
-  font-weight: normal;
-  float: right;
-}
-.recommend_user
-{
-  padding: 4px;
-}
-.recommend_user a
-{
-  color: #339900;
-  font-size: large;
-  font-weight: bold;
-  padding: 4px;
+h1 img {
+  vertical-align: bottom;
 }
