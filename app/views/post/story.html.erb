@@ -1,4 +1,21 @@
 <h1><%= image_tag 'layout/logo_40.png', :size => '40x40', :alt => "映画箱" %> 特集記事</h1>
+
+<% if Rails.env == 'production' -%>
+<p>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-1453758758198931";
+/* 特集ページ：上 */
+google_ad_slot = "7552570985";
+google_ad_width = 320;
+google_ad_height = 50;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</p>
+<% end -%>
+
 <h2><%= @story.title %></h2>
 <p><%= @story.release_at.strftime('%Y年%m月%d日') %></p>
 
