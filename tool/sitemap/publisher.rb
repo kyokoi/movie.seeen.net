@@ -20,10 +20,21 @@ class Publisher
 
   PING_URL = 'http://www.google.com/webmasters/tool/ping'
 
-  attr_accessor :indexies, :save_dir, :host_name, :template_dir
+  attr_accessor :save_dir, :host_name, :template_dir
+  attr_reader   :url_indexies, :xml_indexies
 
   def initialize
-    @indexies = []
+    @url_indexies = 0
+    @xml_indexies = []
+  end
+
+  def host_name=(name)
+    uri = URI.parse name
+    @host_name = uri.host
+  end
+
+  def xml_indexies
+    @xml_indexies.count
   end
 
   def run(pathes, priority, save_file)
@@ -35,7 +46,8 @@ class Publisher
       file.write sitemap
     end
 
-    @indexies << "http://#{@host_name}/sitemap/#{save_file}"
+    @url_indexies += pathes.count
+    @xml_indexies << "http://#{@host_name}/sitemap/#{save_file}"
   end
 
   def indexing

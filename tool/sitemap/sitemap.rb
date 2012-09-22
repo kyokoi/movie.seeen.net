@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+require './lib/monitor'
+monitor = MovieSeen::Monitor.wakeup('sitemap', 'Sitemaps')
+
 require 'active_record'
 require 'yaml'
 
@@ -43,22 +46,27 @@ def publish_by_model(matches, map_name, priority)
 
     rotate += 1
   end
-
-  puts map_name
 end
 
+monitor.append('build xml', "all movies: priority 0.5");
 publish_by_model(Movie.active, 'movies', 0.5) do |match|
   "/movie/#{match.id}/seens/"
 end
+
+monitor.append('build xml', "all stories: priority 0.8");
 publish_by_model(Story.active, 'stories', 0.8) do |match|
   "/post/#{match.id}/"
 end
 
 
 config = YAML.load_file File.join(BATCH_ROOT_DIR, "config.yml")
+config['miscellaneous'].each do |misc|
+  monitor.append('build xml', "#{misc}: priority 1.0");
+end
 pub.run config['miscellaneous'], 1.0, 'miscellaneous.xml'
 
+monitor.append('pingning', "Google ping");
 pub.indexing.ping
 
-
-puts "ping success"
+monitor.append 'batch summary', "url:#{pub.url_indexies}, xml:#{pub.xml_indexies}"
+monitor.aging
