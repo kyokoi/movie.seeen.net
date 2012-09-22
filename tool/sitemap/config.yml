@@ -1,0 +1,14 @@
+miscellaneous:
+  - /post
+  - /ranking/movie
+  - /ranking/seen
+  - /ranking/star
+  - /ranking/wish
+  - /ranking/cinema
+  - /ranking/detail/weekly_movie?return=%2Franking%2Fmovie
+  - /ranking/detail/monthly_movie?return=%2Franking%2Fmovie
+  - /ranking/detail/yearly_movie?return=%2Franking%2Fmovie
+  - /ranking/detail/all_movie?return=%2Franking%2Fmovie
+  - /ranking/detail/stars?return=%2Franking%2Fstar
+  - /ranking/detail/wishs?return=%2Franking%2Fwish
+  - /ranking/detail/cinemas?return=%2Franking%2Fcinema

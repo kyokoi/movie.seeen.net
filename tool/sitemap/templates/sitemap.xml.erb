@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<% pathes.each do |path| -%>
+  <url>
+    <loc>http://<%= @host_name %><%= path %></loc>
+    <lastmod><%= Date::today.to_s %></lastmod>
+    <changefreq>daily</changefreq>
+    <priority><%= priority %></priority>
+  </url>
+<% end -%>
+</sitemapindex>
