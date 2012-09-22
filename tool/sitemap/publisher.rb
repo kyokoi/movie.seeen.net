@@ -1,6 +1,7 @@
 require 'singleton'
 require 'erb'
 require 'uri'
+require 'cgi'
 require 'net/http'
 require 'date'
 
@@ -18,7 +19,7 @@ require 'date'
 class Publisher
   include Singleton
 
-  PING_URL = 'http://www.google.com/webmasters/tool/ping'
+  PING_URL = 'http://www.google.com/webmasters/tools/ping'
 
   attr_accessor :save_dir, :host_name, :template_dir
   attr_reader   :url_indexies, :xml_indexies
@@ -26,11 +27,6 @@ class Publisher
   def initialize
     @url_indexies = 0
     @xml_indexies = []
-  end
-
-  def host_name=(name)
-    uri = URI.parse name
-    @host_name = uri.host
   end
 
   def xml_indexies
@@ -69,16 +65,18 @@ class Publisher
   end
 
   def ping
-    sitemap_index_url = "http://#{@host_name}/sitemap_index.xml"
+    sitemap_index_url = CGI.escape("http://#{@host_name}/sitemap_index.xml")
 
     Net::HTTP.version_1_2
-    url = URI.parse "#{PING_URL}?sitemap=#{URI.encode(sitemap_index_url)}"
+    url = URI.parse "#{PING_URL}?sitemap=#{sitemap_index_url}"
 
     res = Net::HTTP.start(url.host, url.port) do |http|
       http.open_timeout = 5
       http.read_timeout = 5
 
-      #http.get("#{path}?#{query}")
+      response = http.get("#{url.path}?#{url.query}")
+      puts response.inspect
+      puts response.body
     end
   end
 end
