@@ -22,7 +22,7 @@ NUMBER_OF_FANDATION           = 3000
 # setup Active record
 ConfigFile = File.join(File.dirname(__FILE__), "..", "..", "config", "database.yml")
 ds = YAML.load(File.read(ConfigFile))
-ActiveRecord::Base.establish_connection(ds["development"])
+ActiveRecord::Base.establish_connection(ds[ENV['MS_ENV']])
 
 
 def offset_count

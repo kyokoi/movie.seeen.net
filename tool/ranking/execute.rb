@@ -13,7 +13,7 @@ OUTPUT_DIR = '/usr/local/apps/movie_seen/data/ranking/'
 # setup Active record
 ConfigFile = File.join(File.dirname(__FILE__), "..", "..", "config", "database.yml")
 ds = YAML.load(File.read(ConfigFile))
-ActiveRecord::Base.establish_connection(ds["development"])
+ActiveRecord::Base.establish_connection(ENV['MS_ENV'])
 
 
 def movie_count(title, display, target_date, monitor)
