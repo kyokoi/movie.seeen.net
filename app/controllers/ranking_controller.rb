@@ -48,11 +48,11 @@ class RankingController < ApplicationController
   end
 
   def wish
-    @rankings = fetch_ranking [:wishs]
+    @rankings = RankingIterator.new :wishs
 
     page_title "観たい映画のランキング"
 
-    top_three = @rankings[:wishs][:set][0, 3].map{|movie| movie[:name]}
+    top_three = @rankings[0, 3].map{|movie| movie[:name]}
     description "最近は、#{top_three.join('、')} が人気です。"
     top_three.each do |movie_name|
       keywords movie_name

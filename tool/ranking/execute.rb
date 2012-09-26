@@ -131,7 +131,7 @@ def cinemas_count(title, display, target_date, monitor)
     :set => []
   }
 
-  sql = "select count(*) as count, t.name from seens s, movies m, tags t where s.movie_id = m.id and s.acondition = t.id and t.id <> 77 and s.negative = 0 and m.negative = 0 group by s.acondition order by count desc lmit 50;"
+  sql = "select count(*) as count, t.name from seens s, movies m, tags t where s.movie_id = m.id and s.acondition = t.id and t.id <> 77 and s.negative = 0 and m.negative = 0 group by s.acondition order by count desc limit 50;"
   rs = ActiveRecord::Base.connection.execute(sql);
   rs.each do |row|
     result_set[:set] << {
