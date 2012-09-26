@@ -17,6 +17,7 @@ class SearchMovie < ActiveResource::Base
   def pull
     @keywords = @keywords || ''
     words = @keywords.gsub '　', ' '
+    words = @keywords.gsub '・', ' '
 
     queries = words.split(/ /).map do |word|
       SPECIALS.split(' ').each do |char|
