@@ -70,4 +70,8 @@ class Movie < ActiveRecord::Base
     end
     matches
   end
+
+  def stars
+    Seen.stars.where(:movie_id => self.id)
+  end
 end

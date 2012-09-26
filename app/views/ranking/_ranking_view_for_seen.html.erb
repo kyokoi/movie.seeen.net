@@ -1,0 +1,8 @@
+<div class="rankings_box">
+<h1><%= items.title %></h1>
+<% items.each.with_index(1) do |items, rank| -%>
+<h2><%= rank %>位</h2>
+<% items.each do |item| -%>
+<%= render :partial => template, :locals => {:seen => item} -%>
+<% end %>
+<% end -%>

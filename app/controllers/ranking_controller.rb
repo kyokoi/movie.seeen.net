@@ -9,17 +9,24 @@ class RankingController < ApplicationController
 
   def seen
     @rankings = fetch_ranking [:weekly_seen, :monthly_seen, :yearly_seen, :all_seen]
+    @rankings = {}
+    [:weekly_seen, :monthly_seen, :yearly_seen, :all_seen].each do |title|
+      @rankings[title] = RankingIterator.new title, Author
+    end
 
     page_title '映画を見ている人のランキング'
     description "映画をよく見ている人のランキングです。"
   end
 
   def movie
-    @rankings = fetch_ranking [:weekly_movie, :monthly_movie, :yearly_movie, :all_movie]
+    @rankings = {}
+    [:weekly_movie, :monthly_movie, :yearly_movie, :all_movie].each do |title|
+      @rankings[title] = RankingIterator.new title
+    end
 
     page_title '映画のランキング'
 
-    top_three = @rankings[:weekly_movie][:set][0, 3].map{|movie| movie[:name]}
+    top_three = @rankings[:weekly_movie][0, 3].map{|movie| movie.name_of_japan}
     description "最近は、#{top_three.join('、')} がよく見られています。"
     top_three.each do |movie_name|
       keywords movie_name
@@ -28,11 +35,11 @@ class RankingController < ApplicationController
   end
 
   def star
-    @rankings = fetch_ranking [:stars]
+    @rankings = RankingIterator.new :stars
 
     page_title 'お気に入りの映画ランキング'
 
-    top_three = @rankings[:stars][:set][0, 3].map{|movie| movie[:name]}
+    top_three = @rankings[0, 3].map{|movie| movie[:name]}
     description "#{top_three.join('、')} がお気に入りによく登録されています。"
     top_three.each do |movie_name|
       keywords movie_name
@@ -89,7 +96,6 @@ class RankingController < ApplicationController
     page_title kind_of_ranking[kind.to_sym]
     @rankings = catch_data kind
 
-    logger.info @rankings.inspect
     top_three = @rankings[:set][0, 3].map{|movie| movie[:name]}
     description "#{top_three.join('、')} …のランキング１００位まで。"
     top_three.each do |movie_name|

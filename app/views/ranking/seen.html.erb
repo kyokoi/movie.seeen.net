@@ -9,8 +9,8 @@
 </ul>
 </div>
 <% else -%>
-<%= render :partial => 'display', :locals => {:items => @rankings[:weekly_seen], :limit => @display} %>
-<%= render :partial => 'display', :locals => {:items => @rankings[:monthly_seen], :limit => @display} %>
-<%= render :partial => 'display', :locals => {:items => @rankings[:yearly_seen], :limit => @display} %>
-<%= render :partial => 'display', :locals => {:items => @rankings[:all_seen], :limit => @display} %>
+<%= render :partial => 'ranking_view_for_seen', :locals => {:template => 'layouts/view_seen', :items => @rankings[:weekly_seen], :limit => @display} %>
+<%= render :partial => 'ranking_view_for_seen', :locals => {:template => 'layouts/view_seen', :items => @rankings[:monthly_seen], :limit => @display} %>
+<%= render :partial => 'ranking_view_for_seen', :locals => {:template => 'layouts/view_seen', :items => @rankings[:yearly_seen], :limit => @display} %>
+<%= render :partial => 'ranking_view_for_seen', :locals => {:template => 'layouts/view_seen', :items => @rankings[:all_seen], :limit => @display} %>
 <% end -%>
