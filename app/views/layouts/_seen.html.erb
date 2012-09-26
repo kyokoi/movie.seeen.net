@@ -8,10 +8,14 @@
 
 <p><%= truncate(seen.movie.outline, :length => 56) %></p>
 
-<p class="actions finish">
+<p class="actions<% if seen.comment.blank? %> finish<% end %>">
 <%= linksym.html_safe %><span>見た<% if 0 < seen.movie.seen_users.count %>(<%= seen.movie.seen_users.count %>)<% end %></span>
 <%= linksym.html_safe %><span>見たい<% if 0 < seen.movie.wish_users.count %>(<%= seen.movie.wish_users.count %>)<% end %></span>
 </p>
+
+<% unless seen.comment.blank? -%>
+<%= simple_format seen.comment, :class => 'comment finish' -%>
+<% end -%>
 
 <% end -%>
 <% end %>
