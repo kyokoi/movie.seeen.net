@@ -220,6 +220,30 @@ clearfix:after {
   }
 }
 
+#narrow_rank {
+  background-color: #c0c0c0;
+  font-size:small;
+
+  ul li{
+    display: inline-block;
+    width: 19%;
+    height: 50px;
+    text-align: center;
+    border-left: 1px solid #d7d8da;
+    vertical-align: bottom;
+    box-sizing: border-box;
+  }
+
+  ul li a {
+    color: #444444;
+  }
+  dt {
+     margin-top:6px;
+  }
+  dd {
+     margin-top:2px;
+  }
+}
 table.tableout {
   margin: 5px 0px;
   border: 1px #e3e3e3 solid;
