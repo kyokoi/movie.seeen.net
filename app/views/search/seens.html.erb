@@ -1,14 +1,12 @@
 <% if @search_condition -%>
-<div id="search_condition">
-<%= @search_condition %>
-</div>
+<h1><%= @search_condition %></h1>
 <% end -%>
 
-<% if @monthly -%>
-<div id="authors_activity">
-<%= link_to my_activity_path(@monthly.author_id) do %><%= linksym.html_safe %>今月は映画を<strong><%= @monthly.all %></strong>本見ています。<% end %>
-</div>
-<% end -%>
+<ul class="box">
+<li>全て</li>
+<li><%= image_tag('layout/stars_on.png') %></li>
+<li>見たい</li>
+</ul>
 
 <div id="narrow_items">
 <%= link_to search_path(:search => params[:search].merge({:narrow => :none})) do -%>
@@ -24,6 +22,12 @@
 <wish class="narrow_items_type<% if params[:search][:narrow] == "wish"%>_selected<% end %>">見たい(<%= @activity[:wishes] %>)</wish>
 <% end -%>
 </div>
+
+<% if @monthly -%>
+<div id="authors_activity">
+<%= link_to my_activity_path(@monthly.author_id) do %><%= linksym.html_safe %>今月は映画を<strong><%= @monthly.all %></strong>本見ています。<% end %>
+</div>
+<% end -%>
 
 <div id="display_movies">
 <%= render :partial => @template, :locals => {:items => @matches} %>

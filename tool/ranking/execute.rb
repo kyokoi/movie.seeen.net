@@ -6,14 +6,17 @@ monitor = MovieSeen::Monitor.wakeup('ranking', 'Rankings')
 require 'active_record'
 require 'yaml'
 
+require '../app/models/author'
+require '../app/models/movie'
+require '../app/models/seen'
 
-OUTPUT_DIR = '/usr/local/apps/movie_seen/data/ranking/'
+OUTPUT_DIR = "#{ENV['MS_ROOT']}/../data/ranking/"
 
 
 # setup Active record
 ConfigFile = File.join(File.dirname(__FILE__), "..", "..", "config", "database.yml")
 ds = YAML.load(File.read(ConfigFile))
-ActiveRecord::Base.establish_connection(ds["production"])
+ActiveRecord::Base.establish_connection(ds[ENV['MS_ENV']])
 
 
 def movie_count(title, display, target_date, monitor)
@@ -26,14 +29,13 @@ def movie_count(title, display, target_date, monitor)
     :set => []
   }
 
-  sql = "select m.id, m.name_of_japan as name, count(*) as number from movies m, seens s where m.id = s.movie_id and m.negative = 0 and s.negative = 0 and s.evaluation != 84 and s.date between '#{result_set[:date_end].strftime("%Y-%m-%d")} ' and '#{result_set[:date_start].strftime("%Y-%m-%d")}' group by m.id order by number DESC limit 50;"
+  sql = "select m.id, m.name_of_japan as name, count(*) as number from movies m, seens s where m.id = s.movie_id and m.negative = 0 and s.negative = 0 and s.evaluation != 84 and s.date between '#{result_set[:date_end].strftime("%Y-%m-%d")} ' and '#{result_set[:date_start].strftime("%Y-%m-%d")}' group by m.id order by number DESC limit 100;"
   rs = ActiveRecord::Base.connection.execute(sql);
   rs.each do |row|
+    item = Movie.active.where(:id => row[0]).first
     result_set[:set] << {
-      :id     => row[0],
-      :name   => row[1],
-      :number => row[2],
-      :link   => "/movie/#{row[0]}/seens"
+      :item => item.attributes,
+      :number => row[2]
     }
   end
 
@@ -52,15 +54,13 @@ def seen_count(title, display, target_date, monitor)
     :set => []
   }
 
-  # weekly ranking of seen.
-  sql = "select a.id, a.name, count(*) as number from authors a, seens s where a.id = s.author_id and s.evaluation != 84 and s.date between '#{result_set[:date_end].strftime("%Y-%m-%d")}' and '#{result_set[:date_start].strftime("%Y-%m-%d")}' group by a.id order by number desc limit 50;"
+  sql = "select a.id, a.name, count(*) as number from authors a, seens s where a.id = s.author_id and s.evaluation != 84 and s.date between '#{result_set[:date_end].strftime("%Y-%m-%d")}' and '#{result_set[:date_start].strftime("%Y-%m-%d")}' group by a.id order by number desc limit 100;"
   rs = ActiveRecord::Base.connection.execute(sql);
   rs.each do |row|
+    item = Author.active.where(:id => row[0]).first
     result_set[:set] << {
-      :id     => row[0],
-      :name   => row[1],
-      :number => row[2],
-      :link   => "/search/?search[author]=#{row[0]}"
+      :item => item.attributes,
+      :number => row[2]
     }
   end
 
@@ -79,14 +79,13 @@ def stars_count(title, display, target_date, monitor)
     :set => []
   }
 
-  sql = "select m.id, m.name_of_japan, count(*) as number from seens s, movies m where s.movie_id = m.id and s.negative = 0 and s.evaluation = 83 group by s.movie_id order by number desc limit 50;"
+  sql = "select m.id, m.name_of_japan, count(*) as number from seens s, movies m where s.movie_id = m.id and s.negative = 0 and s.evaluation = 83 group by s.movie_id order by number desc limit 100;"
   rs = ActiveRecord::Base.connection.execute(sql);
   rs.each do |row|
+    item = Movie.active.where(:id => row[0]).first
     result_set[:set] << {
-      :id     => row[0],
-      :name   => row[1],
-      :number => row[2],
-      :link   => "/movie/#{row[0]}/seens"
+      :item => item.attributes,
+      :number => row[2]
     }
   end
 
@@ -105,14 +104,13 @@ def wishs_count(title, display, target_date, monitor)
     :set => []
   }
 
-  sql = "select m.id, m.name_of_japan, count(*) as number from seens s, movies m where s.movie_id = m.id and s.negative = 0 and s.evaluation = 84 group by s.movie_id order by number desc limit 50;"
+  sql = "select m.id, m.name_of_japan, count(*) as number from seens s, movies m where s.movie_id = m.id and s.negative = 0 and s.evaluation = 84 group by s.movie_id order by number desc limit 100;"
   rs = ActiveRecord::Base.connection.execute(sql);
   rs.each do |row|
+    item = Movie.active.where(:id => row[0]).first
     result_set[:set] << {
-      :id     => row[0],
-      :name   => row[1],
-      :number => row[2],
-      :link   => "/movie/#{row[0]}/seens"
+      :item => item.attributes,
+      :number => row[2]
     }
   end
 
@@ -131,7 +129,7 @@ def cinemas_count(title, display, target_date, monitor)
     :set => []
   }
 
-  sql = "select count(*) as count, t.name from seens s, movies m, tags t where s.movie_id = m.id and s.acondition = t.id and t.id <> 77 and s.negative = 0 and m.negative = 0 group by s.acondition order by count desc limit 50;"
+  sql = "select count(*) as count, t.name from seens s, movies m, tags t where s.movie_id = m.id and s.acondition = t.id and t.id <> 77 and s.negative = 0 and m.negative = 0 group by s.acondition order by count desc limit 100;"
   rs = ActiveRecord::Base.connection.execute(sql);
   rs.each do |row|
     result_set[:set] << {

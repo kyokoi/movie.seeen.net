@@ -6,7 +6,6 @@ monitor = MovieSeen::Monitor.wakeup('movies_results', '`movies`に関する集�
 require 'active_record'
 require 'yaml'
 
-require '../app/models/application_model'
 require '../app/models/movie'
 require '../app/models/seen'
 require '../app/models/movies_reslut'
@@ -19,7 +18,7 @@ RANKING_LIMIT = 10
 # setup Active record
 ConfigFile = File.join(File.dirname(__FILE__), "..", "..", "config", "database.yml")
 ds = YAML.load(File.read(ConfigFile))
-ActiveRecord::Base.establish_connection(ds["development"])
+ActiveRecord::Base.establish_connection(ds[ENV['MS_ENV']])
 
 
 movie_id = ARGV.first

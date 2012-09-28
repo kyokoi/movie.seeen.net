@@ -5,8 +5,6 @@ class Author < ActiveRecord::Base
     where :negative => 0
   }
 
-  include ApplicationModel
-
   has_many :seens
   has_many :reports
   has_many :stories
@@ -34,6 +32,10 @@ class Author < ActiveRecord::Base
       service_name = [:facebook, :twitter, :google_oauth2]
     end
     service_name.include? self.provider.to_sym
+  end
+
+  def same?(author)
+    self.id == author.id
   end
 
   def self.authorize(auth)

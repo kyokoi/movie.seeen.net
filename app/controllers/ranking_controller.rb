@@ -8,10 +8,13 @@ class RankingController < ApplicationController
 
 
   def seen
-    @rankings = fetch_ranking [:weekly_seen, :monthly_seen, :yearly_seen, :all_seen]
-    @rankings = {}
+    @rankings = []
     [:weekly_seen, :monthly_seen, :yearly_seen, :all_seen].each do |title|
-      @rankings[title] = RankingIterator.new title, Author
+      begin
+        @rankings << RankingIterator.new(title, Author)
+      rescue Exception => e
+        logger.warn "Failure marshal processing.[#{title}][#{e}]"
+      end
     end
 
     page_title '映画を見ている人のランキング'
@@ -19,14 +22,18 @@ class RankingController < ApplicationController
   end
 
   def movie
-    @rankings = {}
+    @rankings = []
     [:weekly_movie, :monthly_movie, :yearly_movie, :all_movie].each do |title|
-      @rankings[title] = RankingIterator.new title
+      begin
+        @rankings << RankingIterator.new(title)
+      rescue Exception => e
+        logger.warn "Failure marshal processing.[#{title}][#{e}]"
+      end
     end
 
     page_title '映画のランキング'
 
-    top_three = @rankings[:weekly_movie][0, 3].map{|movie| movie.name_of_japan}
+    top_three = @rankings.first[0, 3].map{|movie| movie.name_of_japan}
     description "最近は、#{top_three.join('、')} がよく見られています。"
     top_three.each do |movie_name|
       keywords movie_name
@@ -45,6 +52,8 @@ class RankingController < ApplicationController
       keywords movie_name
     end
     keywords 'お気に入りの映画ランキング'
+  rescue Exception => e
+    logger.warn "Failure marshal processing.[][#{e}]"
   end
 
   def wish
@@ -58,6 +67,8 @@ class RankingController < ApplicationController
       keywords movie_name
     end
     keywords '見たい映画ランキング'
+  rescue Exception => e
+    logger.warn "Failure marshal processing.[#{title}][#{e}]"
   end
 
   def cinema

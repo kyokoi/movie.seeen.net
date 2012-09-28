@@ -6,7 +6,6 @@ monitor = MovieSeen::Monitor.wakeup('summary', 'Application summary')
 require 'active_record'
 require 'yaml'
 
-require '../app/models/application_model'
 require '../app/models/author'
 require '../app/models/affiliate'
 require '../app/models/movie'

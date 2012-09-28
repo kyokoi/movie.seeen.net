@@ -11,27 +11,33 @@ class RankingIterator < ActiveResource::Base
 
 
   def initialize(type_of_ranking, target = Movie)
-    contents = YAML.load_file "#{INPUT_PATH}/#{type_of_ranking}.yml"
-
+    contents = YAML.load_file "#{INPUT_PATH}/#{type_of_ranking.to_s}.yml"
     @title = contents[:display]
 
     @items = contents[:set].map do |element|
-      item = target.active.where(:id => element[:id]).first
-      next nil if item.blank?
+      item = target.new element[:item]
 
       class << item
         attr_accessor :number_for_ranking
+
+        def force_id(id)
+          self.id = id
+        end
       end
+      item.force_id element[:item]['id']
       item.number_for_ranking = element[:number]
       item
-    end.select{|item| item}
+    end
+  end
 
-  rescue Exception => e
-    logger.warn e
+  def count
+    @items.count
   end
 
   def each
     return to_enum(:each) unless block_given?
+
+    return if @items.blank?
 
     before_number   = nil
     same_rank_items = []
@@ -57,5 +63,14 @@ class RankingIterator < ActiveResource::Base
 
   def [](point, offset)
     @items[point, offset]
+  end
+
+  def rank(element)
+    self.each.with_index(1) do |items, rank|
+      if items.map{|item| item.id}.include? element.id
+        return rank
+      end
+    end
+    nil
   end
 end

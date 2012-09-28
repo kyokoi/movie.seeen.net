@@ -7,7 +7,6 @@ require 'amazon/ecs'
 require 'active_record'
 require 'yaml'
 
-require '../app/models/application_model'
 require '../app/models/affiliate'
 require '../app/models/movie'
 

@@ -5,8 +5,6 @@ class Report < ActiveRecord::Base
     where :negative => 0
   }
 
-  include ApplicationModel
-
   belongs_to :author
 
 

@@ -5,8 +5,6 @@ class Seen < ActiveRecord::Base
     where :negative => 0
   }
 
-  include ApplicationModel
-
   EVALUATION_STAR_ID = 83
   EVALUATION_WISH_ID = 84
 

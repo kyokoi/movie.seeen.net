@@ -1,6 +1,5 @@
 <%= render 'selecter' %>
 
-<%= render :partial => 'ranking_view_for_movie', :locals => {:template => 'layouts/view_movie', :items => @rankings[:weekly_movie], :limit => @display} %>
-<%= render :partial => 'ranking_view_for_movie', :locals => {:template => 'layouts/view_movie', :items => @rankings[:monthly_movie], :limit => @display} %>
-<%= render :partial => 'ranking_view_for_movie', :locals => {:template => 'layouts/view_movie', :items => @rankings[:yearly_movie], :limit => @display} %>
-<%= render :partial => 'ranking_view_for_movie', :locals => {:template => 'layouts/view_movie', :items => @rankings[:all_movie], :limit => @display} %>
+<% @rankings.each do |iterator| -%>
+<%= render :partial => 'ranking_view', :locals => {:template => 'layouts/view_movie', :items => iterator, :limit => @display} %>
+<% end -%>

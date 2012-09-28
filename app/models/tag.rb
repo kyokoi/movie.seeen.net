@@ -3,8 +3,6 @@ class Tag < ActiveRecord::Base
     where :negative => 0
   }
 
-  include ApplicationModel
-
   ACONDITION_AREA = 85
 
   def self.area

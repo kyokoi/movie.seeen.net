@@ -6,7 +6,6 @@ monitor = MovieSeen::Monitor.wakeup('sitemap', 'Sitemaps')
 require 'active_record'
 require 'yaml'
 
-require '../app/models/application_model'
 require '../app/models/movie'
 require '../app/models/story'
 

@@ -6,7 +6,6 @@ monitor = MovieSeen::Monitor.wakeup('recommend_by_user', 'User recommend.')
 require 'active_record'
 require 'yaml'
 
-require '../app/models/application_model'
 require '../app/models/author'
 require '../app/models/seen'
 

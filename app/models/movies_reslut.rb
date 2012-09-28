@@ -1,6 +1,4 @@
 class MoviesResult < ActiveRecord::Base
-  include ApplicationModel
-
   belongs_to :movie
 
   RESULT_SETS = ['245' => 'all', '246' => 'stars', '247' => 'no_stars', '248' => 'wish']
