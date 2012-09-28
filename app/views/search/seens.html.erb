@@ -2,12 +2,6 @@
 <h1><%= @search_condition %></h1>
 <% end -%>
 
-<ul class="box">
-<li>全て</li>
-<li><%= image_tag('layout/stars_on.png') %></li>
-<li>見たい</li>
-</ul>
-
 <div id="narrow_items">
 <%= link_to search_path(:search => params[:search].merge({:narrow => :none})) do -%>
 <all class="narrow_items_type<% unless ['star', 'seen', 'wish'].include?(params[:search][:narrow]) %>_selected<% end %>">全て(<%= @activity[:all] %>)</all>
