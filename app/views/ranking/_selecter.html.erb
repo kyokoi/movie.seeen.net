@@ -1,19 +1,45 @@
-<div id="narrow_items">
-<%= link_to ranking_movie_path do -%>
-<span class="narrow_items_type<% if action_name == 'movie' %>_selected<% end %>">映画</span>
+<div id="narrow_rank">
+<ul>
+<li><%= link_to ranking_movie_path do -%>
+<dt><%= image_tag('layout/movie.png', :size => '20x20') %></dt>
+<dd>
+<span class="narrow_items_type<% if action_name == 'movie' %>_selected<% end %>">Movie</span>
+</dd>
 <% end -%>
+</li>
+<li>
 <%= link_to ranking_seen_path do -%>
-<span class="narrow_items_type<% if action_name == 'seen' %>_selected<% end %>">見た人</span>
+<dt><%= image_tag('layout/audience.png', :size => '20x20') %></dt>
+<dd>
+<span class="narrow_items_type<% if action_name == 'seen' %>_selected<% end %>">Audience</span>
+</dd>
 <% end -%>
+</li>
+<li>
 <%= link_to ranking_star_path do -%>
-<span class="narrow_items_type<% if action_name == 'star' %>_selected<% end %>"><%= image_tag('layout/stars_on.png') %></span>
+<dt><%= image_tag('layout/star.png', :size => '20x20') %></dt>
+<dd>
+<span class="narrow_items_type<% if action_name == 'star' %>_selected<% end %>">Favorite</span>
+</dd>
 <% end -%>
+</li>
+<li>
 <%= link_to ranking_wish_path do -%>
-<span class="narrow_items_type<% if action_name == 'wish' %>_selected<% end %>">見たい映画</span>
+<dt><%= image_tag('layout/heart.png', :size => '20x20') %></dt>
+<dd>
+<span class="narrow_items_type<% if action_name == 'wish' %>_selected<% end %>">Wish</span>
+</dd>
 <% end -%>
+</li>
+<li>
 <%= link_to ranking_cinema_path do -%>
-<span class="narrow_items_type<% if action_name == 'cinema' %>_selected<% end %>">映画館</span>
+<dt><%= image_tag('layout/theater.png', :size => '20x20') %></dt>
+<dd>
+<span class="narrow_items_type<% if action_name == 'cinema' %>_selected<% end %>">Theater</span>
+</dd>
 <% end -%>
+</li>
+</ul>
 </div>
 
 <% if Rails.env == 'production' -%>

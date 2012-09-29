@@ -226,6 +226,31 @@ clearfix:after {
   }
 }
 
+#narrow_rank {
+  background-color: #c0c0c0;
+  font-size:small;
+
+  ul li{
+    display: inline-block;
+    width: 19%;
+    height: 50px;
+    text-align: center;
+    border-left: 1px solid #d7d8da;
+    vertical-align: bottom;
+    box-sizing: border-box;
+  }
+
+  ul li a {
+    color: #444444;
+  }
+  dt {
+     margin-top:6px;
+  }
+  dd {
+     margin-top:2px;
+  }
+}
+
 .bow {
   color: #E47911;
   font-family: arial,helvetica,osaka,"MS PGothic",sans-serif;
