@@ -7,7 +7,6 @@ require 'active_support'
 require 'active_record'
 require 'yaml'
 
-require '../app/models/application_model'
 require '../app/models/author'
 require '../app/models/seen'
 require '../app/models/monthly_seen'
@@ -16,7 +15,7 @@ require '../app/models/monthly_seen'
 # setup Active record
 ConfigFile = File.join(File.dirname(__FILE__), "..", "..", "config", "database.yml")
 ds = YAML.load(File.read(ConfigFile))
-ActiveRecord::Base.establish_connection(ds["development"])
+ActiveRecord::Base.establish_connection(ds[ENV['MS_ENV']])
 
 
 def targets author
