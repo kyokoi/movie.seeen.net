@@ -45,10 +45,6 @@
 
 </div>
 
-<%= render :partial => 'ranking/display', :locals => {:items => @weekly_ranking[:weekly_movie], :limit => @display} %>
-
-<%= render :partial => 'ranking/display', :locals => {:items => @wishs_ranking[:wishs], :limit => @display} %>
-
 <% unless @author.guest? -%>
 <% unless @recommend_users.blank? -%>
 <h2>おすすめユーザ</h2>
