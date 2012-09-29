@@ -48,26 +48,20 @@ class SeensController < ApplicationController
     redirect_to movie_seens_path, :notice => '見たい映画を削除しました'
   end
 
-  def search_rank(ids)
-    rank = 0
-    response = ids.detect do |id|
-      rank += 1;
-      @movie.id == id
-    end
-    (response.nil?) ? 0 : rank
-  end
-
   # GET /seens
   # GET /seens.json
   def index
     kinds = [:weekly_movie, :monthly_movie, :yearly_movie, :all_movie, :wishs, :stars]
-    rankings = fetch_ranking kinds
-
     seens_ranks = {}
     kinds.each do |kind|
-      ids = rankings[kind][:set].map{|ranking| ranking[:id]}
-      seens_ranks[kind]  = search_rank ids
+      begin
+        seens_ranks[kind] = RankingIterator.new(kind).rank(@movie) || 0
+      rescue Exception => e
+        logger.warn "Failure marshal processing.[#{kind}][#{e}]"
+        nil
+      end
     end
+
     @display_wish_rank = seens_ranks[:wishs] > 0 ? "#{seens_ranks[:wishs]}位" : '-'
     @display_star_rank = seens_ranks[:stars] > 0 ? "#{seens_ranks[:stars]}位" : '-'
     seens_ranks.delete :wishs
@@ -92,8 +86,7 @@ class SeensController < ApplicationController
       @display_seens_rank = movie_views[kind] % [seens_ranks[kind]]
     end
 
-    @seens = Seen.where(:movie_id => @movie.id)
-    @seens = @seens.active
+    @seens = Seen.active.where :movie_id => @movie.id
 
     @activity = {}
     @activity[:all]    = @seens.where(Seen.no_wish).count
