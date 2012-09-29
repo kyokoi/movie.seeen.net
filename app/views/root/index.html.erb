@@ -85,9 +85,10 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </p>
 <% end -%>
 
-<h2>最近見られてる映画</h2>
-<% @weekly[0, 3].each do |item| -%>
-<%= render :partial => 'layouts/view_movie', :locals => {:element => item} -%>
+<h2>最近の投稿</h2>
+<% @comments.each do |item| -%>
+<h3><%= item.movie.name_of_japan %></h3>
+<%= render :partial => 'layouts/view_seener', :locals => {:seen => item, :author => @author} -%>
 <% end -%>
 
 <%= link_to ranking_movie_path do -%>

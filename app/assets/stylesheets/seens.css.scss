@@ -45,34 +45,6 @@ $active-color-sub:   #DAA520;
   color: #ffffff
 }
 
-.result_of_same_movie_seener {
-  &:after {
-    clear: both;
-    content: ".";
-    display: block;
-    height: 1px;
-    margin-top: -1px;
-    visibility: hidden;
-  }
-  .leftside {
-    padding: 5px;
-    float: left;
-  }
-  .rightside {
-    padding: 5px;
-    display: table-cell;
-    img {
-      vertical-align: middle;
-    }
-    .edit_link {
-      padding: 2px;
-      color: #ffffff;
-      font-size: normal;
-      font-weight: bold;
-    }
-  }
-}
-
 .more {
   color: #f30000;
   font-size: x-small;
