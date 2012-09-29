@@ -276,19 +276,16 @@ notice {
 }
 
 .list {
-  list-style-type: none
-
+  list-style-type: none;
   li {
     padding: 5px 0px;
     background-color: #efefef;
     border-top: solid 1px #cecece;
-    #border-bottom: solid 1px #cecece;
   }
 }
 
 .box {
-  list-style-type: none
-
+  list-style-type: none;
   li {
     display: inline;
     padding: 5px 0px;
