@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+<%= @broadcast.id %>
+</p>
+
+<p>
+<%= @broadcast.onair_at %>
+</p>
+
+<p>
+<%= @broadcast.movie.name_of_japan %>
+</p>
+
+<p>
+<%= @broadcast.program %>
+</p>
+
+<p>
+<%= @broadcast.provider %>
+</p>
+
+<p>
+<%= @broadcast.comment %>
+</p>
+
+<%= link_to 'Edit', edit_broadcast_path(@broadcast) %> |
+<%= link_to 'Back', broadcasts_path %>

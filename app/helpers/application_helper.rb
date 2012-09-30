@@ -56,4 +56,17 @@ module ApplicationHelper
     end
     concat raw(simple_format(contents))
   end
+
+  def display_boradcast_time(onair_time)
+    if ((Time.now - 2.hours)..(Time.now)).cover? onair_time
+      return '<span class="emphasis">Now on air</span>'
+    end
+    if ((Time.now.beginning_of_day)..(Time.now.end_of_day)).cover? onair_time
+      return "<span class='emphasis'>今日 #{onair_time.strftime('%H:%M')}</span>"
+    end
+    if ((DateTime.tomorrow.beginning_of_day)..(DateTime.tomorrow.end_of_day)).cover? onair_time
+      return "<span class='emphasis'>明日 #{onair_time.strftime('%H:%M')}</span>"
+    end
+    onair_time.strftime('%m月%d日 %H:%M')
+  end
 end

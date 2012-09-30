@@ -3,6 +3,7 @@ class Movie < ActiveRecord::Base
     where :negative => 0
   }
 
+  has_many :broadcasts
   has_many :seens
   has_many :affiliates
   has_and_belongs_to_many :stories

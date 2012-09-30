@@ -37,6 +37,7 @@ MovieSeen::Application.routes.draw do
   scope '/admin' do
     get '/'                                   => 'Admin#index',    :as => 'admin'
     get '/admin/messages/:target/:message_id' => 'Admin#messages', :as => 'admin_messages'
+    resources :broadcasts
     resources :movies do
       resources :affiliates, :except => [:show, :index]
     end

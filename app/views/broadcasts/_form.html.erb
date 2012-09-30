@@ -1,0 +1,28 @@
+<%= form_for(@broadcast) do |f| %>
+  <% if @broadcast.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@broadcast.errors.count, "error") %> prohibited this broadcast from being saved:</h2>
+
+      <ul>
+      <% @broadcast.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+
+  <ul class="field">
+    <li>映画：<%= f.text_field :movie_id %></li>
+    <li>番組名：<%= f.text_field :program %></li>
+    <li>放送局：<%= f.text_field :provider %></li>
+    <li>放送時間；<%= f.datetime_select :onair_at %></li>
+    <li><%= f.text_area :comment, :size => '60x16' %></li>
+    <li><%= f.check_box :negative %></li>
+  </ul>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

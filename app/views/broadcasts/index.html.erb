@@ -1,0 +1,20 @@
+<h1>Listing broadcasts</h1>
+
+<p>
+<%= link_to 'New Broadcast', new_broadcast_path %>
+</p>
+
+<table>
+<% @broadcasts.each do |broadcast| %>
+  <tr>
+    <td><%= broadcast.id %></td>
+    <td><%= broadcast.onair_at %></td>
+    <td><%= broadcast.movie.name_of_japan %></td>
+    <td><%= broadcast.program %></td>
+    <td><%= broadcast.provider %></td>
+    <td><%= link_to 'Show', broadcast %></td>
+    <td><%= link_to 'Edit', edit_broadcast_path(broadcast) %></td>
+    <td><%= link_to 'Destroy', broadcast, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>

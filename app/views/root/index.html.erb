@@ -69,6 +69,15 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 <% end -%>
 
+<h2>映画を見よう</h2>
+<ul class="list finish">
+<% @broadcasts.each do |broadcast| -%>
+<%= link_to movie_seens_path broadcast.movie do -%>
+<li><%= linksym.html_safe %><%= display_boradcast_time(broadcast.onair_at).html_safe -%>&nbsp;<%= broadcast.movie.name_of_japan.truncate(15) %></li>
+<% end -%>
+<% end -%>
+</ul>
+
 <%= link_to post_index_path do -%>
 <h2>特集記事</h2>
 <% end -%>
