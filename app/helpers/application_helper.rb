@@ -69,4 +69,16 @@ module ApplicationHelper
     end
     onair_time.strftime('%m月%d日 %H:%M')
   end
+
+  def display_user_name(seen, author)
+    if author.guest?
+      if seen.wish?
+        "#{seen.date.strftime('%m月%d日')}に「#{een.movie.name_of_japan}」を見たい人さん"
+      else
+        "#{seen.date.strftime('%m月%d日')}に「#{seen.movie.name_of_japan}」を見た人さん"
+      end
+    else
+      seen.author.name
+    end
+  end
 end

@@ -18,21 +18,21 @@
 <p>見た映画・見たい映画をを記録・管理することが出来ます。<br />すべて無料で利用できます。</p>
 <% end -%>
 
-<%= image_tag('layout/how_to_search.png') %>
+<%= image_tag('layout/how_to_search.png', :alt => '見た映画・見たい映画をを記録・管理することが出来ます。') %>
 
 <p>あなたが見た映画はなんですか？見たい映画は？</p>
 <%= form_tag search_movies_path, :method => "get" do -%>
 <p class="finish">
-<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :id => "search_box_for_firster", :placeholder => "映画名や俳優名を入力", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
+<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :id => "search_box_for_firster", :placeholder => "映画名や俳優名を入力", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34, :alt => '映画を検索') %>
 </p>
 <% end -%>
 <p>映画が見つかったらコメントをつけて記録・管理しましょう。</p>
 
 <p>映画を記録するときには<emphasis>ログイン</emphasis>が必要です。</p>
 <ul class="login_service">
-<li><%= link_to image_tag("layout/icon_facebook.png"), login_path(:provider => 'facebook',      :origin => @return_url) %></li>
-<li><%= link_to image_tag("layout/icon_google.gif"),   login_path(:provider => 'google_oauth2', :origin => @return_url) %></li>
-<li><%= link_to image_tag("layout/icon_twitter.png"),  login_path(:provider => 'twitter',       :origin => @return_url) %></li>
+<li><%= link_to image_tag("layout/icon_facebook.png", :alt => 'フェイスブックでログイン'), login_path(:provider => 'facebook',      :origin => @return_url) %></li>
+<li><%= link_to image_tag("layout/icon_google.gif", :alt => 'グーグルでログイン'),         login_path(:provider => 'google_oauth2', :origin => @return_url) %></li>
+<li><%= link_to image_tag("layout/icon_twitter.png", :alt => 'ツイッターでログイン'),      login_path(:provider => 'twitter',       :origin => @return_url) %></li>
 </ul>
 <p class="finish">またログインしていない場合、一部のコンテンツは閲覧できません。ご利用は完全に無料です。</p>
 
@@ -42,7 +42,7 @@
 <h3>キーワードで探す</h3>
 <%= form_tag search_movies_path, :method => "get" do -%>
 <p class="paragraph">
-<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :id => "search_box_for_firster", :placeholder => "映画名や俳優名を入力", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
+<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :id => "search_box_for_firster", :placeholder => "映画名や俳優名を入力", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34, :alt => '映画を検索') %>
 </p>
 <% end -%>
 

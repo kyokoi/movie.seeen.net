@@ -24,24 +24,24 @@
 
 <div id='left_line'>
 <% if @author.guest? -%>
-<%= image_tag(@author.image, :size => '34x34', :class => 'author_image logo') %>
+<%= image_tag(@author.image, :size => '34x34', :class => 'author_image logo', :alt => '映画箱で映画を記録して欲しい人') %>
 <% else -%>
-<%= link_to my_summary_path @author.id do %><%= image_tag(@author.image, :size => '34x34', :class => 'author_image logo') %><% end %>
+<%= link_to my_summary_path @author.id do %><%= image_tag(@author.image, :size => '34x34', :class => 'author_image logo', :alt => '映画箱に映画を記録している人') %><% end %>
 <% end -%>
-<%= image_tag('layout/megane.gif', :size => '34x34', :id => 'headline_search_trigger', :class => 'logo') %>
+<%= image_tag('layout/megane.gif', :size => '34x34', :id => 'headline_search_trigger', :class => 'logo', :alt => '映画を検索') %>
 </div>
 <div id='service_logo'>
 <%= link_to ranking_movie_path do %><%= linksym.html_safe %>ランキング<% end %>
 <%= link_to '/' do -%>
-<%= image_tag 'layout/logo_40.png', :size => '34x34', :class => 'logo' %>
+<%= image_tag 'layout/logo_40.png', :size => '34x34', :class => 'logo', :alt => '映画を記録する映画箱' %>
 <% end -%>
 </div>
 
 <div id="headline_search">
 <%= form_tag search_movies_path, :method => "get" do -%>
 <%= linksym.html_safe %><span id='headline_search_reverse'>戻る</span>
-<%= image_tag 'layout/logo_40.png', :size => '34x34', :class => 'logo' %>
-<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :class => "headline_search_box", :placeholder => "映画を検索！", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34) %>
+<%= image_tag 'layout/logo_40.png', :size => '34x34', :class => 'logo', :alt => '映画を記録する映画箱' %>
+<%= text_field_tag 'search[word]', "#{params[:search][:word] if params[:search]}", :class => "headline_search_box", :placeholder => "映画を検索！", :size => 16 %><%= image_submit_tag('layout/megane.gif', :width => 34, :height => 34, :alt => '映画を検索') %>
 <% end -%>
 </div>
 

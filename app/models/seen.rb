@@ -72,6 +72,15 @@ class Seen < ActiveRecord::Base
     self.evaluation.to_i == EVALUATION_STAR_ID
   end
 
+  def evaluation_alt
+    case
+    when self.wish? then '見たい映画'
+    when self.star? then 'お気に入りの映画'
+    else
+      '見たことがある映画'
+    end
+  end
+
   def acondition_tag
     if self.acondition.blank? || self.acondition == "0"
       tag = Tag.new

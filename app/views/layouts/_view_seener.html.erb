@@ -2,20 +2,12 @@
 <div class="result_of_same_movie_seener<% if seen.wish? %> with_wish<% end %> finish">
 
 <div class="leftside">
-<%= image_tag(path_by_author(seen.author.image, author), :size => '34x34') %>
+<%= image_tag(path_by_author(seen.author.image, author), :size => '34x34', :alt => display_user_name(seen, author)) %>
 </div>
 
 <div class="rightside">
-<% if author.guest? -%>
-<% if seen.wish? -%>
-<%= seen.date.strftime('%m月%d日') %>に「<%= seen.movie.name_of_japan %>」を見たい人さん
-<% else -%>
-<%= seen.date.strftime('%m月%d日') %>に「<%= seen.movie.name_of_japan %>」を見た人さん
-<% end -%>
-<% else -%>
-<%= seen.author.name %>
-<% end -%>
-<div><%= image_tag(stars(seen.evaluation)) %><span><%= seen.acondition_tag.name %>&nbsp;<%= seen.date.strftime('%Y/%m/%d') %></span></div>
+<%= display_user_name seen, author -%>
+<div><%= image_tag(stars(seen.evaluation), :alt => seen.evaluation_alt) %><span><%= seen.acondition_tag.name %>&nbsp;<%= seen.date.strftime('%Y/%m/%d') %></span></div>
 </div>
 
 <% unless seen.wish? -%>

@@ -1,5 +1,5 @@
 <%= link_to movie_seens_path element.id do -%>
-<h3><%= element.name_of_japan %><% if element.stars.count > 0 %><%= image_tag('layout/stars_on.png') %><span>(<%= element.stars.count %>)</span><% end %></h3>
+<h3><%= element.name_of_japan %><% if element.stars.count > 0 %><%= image_tag('layout/stars_on.png', :alt => 'お気に入りの映画') %><span>(<%= element.stars.count %>)</span><% end %></h3>
 <p><%= truncate(element.outline, :length => 56) %></p>
 <% end -%>
 
@@ -11,7 +11,7 @@
 <p class="activity finish">
 <% element.seen_users.group(:author_id).each do |seen| -%>
 <%= link_to my_summary_path seen.author_id do -%>
-<span><%= image_tag(path_by_author(seen.author.image, @author), :size => '32x32') %></span>
+<span><%= image_tag(path_by_author(seen.author.image, @author), :size => '32x32', :alt => display_user_name(seen, @author)) %></span>
 <% end -%>
 <% end -%>
 </p>

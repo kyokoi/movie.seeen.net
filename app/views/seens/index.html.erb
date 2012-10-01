@@ -26,10 +26,10 @@
 <all class="narrow_items_type<% unless ['star', 'seen', 'wish'].include?(params[:narrow]) %>_selected<% end %>">全て(<%= @activity[:all] %>)</all>
 <% end -%>
 <%= link_to movie_seens_path(:movie_id => @movie.id, :narrow => 'star') do -%>
-<star class="narrow_items_type<% if params[:narrow] == "star"%>_selected<% end %>"><%= image_tag('layout/stars_on.png') %>(<%= @activity[:stars] %>)</star>
+<star class="narrow_items_type<% if params[:narrow] == "star"%>_selected<% end %>"><%= image_tag('layout/stars_on.png', :alt => 'お気に入りの映画') %>(<%= @activity[:stars] %>)</star>
 <% end -%>
 <%= link_to movie_seens_path(:movie_id => @movie.id, :narrow => 'seen') do -%>
-<seen class="narrow_items_type<% if params[:narrow] == "seen"%>_selected<% end %>"><%= image_tag('layout/stars_off.png') %>(<%= @activity[:all] - @activity[:stars] %>)</seen>
+<seen class="narrow_items_type<% if params[:narrow] == "seen"%>_selected<% end %>"><%= image_tag('layout/stars_off.png', :alt => '見たことがある映画') %>(<%= @activity[:all] - @activity[:stars] %>)</seen>
 <% end -%>
 <%= link_to movie_seens_path(:movie_id => @movie.id, :narrow => 'wish') do -%>
 <wish class="narrow_items_type<% if params[:narrow] == "wish"%>_selected<% end %>">見たい(<%= @activity[:wishes] %>)</wish>
