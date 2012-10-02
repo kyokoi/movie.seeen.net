@@ -1,7 +1,7 @@
 <% items.each do |seen| -%>
 <%= link_to movie_seens_path(:movie_id => seen.movie.id) do -%>
 
-<h3><% unless seen.wish? %><%= image_tag stars(seen.evaluation) %><% end %><%= seen.movie.name_of_japan %></h3>
+<h3><% unless seen.wish? %><%= image_tag stars(seen.evaluation), :alt => seen.evaluation_alt %><% end %><%= seen.movie.name_of_japan %></h3>
 <% unless seen.wish? -%>
 <p><%= seen.date.strftime('%Y/%m/%d') %>&nbsp;<%= seen.acondition_tag.name %></p>
 <% end -%>
