@@ -3,7 +3,7 @@
 <h3><%= @movie.name_of_original -%></h3>
 <% end -%>
 <% unless @movie.name_of_japan_kana.blank? -%>
-<h3>カナ：<%= @movie.name_of_japan_kana -%></h3>
+<h3><%= @movie.name_of_japan_kana -%></h3>
 <% end -%>
 
 <% unless flash[:notice].blank? -%>
