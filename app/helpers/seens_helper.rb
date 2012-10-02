@@ -13,4 +13,17 @@ module SeensHelper
     end
     "もっと映画をみましょうさん"
   end
+
+  def title_undepulicated(movie)
+    [
+      movie.name_of_japan,
+      movie.name_of_original,
+      movie.name_of_japan_kana,
+      movie.name_of_english
+    ].uniq.reject do |title|
+      title.blank?
+    end.reject do |title|
+      title == movie.name_of_japan
+    end
+  end
 end

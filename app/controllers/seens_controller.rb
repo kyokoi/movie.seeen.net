@@ -253,7 +253,7 @@ class SeensController < ApplicationController
   private
 
   def fixed_movie
-    @movie = Movie.find_by_id_and_negative(params[:movie_id], 0)
+    @movie = Movie.active.find params[:movie_id]
     page_title  "映画箱：#{@movie.name_of_japan}の映画を見た人"
     description "#{@movie.name_of_japan}を観たら記録しよう。#{@movie.name_of_japan}を観たい映画に登録しよう。"
     keywords    @movie.name_of_japan
