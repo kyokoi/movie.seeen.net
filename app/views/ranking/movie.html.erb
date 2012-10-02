@@ -1,5 +1,5 @@
 <%= render 'selecter' %>
 
 <% @rankings.each do |iterator| -%>
-<%= render :partial => 'ranking_view', :locals => {:template => 'layouts/view_movie', :items => iterator, :limit => @display} %>
+<%= render :partial => 'ranking_view', :locals => {:template => 'layouts/view_movie_for_ranking', :items => iterator, :limit => @display} %>
 <% end -%>
