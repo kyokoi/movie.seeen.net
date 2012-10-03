@@ -3,7 +3,7 @@
 <% if items.count > 0 -%>
 <h1><%= items.title %></h1>
 <% items.each.with_index(1) do |elements, rank| -%>
-<h2><%= rank %>位</h2>
+<h2><%= rank %>位（<%= elements.first.number_for_ranking%>）</h2>
 <% elements.each do |element| -%>
 <%= render :partial => template, :locals => {:element => element} -%>
 <% end -%>

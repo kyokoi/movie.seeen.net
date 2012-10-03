@@ -74,7 +74,8 @@ class SeensController < ApplicationController
     end
     rank = seens_ranks[kind]
 
-    @broadcast = Broadcast.active.where(:movie_id => @movie.id).first
+    @broadcast = Broadcast.active.where(:movie_id => @movie.id,)
+    @broadcast = @broadcast.where('onair_at > :onair_at', :onair_at => (Time.now - 1.hours)).first
 
     movie_views = {
       :weekly_movie => "%d位(週間)",
