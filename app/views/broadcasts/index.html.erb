@@ -1,6 +1,10 @@
 <h1>Listing broadcasts</h1>
 
 <p>
+<%= link_to 'Refference site', "http://www.tvguide.or.jp/TF1102LS.php?date=#{(Time.now + 7.days).strftime('%Y%m%d')}&genreId=1&regionId=13&mediaId=1&packId=107&time=&dispflg=0&page=1", :target => '>blank' %>
+</p>
+
+<p>
 <%= link_to 'New Broadcast', new_broadcast_path %>
 </p>
 
