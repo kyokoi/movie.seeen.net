@@ -33,19 +33,18 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </p>
 <% end -%>
 
-<% unless Rails.env == 'production' -%>
+<% if Rails.env == 'production' -%>
 <p>
-<% if @author.googlist? -%>
 <div id="google_plus_setup">
 <g:plusone size="medium" href="<%= request.url %>"></g:plusone>
 </div>
-<% end -%>
-<% if @author.facebooker? -%>
+</p>
+
+<p>
 <div class="fb-like" data-href="<%= request.protocol %><%= request.host %><%= request.path %>" data-send="false" data-layout="button_count" data-width="350" data-show-faces="false" data-font="lucida grande"></div>
 </div>
 <% end -%>
 </p>
-<% end -%>
 
 <%= link_to post_index_path do -%>
 <p class="finish move">
