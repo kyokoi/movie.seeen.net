@@ -3,7 +3,7 @@
 <li><%= link_to ranking_movie_path do -%>
 <dt><%= image_tag('layout/movie.png', :size => '20x20', :alt => '映画ランキング') %></dt>
 <dd>
-<span class="narrow_items_type<% if action_name == 'movie' %>_selected<% end %>">Movie</span>
+<span class="narrow_items_type<% if action_name == 'movie' %>_selected<% end %>">映画</span>
 </dd>
 <% end -%>
 </li>
@@ -11,7 +11,7 @@
 <%= link_to ranking_seen_path do -%>
 <dt><%= image_tag('layout/audience.png', :size => '20x20', :alt => '映画を見てる人ランキング') %></dt>
 <dd>
-<span class="narrow_items_type<% if action_name == 'seen' %>_selected<% end %>">Audience</span>
+<span class="narrow_items_type<% if action_name == 'seen' %>_selected<% end %>">ユーザー</span>
 </dd>
 <% end -%>
 </li>
@@ -19,7 +19,7 @@
 <%= link_to ranking_star_path do -%>
 <dt><%= image_tag('layout/star.png', :size => '20x20', :alt => 'お気に入りの映画ランキング') %></dt>
 <dd>
-<span class="narrow_items_type<% if action_name == 'star' %>_selected<% end %>">Favorite</span>
+<span class="narrow_items_type<% if action_name == 'star' %>_selected<% end %>">スター</span>
 </dd>
 <% end -%>
 </li>
@@ -27,7 +27,7 @@
 <%= link_to ranking_wish_path do -%>
 <dt><%= image_tag('layout/heart.png', :size => '20x20', :alt => '見たい映画ランキング') %></dt>
 <dd>
-<span class="narrow_items_type<% if action_name == 'wish' %>_selected<% end %>">Wish</span>
+<span class="narrow_items_type<% if action_name == 'wish' %>_selected<% end %>">観たい</span>
 </dd>
 <% end -%>
 </li>
@@ -35,7 +35,7 @@
 <%= link_to ranking_cinema_path do -%>
 <dt><%= image_tag('layout/theater.png', :size => '20x20', :alt => '映画館ランキング') %></dt>
 <dd>
-<span class="narrow_items_type<% if action_name == 'cinema' %>_selected<% end %>">Theater</span>
+<span class="narrow_items_type<% if action_name == 'cinema' %>_selected<% end %>">映画館</span>
 </dd>
 <% end -%>
 </li>
