@@ -2,6 +2,85 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$site-color:         #339900;
+$site-color-sub:     #66cc00;
+$site-color-light:   #edffdf;
+$active-color:       #8B5A00;
+$active-color-sub:   #DAA520;
+
 h1 img {
   vertical-align: bottom;
+}
+
+#narrow_my {
+  background-color: #c0c0c0;
+  font-size:small;
+
+  ul {
+    background: -webkit-gradient(linear, left top, left bottom, from($site-color-sub), to($site-color));
+    border-top: solid 1px #117700;
+    border-bottom: solid 1px #117700;
+  }
+
+  ul li{
+    display: inline-block;
+    width: 24%;
+    text-align: center;
+
+    font-weight: bold;
+
+    border-left: 1px solid #d7d8da;
+    vertical-align: bottom;
+    box-sizing: border-box;
+    padding: 8px 0px;
+  }
+
+  ul li a {
+    color: #444444;
+  }
+  dt {
+     margin-top:6px;
+  }
+
+  a:link { color: #ffffff; }
+  a:visited { color: #ffffff; }
+  a:active { color: #ffffff; }
+  a:hover { color: #ffffff; }
+}
+
+#narrow_my_in_movie {
+  background-color: #cccccc;
+  font-size:small;
+
+  ul {
+    border-bottom: solid 1px #117700;
+  }
+
+  ul li{
+    display: inline-block;
+    width: 32%;
+    text-align: center;
+
+    border-left: 1px solid #d7d8da;
+    vertical-align: bottom;
+    box-sizing: border-box;
+    padding: 8px 0px;
+  }
+
+  ul li a {
+    color: #444444;
+  }
+  dt {
+     margin-top:6px;
+  }
+}
+
+.list {
+  .left {
+    padding: 0px 5px;
+  }
+  .right {
+    padding: 0px 5px;
+    float: right
+  }
 }

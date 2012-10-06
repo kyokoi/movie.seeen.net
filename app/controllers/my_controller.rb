@@ -1,31 +1,15 @@
 # encoding: utf-8
 
 class MyController < ApplicationController
+  before_filter :fixed_author
+  before_filter :check_narrow_parameter_for_watches
 
   SUMMARY_LIMIT = 5
   RECOMMEND_DIR = '/usr/local/apps/movie_seen/data/recommend'
 
-  def activity
-    page_title "あなたの映画活動"
-    description "年間、月間に映画をどれくらい見たかが分かります。意外に忘れてますよ。"
-
-    @my = Author.active.where(:id => params[:author_id]).first
-    if @my.blank?
-      return redirect_to search_path
-    end
-
-    @month = MonthlySeen.active.where :author_id => @my.id
-    @month = @month.active.order "date DESC"
-  end
-
   def summary
     page_title "あなたの映画管理"
     description "お気に入りの映画、見たい映画、見たことある映画、あなたの映画嗜好に近い人たちが分かります。"
-
-    @my = Author.active.where(:id => params[:author_id]).first
-    if @my.blank?
-      return redirect_to search_path
-    end
 
     @recently_seen = Seen.all_seens @my.id
     @recently_seen = @recently_seen.order('date desc').order('id desc')
@@ -61,6 +45,49 @@ class MyController < ApplicationController
     end
   end
 
+  def watches
+    @matches_all =  Seen.active.where(:author_id => @my.id).order('date desc').order('id desc')
+    @matches_star = @matches_all.where Seen.star
+    @matches_wish = @matches_all.where Seen.wish
+
+    case params[:narrow]
+    when 'star'
+      @matches = @matches_star
+    when 'wish'
+      @matches = @matches_wish
+    else
+      @matches = @matches_all
+    end
+  end
+
+  def analyze
+    @movies  = Movie.active
+    @watches = Seen.active.where(:author_id => @my.id)
+
+    @watch_yearly = {}
+    @watches.group("date(date)").order("date DESC").each do |watch|
+      @watch_yearly[watch.date.strftime('%Y')] ||= 0
+      @watch_yearly[watch.date.strftime('%Y')]  += 1
+    end
+  end
+
+  def recommend
+    @recommend_users = fetch_recommend @my.id
+  end
+
+  def activity
+    page_title "あなたの映画活動"
+    description "年間、月間に映画をどれくらい見たかが分かります。意外に忘れてますよ。"
+
+    @my = Author.active.where(:id => params[:author_id]).first
+    if @my.blank?
+      return redirect_to search_path
+    end
+
+    @month = MonthlySeen.active.where :author_id => @my.id
+    @month = @month.active.order "date DESC"
+  end
+
 
   private
 
@@ -77,5 +104,24 @@ class MyController < ApplicationController
     recommends
   rescue Exception => e
     []
+  end
+
+  def fixed_author
+    @my = Author.active.where(:id => params[:author_id]).first
+    if @my.blank?
+      return redirect_to search_path
+    end
+  end
+
+  def check_narrow_parameter_for_watches
+    unless action_name == 'watches'
+      return
+    end
+    if params[:narrow].blank?
+      return redirect_to my_watches_path @my
+    end
+    unless ['all', 'star', 'wish'].include? params[:narrow]
+      return redirect_to my_watches_path @my
+    end
   end
 end

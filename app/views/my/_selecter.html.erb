@@ -1,0 +1,31 @@
+<div id="narrow_my">
+<ul>
+<li><%= link_to my_summary_path @my do -%>
+<dd>
+<span class="narrow_items_type<% if action_name == 'movie' %>_selected<% end %>"><%= linksym.html_safe %>サマリ</span>
+</dd>
+<% end -%>
+</li>
+<li>
+<%= link_to my_watches_path @my, 'all' do -%>
+<dd>
+<span class="narrow_items_type<% if action_name == 'seen' %>_selected<% end %>"><%= linksym.html_safe %>映画</span>
+</dd>
+<% end -%>
+</li>
+<li>
+<%= link_to my_analyze_path @my do -%>
+<dd>
+<span class="narrow_items_type<% if action_name == 'seen' %>_selected<% end %>"><%= linksym.html_safe %>分析</span>
+</dd>
+<% end -%>
+</li>
+<li>
+<%= link_to my_recommend_path @my do -%>
+<dd>
+<span class="narrow_items_type<% if action_name == 'cinema' %>_selected<% end %>"><%= linksym.html_safe %>おすすめ</span>
+</dd>
+<% end -%>
+</li>
+</ul>
+</div>

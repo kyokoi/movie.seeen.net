@@ -1,0 +1,25 @@
+<div id="search_condition">
+<h1>
+<% if @author.guest? -%>
+<%= author_name_for_unlogin_user @star_seen, @wish_seen, @recently_seen -%>
+<% else -%>
+<%= image_tag(path_by_author(@my.image, @author), :size => '50x50') %>
+<%= @my.name %>
+<% end -%>
+</h1>
+</div>
+
+<%= render :partial => 'selecter' -%>
+
+<% if @recommend_users.blank? -%>
+現在、おすすめできるユーザはいません。
+<% else -%>
+<h2>おすすめユーザ</h2>
+<ul class="list">
+<% @recommend_users.each do |user| -%>
+<%= link_to my_summary_path user[:id] do -%>
+<li><%= linksym.html_safe %><span><%= user[:name] %>(<%= user[:approximation] %>％)</span></li>
+<% end %>
+<% end -%>
+</ul>
+<% end -%>

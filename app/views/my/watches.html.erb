@@ -1,0 +1,19 @@
+<div id="search_condition">
+<h1>
+<% if @author.guest? -%>
+<%= author_name_for_unlogin_user @star_seen, @wish_seen, @recently_seen -%>
+<% else -%>
+<%= image_tag(path_by_author(@my.image, @author), :size => '50x50') %>
+<%= @my.name %>
+<% end -%>
+</h1>
+</div>
+
+<%= render :partial => 'selecter' -%>
+<%= render :partial => 'selecter_in_movie' -%>
+
+<% @matches.each do |item| -%>
+<h3><%= item.movie.name_of_japan %></h3>
+<%= render :partial => 'view_seener', :locals => {:seen => item, :author => @my} -%>
+<% end -%>
+

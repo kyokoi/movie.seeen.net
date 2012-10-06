@@ -10,8 +10,15 @@ MovieSeen::Application.routes.draw do
   match 'search/list/movies/:offset' => 'Search#movies_list', :as => 'movies_list'
   match 'how_to_use'                 => 'Search#how_to_use'
 
-  match '/my/:author_id/activity' => 'My#activity', :as => 'my_activity'
-  match '/my/:author_id/summary'  => 'My#summary',  :as => 'my_summary'
+  controller 'my', :path => 'my' do
+    get ':author_id/summary'   => 'My#summary',   :as => 'my_summary'
+    get ':author_id/analyze'   => 'My#analyze',   :as => 'my_analyze'
+    get ':author_id/recommend' => 'My#recommend', :as => 'my_recommend'
+    get ':author_id/watches/:narrow/' => 'My#watches',   :as => 'my_watches'
+
+    # duplicate
+    get ':author_id/activity/'  => 'My#activity',   :as => 'my_activity'
+  end
 
   match 'post'           => 'Post#index', :as => 'post_index'
   match 'post/:story_id' => 'Post#story', :as => 'post_story'

@@ -9,6 +9,8 @@
 </h1>
 </div>
 
+<%= render :partial => 'selecter' -%>
+
 <%= link_to my_activity_path @my.id do -%>
 <p class="finish move">
 今月見た映画(<%= @monthly.all %>)
@@ -16,6 +18,22 @@
 <% end -%>
 
 <div class="display_movies">
+
+<%= render(:partial => 'block', :locals => {
+  :block_partial    => 'layouts/seen',
+  :block_link       => search_path(:search => {:author => @my.id}),
+  :block_items      => @recently_seen,
+  :block_title      => '最近見た映画',
+  :block_limit      => 3
+}) -%>
+
+<%= render(:partial => 'block', :locals => {
+  :block_partial    => 'layouts/seen',
+  :block_link       => search_path(:search => {:narrow => :wish, :author => @my.id}),
+  :block_items      => @wish_seen,
+  :block_title      => '見たい映画',
+  :block_limit      => 3
+}) -%>
 
 <% unless @star_seen.blank? -%>
 <%= render(:partial => 'block', :locals => {
@@ -26,22 +44,6 @@
   :block_limit      => 3
 }) -%>
 <% end -%>
-
-<%= render(:partial => 'block', :locals => {
-  :block_partial    => 'layouts/seen',
-  :block_link       => search_path(:search => {:narrow => :wish, :author => @my.id}),
-  :block_items      => @wish_seen,
-  :block_title      => '見たい映画',
-  :block_limit      => 3
-}) -%>
-
-<%= render(:partial => 'block', :locals => {
-  :block_partial    => 'layouts/seen',
-  :block_link       => search_path(:search => {:author => @my.id}),
-  :block_items      => @recently_seen,
-  :block_title      => '最近見た映画',
-  :block_limit      => 3
-}) -%>
 
 </div>
 

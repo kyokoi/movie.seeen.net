@@ -1,0 +1,42 @@
+<div id="narrow_my_in_movie">
+<ul>
+<li>
+<%= link_to my_watches_path @my, 'all' do -%>
+<dt><%= image_tag('layout/movie.png', :size => '20x20', :alt => '全て') %></dt>
+<dd>
+<span class="narrow_items_type<% if action_name == 'movie' %>_selected<% end %>">全て（<%= @matches_all.count %>）</span>
+</dd>
+<% end -%>
+</li>
+<li>
+<%= link_to my_watches_path @my, 'star'  do -%>
+<dt><%= image_tag('layout/star.png', :size => '20x20', :alt => 'お気に入りの映画') %></dt>
+<dd>
+<span class="narrow_items_type<% if action_name == 'star' %>_selected<% end %>">スター（<%= @matches_star.count %>）</span>
+</dd>
+<% end -%>
+</li>
+<li>
+<%= link_to my_watches_path @my, 'wish' do -%>
+<dt><%= image_tag('layout/heart.png', :size => '20x20', :alt => '見たい映画') %></dt>
+<dd>
+<span class="narrow_items_type<% if action_name == 'wish' %>_selected<% end %>">見たい（<%= @matches_wish.count %>）</span>
+</dd>
+<% end -%>
+</li>
+</ul>
+</div>
+
+<% if Rails.env == 'production' -%>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-1453758758198931";
+/* ランキング：上 */
+google_ad_slot = "3597653490";
+google_ad_width = 320;
+google_ad_height = 50;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<% end -%>

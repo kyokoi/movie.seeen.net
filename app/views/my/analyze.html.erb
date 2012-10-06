@@ -1,0 +1,38 @@
+<div id="search_condition">
+<h1>
+<% if @author.guest? -%>
+<%= author_name_for_unlogin_user @star_seen, @wish_seen, @recently_seen -%>
+<% else -%>
+<%= image_tag(path_by_author(@my.image, @author), :size => '50x50') %>
+<%= @my.name %>
+<% end -%>
+</h1>
+</div>
+
+<%= render :partial => 'selecter' -%>
+
+<h2>履歴</h2>
+<ul class="list finish">
+<li>
+<span class="left emphasis">今まで見た映画数</span>
+<span class="right"><%= number_with_delimiter @watches.count %>回</span>
+</li>
+<li>
+<span class="left emphasis">コンプリート率</span>
+<span class="right"><%= "%.3f" % [@watches.count.to_f / @movies.count] %>％</span>
+</li>
+<li>
+<span class="left emphasis">映画を見た時間トータル</span>
+<span class="right"><%= number_with_delimiter (@watches.inject(0){|sum, watch| sum + watch.movie.show_time}) / 60 %>時間</span>
+</li>
+</ul>
+
+<h2>映画年鑑</h2>
+<ul class="list finish">
+<% @watch_yearly.each do |year, count| -%>
+<li>
+<span class="left emphasis"><%= year %>年</span>
+<span class="right"><%= number_with_delimiter count %>回</span>
+</li>
+<% end -%>
+</ul>

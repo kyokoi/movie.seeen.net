@@ -1,0 +1,20 @@
+<%= link_to my_summary_path seen.author.id do -%>
+<div class="result_of_same_movie_seener<% if seen.wish? %> with_wish<% end %> finish">
+
+<div class="rightside">
+<div><%= image_tag(stars(seen.evaluation), :alt => seen.evaluation_alt) %><span><%= seen.acondition_tag.name %>&nbsp;<%= seen.date.strftime('%Y/%m/%d') %></span></div>
+</div>
+
+<% unless seen.wish? -%>
+<% if seen.author.same?(author) && !(seen.wish?) -%>
+<p>
+<span><%= link_to '修正する', edit_movie_seen_path(seen.movie.id, seen), :class => 'active_tile edit_link' %></span>
+<span><%= link_to '削除する', movie_seen_path(seen.movie.id, seen), :class => 'active_tile edit_link', confirm: 'ほんとに消す？', method: :delete %></span>
+</p>
+<% end -%>
+<% unless seen.comment.blank? %><%= simple_format seen.comment, :class => 'comment' -%><% end -%>
+<% end -%>
+
+</div>
+<% end -%>
+
