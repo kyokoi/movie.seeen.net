@@ -11,12 +11,6 @@
 
 <%= render :partial => 'selecter' -%>
 
-<%= link_to my_activity_path @my.id do -%>
-<p class="finish move">
-今月見た映画(<%= @monthly.all %>)
-</p>
-<% end -%>
-
 <div class="display_movies">
 
 <%= render(:partial => 'block', :locals => {
