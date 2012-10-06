@@ -65,7 +65,7 @@ class MyController < ApplicationController
     @watches = Seen.active.where(:author_id => @my.id)
 
     @watch_yearly = {}
-    @watches.group("date(date)").order("date DESC").each do |watch|
+    @watches.order("date DESC").each do |watch|
       @watch_yearly[watch.date.strftime('%Y')] ||= 0
       @watch_yearly[watch.date.strftime('%Y')]  += 1
     end
