@@ -62,7 +62,15 @@ class MyController < ApplicationController
 
   def analyze
     @movies  = Movie.active
-    @watches = Seen.active.where(:author_id => @my.id)
+    @watches = Seen.all_seens @my.id
+    class << @watches
+      def your_times
+        your_minuts = @watches.inject(0) do |sum, watch|
+          sum + watch.movie.show_time
+        end
+        your_minuts / (60.0 * 24)
+      end
+    end
 
     @watch_yearly = {}
     @watches.order("date DESC").each do |watch|

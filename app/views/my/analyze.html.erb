@@ -22,8 +22,8 @@
 <span class="right"><%= "%.3f" % [@watches.count.to_f / @movies.count] %>％</span>
 </li>
 <li>
-<span class="left emphasis">映画を見た時間トータル</span>
-<span class="right"><%= number_with_delimiter (@watches.inject(0){|sum, watch| sum + watch.movie.show_time}) / 60 %>時間</span>
+<span class="left emphasis">映画を見た時間</span>
+<span class="right"><%= number_with_delimiter "%.1f" % [((@watches.inject(0){|sum, watch| sum + watch.movie.show_time}) / (60.0 * 24))] %>日分</span>
 </li>
 </ul>
 
