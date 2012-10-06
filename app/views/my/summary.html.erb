@@ -21,7 +21,7 @@
 
 <%= render(:partial => 'block', :locals => {
   :block_partial    => 'layouts/seen',
-  :block_link       => search_path(:search => {:author => @my.id}),
+  :block_link       => my_watches_path(@my, 'all'),
   :block_items      => @recently_seen,
   :block_title      => '最近見た映画',
   :block_limit      => 3
@@ -29,7 +29,7 @@
 
 <%= render(:partial => 'block', :locals => {
   :block_partial    => 'layouts/seen',
-  :block_link       => search_path(:search => {:narrow => :wish, :author => @my.id}),
+  :block_link       => my_watches_path(@my, 'wish'),
   :block_items      => @wish_seen,
   :block_title      => '見たい映画',
   :block_limit      => 3
@@ -38,7 +38,7 @@
 <% unless @star_seen.blank? -%>
 <%= render(:partial => 'block', :locals => {
   :block_partial    => 'layouts/seen',
-  :block_link       => search_path(:search => {:narrow => :star, :author => @my.id}),
+  :block_link       => my_watches_path(@my, 'star'),
   :block_items      => @star_seen,
   :block_title      => 'お気に入りの映画',
   :block_limit      => 3
