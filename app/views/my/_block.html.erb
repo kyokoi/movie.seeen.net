@@ -1,7 +1,6 @@
 <% unless block_items.blank? -%>
 <h2><%= block_title %></h2>
 <%= render :partial => block_partial, :locals => {:items => block_items, :limit => block_limit} -%>
-<% end -%>
 
 <%= link_to block_link do -%>
 <p class="finish move">
@@ -9,3 +8,4 @@
 </p>
 <% end -%>
 
+<% end -%>
