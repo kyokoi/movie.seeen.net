@@ -65,7 +65,7 @@ class MyController < ApplicationController
     @watches = Seen.all_seens @my.id
     class << @watches
       def your_times
-        your_minuts = @watches.inject(0) do |sum, watch|
+        your_minuts = self.inject(0) do |sum, watch|
           sum + watch.movie.show_time
         end
         your_minuts / (60.0 * 24)
