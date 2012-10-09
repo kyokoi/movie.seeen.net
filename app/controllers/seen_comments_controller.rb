@@ -41,7 +41,7 @@ class SeenCommentsController < ApplicationController
   def create
     @seen_comment = SeenComment.new(params[:seen_comment])
     @seen_comment.seen_id   = @seen.id
-    @seen_comment.author_id = @seen.author.id
+    @seen_comment.author_id = @author.id
     @seen_comment.posted_at = Time.now
 
     unless @seen_comment.author.id == @author.id

@@ -1,29 +1,28 @@
-<%= link_to my_summary_path seen.author.id do -%>
 <div class="result_of_same_movie_seener<% if seen.wish? %> with_wish<% end %> finish">
 
+<%= link_to my_summary_path seen.author.id do -%>
 <div class="leftside">
 <%= image_tag(path_by_author(seen.author.image, author), :size => '34x34', :alt => display_user_name(seen, author)) %>
 </div>
-
 <div class="rightside">
 <%= display_user_name seen, author -%>
 <div><%= image_tag(stars(seen.evaluation), :alt => seen.evaluation_alt) %><span><%= seen.acondition_tag.name %>&nbsp;<%= seen.date.strftime('%Y/%m/%d') %></span></div>
 </div>
+<% end -%>
 
 <% unless seen.wish? -%>
+
 <% if seen.author.same?(author) && !(seen.wish?) -%>
 <p>
 <span><%= link_to '修正する', edit_movie_seen_path(seen.movie.id, seen), :class => 'active_tile edit_link' %></span>
 <span><%= link_to '削除する', movie_seen_path(seen.movie.id, seen), :class => 'active_tile edit_link', confirm: 'ほんとに消す？', method: :delete %></span>
 </p>
 <% end -%>
+
 <% unless seen.comment.blank? -%>
 <%= simple_format seen.comment, :class => 'comment' -%>
 
-<% if @author.guest? -%>
-<li>please login.</li>
-<% else -%>
-
+<% unless @author.guest? -%>
 <%= form_for [seen.movie, seen, SeenComment.new] do |f| -%>
 <div class="add_comment">
 <%= f.text_area :contents, :size => '60x1' %>
@@ -37,11 +36,10 @@
 </div>
 </div>
 <% end -%>
-
 <% end -%>
 
 <% end -%>
+
 <% end -%>
 
 </div>
-<% end -%>
