@@ -36,6 +36,16 @@
 </div>
 </div>
 <% end -%>
+<% else -%>
+<div class="add_comment">
+<div class="submit_comment">
+<% if seen.seen_comments.count > 0 -%>
+<%= link_to movie_seen_seen_comments_path seen.movie, seen do -%>
+<%= linksym.html_safe %><%= seen.seen_comments.count %>件のコメント
+<% end -%>
+<% end -%>
+</div>
+</div>
 <% end -%>
 
 <% end -%>

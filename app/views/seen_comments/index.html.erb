@@ -11,6 +11,7 @@
 
 <%= simple_format @seen.comment, :class => 'comment' -%>
 
+<% unless @author.guest? -%>
 <%= form_for [@seen.movie, @seen, SeenComment.new] do |f| -%>
 <div class="add_comment">
 <%= f.text_area :contents, :size => '60x1' %>
@@ -18,6 +19,7 @@
 <%= f.submit 'コメントする' %>
 </div>
 </div>
+<% end -%>
 <% end -%>
 
 <% @seen_comments.each do |seen_comment| -%>
@@ -48,3 +50,8 @@
 
 <% end -%>
 
+<%= link_to movie_seens_path @seen.movie do -%>
+<p class="finish move">
+<%= linksym.html_safe %>戻る
+</p>
+<% end -%>
