@@ -6,7 +6,10 @@ monitor = MovieSeen::Monitor.wakeup('sitemap', 'Sitemaps')
 require 'active_record'
 require 'yaml'
 
+require '../app/models/author'
 require '../app/models/movie'
+require '../app/models/seen_comment'
+require '../app/models/seen'
 require '../app/models/story'
 
 require './sitemap/publisher'
@@ -55,6 +58,11 @@ end
 monitor.append('build xml', "all stories: priority 0.8");
 publish_by_model(Story.active, 'stories', 0.8) do |match|
   "/post/#{match.id}/"
+end
+
+monitor.append('build xml', "all seen comments: priority 0.6");
+publish_by_model(SeenComment.active, 'seen_comments', 0.6) do |match|
+  "/movie/%d/seens/%d/seen_comments" % [match.seen.movie.id, match.seen.id]
 end
 
 
