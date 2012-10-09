@@ -5,10 +5,11 @@ class Author < ActiveRecord::Base
     where :negative => 0
   }
 
-  has_many :seens
-  has_many :reports
-  has_many :stories
   has_many :monthly_seens
+  has_many :reports
+  has_many :seen_comments
+  has_many :seens
+  has_many :stories
 
 
   def guest?

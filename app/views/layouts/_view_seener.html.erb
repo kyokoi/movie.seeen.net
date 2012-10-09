@@ -17,9 +17,31 @@
 <span><%= link_to '削除する', movie_seen_path(seen.movie.id, seen), :class => 'active_tile edit_link', confirm: 'ほんとに消す？', method: :delete %></span>
 </p>
 <% end -%>
-<% unless seen.comment.blank? %><%= simple_format seen.comment, :class => 'comment' -%><% end -%>
+<% unless seen.comment.blank? -%>
+<%= simple_format seen.comment, :class => 'comment' -%>
+
+<% if @author.guest? -%>
+<li>please login.</li>
+<% else -%>
+
+<%= form_for [seen.movie, seen, SeenComment.new] do |f| -%>
+<div class="add_comment">
+<%= f.text_area :contents, :size => '60x1' %>
+<div class="submit_comment">
+<% if seen.seen_comments.count > 0 -%>
+<%= link_to movie_seen_seen_comments_path seen.movie, seen do -%>
+<%= linksym.html_safe %><%= seen.seen_comments.count %>件のコメント
+<% end -%>
+<% end -%>
+<%= f.submit'コメントする' %>
+</div>
+</div>
+<% end -%>
+
+<% end -%>
+
+<% end -%>
 <% end -%>
 
 </div>
 <% end -%>
-

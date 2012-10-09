@@ -1,9 +1,4 @@
-<h1><%= @movie.name_of_japan %></h1>
-<% unless @movie.name_of_original.blank? -%>
-<h3><%= @movie.name_of_original -%></h3>
+<h1><%= movie.name_of_japan %></h1>
+<% title_undepulicated(movie).each do |title| -%>
+<h3><%= title %></h3>
 <% end -%>
-<% unless @movie.name_of_japan_kana.blank? -%>
-<h3><%= @movie.name_of_japan_kana -%></h3>
-<% end -%>
-
-

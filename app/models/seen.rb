@@ -11,6 +11,8 @@ class Seen < ActiveRecord::Base
   belongs_to :movie
   belongs_to :author
 
+  has_many :seen_comments
+
   def self.wishes(author_id = nil)
     self.the_number_of_evaluation EVALUATION_WISH_ID, author_id
   end

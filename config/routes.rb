@@ -36,9 +36,11 @@ MovieSeen::Application.routes.draw do
   get 'logout'  => 'Root#logout'
 
   resources :movie, :except => [:index, :new, :edit, :show, :create, :update, :destroy] do
-      get 'seens/wish_new'    => 'seens#wish_new',    :as => 'wish_new'
-      get 'seens/wish_delete' => 'seens#wish_delete', :as => 'wish_delete'
-    resources :seens
+    get 'seens/wish_new'    => 'seens#wish_new',    :as => 'wish_new'
+    get 'seens/wish_delete' => 'seens#wish_delete', :as => 'wish_delete'
+    resources :seens do
+      resources :seen_comments
+    end
   end
 
   scope '/admin' do

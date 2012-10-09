@@ -380,3 +380,18 @@ notice {
     }
   }
 }
+.add_comment {
+  margin: 0px 5px;
+  textarea {
+    width: 98%;
+    height: 5%;
+  }
+  .submit_comment {
+    width: 100%;
+    background-color: #eeeeee;
+    text-align: right;
+  }
+  input[type="submit"] {
+    text-align: right;
+  }
+}

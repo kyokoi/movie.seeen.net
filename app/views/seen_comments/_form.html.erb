@@ -1,0 +1,16 @@
+<%= form_for([@seen.movie, @seen, @seen_comment]) do |f| -%>
+<% if @seen_comment.errors.any? %>
+<ul>
+<% @seen_comment.errors.full_messages.each do |msg| -%>
+<li><%= msg %></li>
+<% end %>
+</ul>
+<% end %>
+
+<div class="add_comment">
+<%= f.text_area :contents, :size => '1x1' -%>
+<div class="submit_comment">
+<%= f.submit '修正する' %>
+</div>
+</div>
+<% end %>

@@ -1,0 +1,50 @@
+<%= link_to movie_seens_path @seen.movie do -%>
+<%= render :partial => 'seens/movie_title', :locals => {:movie => @seen.movie} -%>
+<% end -%>
+
+<div id="search_condition">
+<h1>
+<%= image_tag @seen.author.image, :size => '50x50' -%>
+<%= @seen.author.name -%>
+</h1>
+</div>
+
+<%= simple_format @seen.comment, :class => 'comment' -%>
+
+<%= form_for [@seen.movie, @seen, SeenComment.new] do |f| -%>
+<div class="add_comment">
+<%= f.text_area :contents, :size => '60x1' %>
+<div class="submit_comment">
+<%= f.submit 'コメントする' %>
+</div>
+</div>
+<% end -%>
+
+<% @seen_comments.each do |seen_comment| -%>
+
+<%= link_to my_summary_path seen_comment.author.id do -%>
+<div class="result_of_same_movie_seener finish">
+
+<div class="leftside">
+<%= image_tag(seen_comment.author.image, :size => '34x34', :alt => seen_comment.author.name) %>
+</div>
+
+<div class="rightside">
+<%= seen_comment.author.name -%>
+<div><%= seen_comment.posted_at.strftime('%Y/%m/%d') %></div>
+</div>
+
+<% if seen_comment.author.same? @author -%>
+<p>
+<span><%= link_to '修正する', edit_movie_seen_seen_comment_path(@seen.movie, @seen, seen_comment), :class => 'active_tile edit_link' %></span>
+<span><%= link_to '削除する', movie_seen_seen_comment_path(@seen.movie, @seen, seen_comment), :class => 'active_tile edit_link', confirm: 'ほんとに消す？', method: :delete %></span>
+</p>
+<% end -%>
+
+<%= simple_format(seen_comment.contents, :class => 'comment') -%>
+
+</div>
+<% end -%>
+
+<% end -%>
+
