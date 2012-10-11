@@ -2,7 +2,7 @@
 
 <div><%= link_to 'Back', admin_path %></dvi>
 
-<div class="box" id="messages">
+<div class="list" id="messages">
 <h2>Messages</h2>
 <h3><%= @message[:name] %> - More detail - <%= @message[:messages][params[:message_id]][:message] %></h3>
 <ul>
