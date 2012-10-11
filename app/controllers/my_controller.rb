@@ -72,10 +72,15 @@ class MyController < ApplicationController
       end
     end
 
-    @watch_yearly = {}
+    @watch_yearly  = {}
+    @watch_regions = {}
     @watches.order("date DESC").each do |watch|
       @watch_yearly[watch.date.strftime('%Y')] ||= 0
       @watch_yearly[watch.date.strftime('%Y')]  += 1
+
+      next if watch.movie.category.blank?
+      @watch_regions[watch.movie.category] ||= 0
+      @watch_regions[watch.movie.category]  += 1
     end
   end
 

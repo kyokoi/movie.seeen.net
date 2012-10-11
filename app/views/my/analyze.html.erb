@@ -11,7 +11,7 @@
 
 <%= render :partial => 'selecter' -%>
 
-<h2>履歴</h2>
+<h2>分析</h2>
 <ul class="list finish">
 <li>
 <span class="left emphasis">今まで見た映画数</span>
@@ -26,6 +26,18 @@
 <span class="right"><%= number_with_delimiter "%.1f" % [@watches.your_times] %>日分</span>
 </li>
 </ul>
+
+<% unless @watch_regions.blank? -%>
+<h2>国別</h2>
+<ul class="list">
+<% @watch_regions.sort_by{|key, value| -value}.each do |key, value| -%>
+<li>
+<span class="left emphasis"><%= Tag.tags(key).map {|tag| tag.name}.join(',') %></span>
+<span class="right"><%= value %></span>
+</li>
+<% end -%>
+</ul>
+<% end -%>
 
 <h2>映画年鑑</h2>
 <ul class="list finish">

@@ -43,4 +43,15 @@ class Tag < ActiveRecord::Base
   def self.list_of_belong_for(code)
     Tag.where :negative => 0, :belong => code
   end
+
+  def self.tags(codes)
+    codes.split(/,/).collect do |code|
+      begin
+        self.active.find code
+      rescue Exception => e
+        logger.warn "Not found tag id:#{code}"
+        nil
+      end
+    end
+  end
 end
