@@ -17,11 +17,11 @@ class SeenCommentsController < ApplicationController
   # GET /seen_comments/new
   # GET /seen_comments/new.json
   def new
-    @seen_comment = SeenComment.new
-    unless @seen_comment.author.id == @author.id
-      raise Exception.new '権限がありません'
+   @author.guest? do
+      return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @seen.movie.id)})
     end
 
+    @seen_comment = SeenComment.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @seen_comment }
@@ -30,6 +30,10 @@ class SeenCommentsController < ApplicationController
 
   # GET /seen_comments/1/edit
   def edit
+   @author.guest? do
+      return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @seen.movie.id)})
+    end
+
     @seen_comment = SeenComment.find(params[:id])
     unless @seen_comment.author.id == @author.id
       raise Exception.new '権限がありません'
@@ -82,6 +86,10 @@ class SeenCommentsController < ApplicationController
   # DELETE /seen_comments/1
   # DELETE /seen_comments/1.json
   def destroy
+   @author.guest? do
+      return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @seen.movie.id)})
+    end
+
     @seen_comment = SeenComment.find(params[:id])
     @seen_comment.destroy
 

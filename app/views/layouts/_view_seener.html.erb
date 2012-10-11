@@ -24,30 +24,33 @@
 
 <% unless @author.guest? -%>
 <%= form_for [seen.movie, seen, SeenComment.new] do |f| -%>
+
 <div class="add_comment">
-<%= f.text_area :contents, :size => '60x1' %>
+<%= f.text_area :contents, :size => '60x2', :placeholder => 'コメントする' %>
 <div class="submit_comment">
 <% if seen.seen_comments.count > 0 -%>
 <%= link_to movie_seen_seen_comments_path seen.movie, seen do -%>
-<%= linksym.html_safe %><%= seen.seen_comments.count %>件のコメント
+<%= linksym.html_safe %><%= seen.seen_comments.count %>件のコメントがあります。
 <% end -%>
 <% end -%>
 <%= f.submit'コメントする' %>
 </div>
 </div>
 <% end -%>
+
 <% else -%>
+
 <div class="add_comment">
 <div class="submit_comment">
 <% if seen.seen_comments.count > 0 -%>
 <%= link_to movie_seen_seen_comments_path seen.movie, seen do -%>
-<%= linksym.html_safe %><%= seen.seen_comments.count %>件のコメント
+<%= linksym.html_safe %><%= seen.seen_comments.count %>件のコメントがあります。
 <% end -%>
 <% end -%>
 </div>
 </div>
-<% end -%>
 
+<% end -%>
 <% end -%>
 
 <% end -%>

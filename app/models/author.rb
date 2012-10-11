@@ -13,6 +13,7 @@ class Author < ActiveRecord::Base
 
 
   def guest?
+    yield if block_given? && self.uid.blank?
     self.uid.blank?
   end
 

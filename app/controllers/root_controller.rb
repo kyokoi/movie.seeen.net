@@ -17,9 +17,9 @@ class RootController < ApplicationController
     @posts = Story.active.limit INDEX_STORIES_LIMIT
     @posts = @posts.order "release_at DESC"
 
-    # comments recently.
-    @comments = Seen.active.where(Seen.arel_table[:comment].not_eq(""))
-    @comments = @comments.limit(10).order('updated_at DESC')
+    # seens recently.
+    @seens = Seen.active.where(Seen.arel_table[:comment].not_eq(""))
+    @seens = @seens.limit(10).order('updated_at DESC')
   end
 
   def login

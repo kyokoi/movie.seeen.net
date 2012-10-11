@@ -8,8 +8,8 @@ require 'yaml'
 
 require '../app/models/author'
 require '../app/models/movie'
-require '../app/models/seen_comment'
 require '../app/models/seen'
+require '../app/models/seen_comment'
 require '../app/models/story'
 
 require './sitemap/publisher'
@@ -44,14 +44,14 @@ def publish_by_model(matches, map_name, priority)
     save_file = "#{map_name}.#{rotate}.xml"
 
     pub = Publisher.instance
-    pub.run pathes, priority, save_file
+    pub.run pathes.flatten, priority, save_file
 
     rotate += 1
   end
 end
 
-monitor.append('build xml', "all movies: priority 0.5");
-publish_by_model(Movie.active, 'movies', 0.5) do |match|
+monitor.append('build xml', "all movies: priority 0.8");
+publish_by_model(Movie.active, 'movies', 0.8) do |match|
   "/movie/#{match.id}/seens/"
 end
 
@@ -60,20 +60,35 @@ publish_by_model(Story.active, 'stories', 0.8) do |match|
   "/post/#{match.id}/"
 end
 
-monitor.append('build xml', "all seen comments: priority 0.6");
-publish_by_model(SeenComment.active, 'seen_comments', 0.6) do |match|
+monitor.append('build xml', "all seen comments: priority 0.9");
+publish_by_model(SeenComment.active, 'seen_comments', 0.9) do |match|
   "/movie/%d/seens/%d/seen_comments" % [match.seen.movie.id, match.seen.id]
+end
+
+monitor.append('build xml', "all authors: priority 0.8");
+publish_by_model(Author.active, 'authors', 0.8) do |match|
+  [
+    "/my/%s/summary",
+    "/my/%s/watches/all",
+    "/my/%s/watches/star",
+    "/my/%s/watches/wish",
+    "/my/%s/analyze",
+    "/my/%s/recommend"
+  ].map do |url|
+    url % [match.id]
+  end
 end
 
 
 config = YAML.load_file File.join(BATCH_ROOT_DIR, "config.yml")
 config['miscellaneous'].each do |misc|
-  monitor.append('build xml', "#{misc}: priority 1.0");
+  monitor.append('build xml', "#{misc}: priority 0.6");
 end
 pub.run config['miscellaneous'], 1.0, 'miscellaneous.xml'
 
 monitor.append('pingning', "Google ping");
-pub.indexing.ping
+#pub.indexing.ping
+pub.indexing
 
 monitor.append 'batch summary', "url:#{pub.url_indexies}, xml:#{pub.xml_indexies}"
 monitor.aging
