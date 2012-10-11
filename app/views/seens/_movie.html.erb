@@ -18,7 +18,7 @@
 
 <div id="movie_detail">
 <ul class="info">
-<li><span>公開：<%= @movie.open_date.strftime('%Y') %>年&nbsp;上映時間：<%= @movie.show_time %>分</span></li>
+<li><span>公開：<%= @movie.open_date.strftime('%Y') %>年&nbsp;<span><%= @movie.category_tag.map{|tag| tag.name}.join(',') %></span>&nbsp;<%= @movie.show_time %>分</span></li>
 </ul>
 
 <div class="story">あらすじ</div>
