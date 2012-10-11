@@ -96,7 +96,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
 <h2>最近の投稿</h2>
 <% @seens.each do |seen| -%>
-<%= link_to movie_seens_path seen do -%>
+<%= link_to movie_seens_path seen.movie do -%>
 <h3><%= linksym.html_safe %><%= seen.movie.name_of_japan %></h3>
 <% end -%>
 <%= render :partial => 'layouts/view_seener', :locals => {:seen => seen, :author => @author} -%>
