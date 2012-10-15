@@ -27,15 +27,15 @@ monitor.append 'users.twitter', authors.where(:provider => 'twitter').count
 monitor.append 'users.google_oauth2', authors.where(:provider => 'google_oauth2').count
 
 # added authors
-added_authors = Author.where("created_at BETWEEN ? AND ?","#{Date.yesterday} 00:00:00", "#{Date.yesterday} 23:59:59'")
+added_authors = Author.where("created_at BETWEEN ? AND ?","#{Date.yesterday} 00:00:00", "#{Date.yesterday} 23:59:59")
 monitor.append 'users.added.yesterday', added_authors.count
 
 # seens
 seens = Seen.active.where(Seen.no_wish)
-monitor.append 'seens.all', seens.count
+monitor.append 'seens.all', seens.active.count
 
 # added seens
-added_seens = Seen.all_seens.where("created_at BETWEEN ? AND ?","#{Date.yesterday} 00:00:00", "#{Date.yesterday} 23:59:59'")
+added_seens = Seen.all_seens.where("created_at BETWEEN ? AND ?","#{Date.yesterday} 00:00:00", "#{Date.yesterday} 23:59:59")
 monitor.append 'seens.added.yesterday', added_seens.count
 
 # seen comments
@@ -43,19 +43,19 @@ seen_comments = SeenComment.active
 monitor.append 'seen_comments.all', seen_comments.count
 
 # added seen comments
-added_seen_comments = SeenComment.active.where("created_at BETWEEN ? AND ?","#{Date.yesterday} 00:00:00", "#{Date.yesterday} 23:59:59'")
+added_seen_comments = SeenComment.active.where("created_at BETWEEN ? AND ?","#{Date.yesterday} 00:00:00", "#{Date.yesterday} 23:59:59")
 monitor.append 'seen_comments.added.yesterday', added_seen_comments.count
 
 # added wishlist
-added_wishlist = Seen.wishlist.where("created_at BETWEEN ? AND ?","#{Date.yesterday} 00:00:00", "#{Date.yesterday} 23:59:59'")
+added_wishlist = Seen.wishlist.where("created_at BETWEEN ? AND ?","#{Date.yesterday} 00:00:00", "#{Date.yesterday} 23:59:59")
 monitor.append 'wishes.added.yesterday', added_wishlist.count
 
 # movies
 movies = Movie.active
-monitor.append 'movies.all', movies.count
+monitor.append 'movies.all', movies.active.count
 
 # added movies
-added_movies = Movie.where("created_at BETWEEN ? AND ?","#{Date.yesterday} 00:00:00", "#{Date.yesterday} 23:59:59'")
+added_movies = Movie.where("created_at BETWEEN ? AND ?","#{Date.yesterday} 00:00:00", "#{Date.yesterday} 23:59:59")
 monitor.append 'movies.added.yesterday', added_movies.count
 
 monitor.aging
