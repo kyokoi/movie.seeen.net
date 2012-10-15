@@ -51,31 +51,26 @@ class SeensController < ApplicationController
   # GET /seens
   # GET /seens.json
   def index
-    kinds = [:weekly_movie, :monthly_movie, :yearly_movie, :all_movie, :wishs, :stars]
+    rank = RankingIterator.new(:wishs).rank(@movie) || 0
+    @display_wish_rank = rank > 0 ? "#{rank}位" : '-'
+
+    rank = RankingIterator.new(:stars).rank(@movie) || 0
+    @display_wish_rank = rank > 0 ? "#{rank}位" : '-'
+
+
+    kinds = [:weekly_movie, :monthly_movie, :yearly_movie, :all_movie]
     seens_ranks = {}
     kinds.each do |kind|
+      rank = RankingIterator.new(kind).rank(@movie) || 0
       begin
-        seens_ranks[kind] = RankingIterator.new(kind).rank(@movie) || 0
+        unless rank == 0
+          seens_ranks[kind] = rank
+        end
       rescue Exception => e
         logger.warn "Failure marshal processing.[#{kind}][#{e}]"
         nil
       end
     end
-
-    @display_wish_rank = seens_ranks[:wishs] > 0 ? "#{seens_ranks[:wishs]}位" : '-'
-    @display_star_rank = seens_ranks[:stars] > 0 ? "#{seens_ranks[:stars]}位" : '-'
-    seens_ranks.delete :wishs
-    seens_ranks.delete :stars
-
-    rank = 100
-    kind = ''
-    seens_ranks.each do |each_kind, each_rank|
-      kind = each_kind if rank >= each_rank && each_rank != 0
-    end
-    rank = seens_ranks[kind]
-
-    @broadcast = Broadcast.active.where(:movie_id => @movie.id,)
-    @broadcast = @broadcast.where('onair_at > :onair_at', :onair_at => (Time.now - 1.hours)).first
 
     movie_views = {
       :weekly_movie => "%d位(週間)",
@@ -84,9 +79,18 @@ class SeensController < ApplicationController
       :all_movie => "%d位(歴代)"
     }
     @display_seens_rank = '-'
-    unless seens_ranks[kind].blank?
-      @display_seens_rank = movie_views[kind] % [seens_ranks[kind]]
+
+    seens_ranks.each do |key, value|
+      fixed_kind ||= key
+      fixed_rank ||= value
+      if value <= fixed_rank
+        fixed_kind, fixed_rank = key, value
+        @display_seens_rank = movie_views[fixed_kind] % [fixed_rank]
+      end
     end
+
+    @broadcast = Broadcast.active.where(:movie_id => @movie.id,)
+    @broadcast = @broadcast.where('onair_at > :onair_at', :onair_at => (Time.now - 1.hours)).first
 
     @seens = Seen.active.where :movie_id => @movie.id
 
