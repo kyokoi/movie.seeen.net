@@ -46,7 +46,7 @@ class MyController < ApplicationController
   end
 
   def watches
-    @matches_all =  Seen.active.where(:author_id => @my.id).order('date desc').order('id desc')
+    @matches_all =  Seen.all_seens(@my.id).order('date desc').order('id desc')
     @matches_star = @matches_all.where Seen.star
     @matches_wish = @matches_all.where Seen.wish
 
