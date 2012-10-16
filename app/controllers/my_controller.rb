@@ -48,7 +48,7 @@ class MyController < ApplicationController
   def watches
     @matches_all =  Seen.all_seens(@my.id).order('date desc').order('id desc')
     @matches_star = @matches_all.where Seen.star
-    @matches_wish = @matches_all.where Seen.wish
+    @matches_wish = Seen.wishlist.where :author_id => @my.id
 
     case params[:narrow]
     when 'star'
