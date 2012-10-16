@@ -1,15 +1,11 @@
 <h1><%= image_tag 'layout/logo_40.png', :size => '40x40', :alt => "映画箱" %> 映画を記録・管理</h1>
 
 <% if Rails.env == 'production' -%>
-<% if @author.googlist? -%>
 <div id="google_plus_setup">
 <g:plusone size="medium" href="<%= request.url %>"></g:plusone>
 </div>
-<% end -%>
-<% if @author.facebooker? -%>
 <div class="fb-like" data-href="<%= request.protocol %><%= request.host %><%= request.path %>" data-send="false" data-layout="button_count" data-width="350" data-show-faces="false" data-font="lucida grande"></div>
 </div>
-<% end -%>
 <% end -%>
 
 <% if @author.guest? -%>
