@@ -27,13 +27,13 @@
 </li>
 </ul>
 
-<% unless @watch_regions.blank? -%>
+<% unless @region_tables.blank? -%>
 <h2>国別</h2>
 <ul class="list finish">
-<% @watch_regions.sort_by{|key, value| -value}.each do |key, value| -%>
+<% @region_tables.each do |tag| -%>
 <li>
-<span class="left emphasis"><%= Tag.tags(key).map {|tag| tag.name}.join(',') %></span>
-<span class="right"><%= value %>件</span>
+<span class="left emphasis"><%= tag.name %></span>
+<span class="right"><%= tag.watch_number %>件（<%= "%.1f" % [tag.watch_ratio * 100] %>％）</span>
 </li>
 <% end -%>
 </ul>

@@ -72,15 +72,12 @@ class MyController < ApplicationController
       end
     end
 
+    @region_tables = summarize_regions watches
+
     @watch_yearly  = {}
-    @watch_regions = {}
     @watches.order("date DESC").each do |watch|
       @watch_yearly[watch.date.strftime('%Y')] ||= 0
       @watch_yearly[watch.date.strftime('%Y')]  += 1
-
-      next if watch.movie.category.blank?
-      @watch_regions[watch.movie.category] ||= 0
-      @watch_regions[watch.movie.category]  += 1
     end
   end
 
@@ -103,6 +100,57 @@ class MyController < ApplicationController
 
 
   private
+
+  def summarize_regions(watches)
+    tables = []
+    watches.order("date DESC").each do |watch|
+      next if watch.movie.category.blank?
+      watch.movie.category.split(/,/).each do |id|
+        begin
+          tag = tables.detect{|tag| tag.id == id.to_i}
+          unless tag
+            tag = Tag.active.find id
+            class << tag
+              attr_accessor :watch_number
+
+              def add_number
+                if self.watch_number.nil?
+                  self.watch_number = 0
+                end
+                self.watch_number += 1
+              end
+
+              def watch_ratio
+                if @region_tables.nil?
+                  @region_of_movie = Hash.new
+                  begin
+                    @region_of_movie = YAML.load_file(
+                      "#{Rails.root.to_s}/data/summaries/region_of_movie.yml"
+                    )
+                  rescue Exception => e
+                    logger.error e
+                  end
+                end
+
+                return '-' if @region_of_movie[self.id].nil?
+                self.watch_number / @region_of_movie[self.id].to_f
+              end
+            end
+            tables << tag
+          end
+          tables.each do |tag|
+            next unless tag.id == id.to_i
+            tag.add_number
+          end
+        rescue Exception => e
+          logger.error "Not found tag id [#{id}]"
+        end
+      end
+    end
+    tables.sort do |a, b|
+      a.watch_number < b.watch_number ? 1 : -1
+    end
+  end
 
   def fetch_recommend(author_id)
     directory_name = "#{RECOMMEND_DIR}/#{Digest::MD5.hexdigest(author_id.to_s)[0, 2]}"
