@@ -13,7 +13,9 @@
 <%= render :partial => 'selecter_in_movie' -%>
 
 <% @matches.each do |item| -%>
+<%= link_to movie_seens_path item.movie do -%>
 <h3><%= item.movie.name_of_japan %></h3>
+<% end -%>
 <%= render :partial => 'view_seener', :locals => {:seen => item, :author => @author} -%>
 <% end -%>
 
