@@ -55,7 +55,7 @@ class SeensController < ApplicationController
     @display_wish_rank = rank > 0 ? "#{rank}位" : '-'
 
     rank = RankingIterator.new(:stars).rank(@movie) || 0
-    @display_wish_rank = rank > 0 ? "#{rank}位" : '-'
+    @display_star_rank = rank > 0 ? "#{rank}位" : '-'
 
 
     kinds = [:weekly_movie, :monthly_movie, :yearly_movie, :all_movie]
@@ -79,11 +79,10 @@ class SeensController < ApplicationController
       :all_movie => "%d位(歴代)"
     }
     @display_seens_rank = '-'
-
+    
+    fixed_rank = nil
     seens_ranks.each do |key, value|
-      fixed_kind ||= key
-      fixed_rank ||= value
-      if value <= fixed_rank
+      if fixed_rank.nil? || value < fixed_rank
         fixed_kind, fixed_rank = key, value
         @display_seens_rank = movie_views[fixed_kind] % [fixed_rank]
       end
