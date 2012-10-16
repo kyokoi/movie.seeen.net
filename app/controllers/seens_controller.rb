@@ -77,7 +77,7 @@ class SeensController < ApplicationController
       :all_movie => "%d位(歴代)"
     }
     @display_seens_rank = '-'
-    
+
     fixed_rank = nil
     seens_ranks.each do |key, value|
       if fixed_rank.nil? || value < fixed_rank
