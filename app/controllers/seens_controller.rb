@@ -4,8 +4,7 @@ class SeensController < ApplicationController
   before_filter :fixed_movie
 
   def wish_new
-    author = logged_in?
-    if author.guest?
+    if @author.guest?
       return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @movie.id)})
     end
 
@@ -35,8 +34,7 @@ class SeensController < ApplicationController
   end
 
   def wish_delete
-    author = logged_in?
-    if author.guest?
+    if @author.guest?
       return redirect_to root_login_path({:return_url => movie_seens_path(:movie_id => @movie.id)})
     end
 
