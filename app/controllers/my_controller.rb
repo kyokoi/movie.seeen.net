@@ -5,11 +5,11 @@ class MyController < ApplicationController
   before_filter :check_narrow_parameter_for_watches
 
   SUMMARY_LIMIT = 5
-  RECOMMEND_DIR = '/usr/local/apps/movie_seen/data/recommend'
+  RECOMMEND_DIR = "#{Rails.root.to_s}/data/recommend"
 
   def summary
-    page_title "あなたの映画管理"
-    description "お気に入りの映画、見たい映画、見たことある映画、あなたの映画嗜好に近い人たちが分かります。"
+    page_title "#{@my.name}さんの映画管理 サマリページ"
+    description "#{@my.name}さんのお気に入りの映画、見たい映画、見たことある映画、#{@my.name}さんの映画嗜好に近い人たちが分かります。"
 
     @recently_seen = Seen.all_seens @my.id
     @recently_seen = @recently_seen.order('date desc').order('id desc')
@@ -46,6 +46,9 @@ class MyController < ApplicationController
   end
 
   def watches
+    page_title "#{@my.name}さんの映画管理 映画ページ"
+    description "#{@my.name}さんのお気に入りの映画、見たい映画、見たことある映画"
+
     @matches_all =  Seen.all_seens(@my.id).order('date desc').order('id desc')
     @matches_star = @matches_all.where Seen.star
     @matches_wish = Seen.wishlist.where :author_id => @my.id
@@ -61,6 +64,9 @@ class MyController < ApplicationController
   end
 
   def analyze
+    page_title "#{@my.name}さんの映画管理 分析ページ"
+    description "#{@my.name}さんの映画傾向・嗜好が分かります。"
+
     @movies  = Movie.active
     @watches = Seen.all_seens @my.id
     class << @watches
@@ -72,16 +78,23 @@ class MyController < ApplicationController
       end
     end
 
-    @region_tables = summarize_regions watches
+    @region_tables = summarize_regions @watches
 
     @watch_yearly  = {}
+    @movie_yearly  = {}
     @watches.order("date DESC").each do |watch|
       @watch_yearly[watch.date.strftime('%Y')] ||= 0
       @watch_yearly[watch.date.strftime('%Y')]  += 1
+
+      @movie_yearly[watch.movie.open_date.strftime('%Y')] ||= 0
+      @movie_yearly[watch.movie.open_date.strftime('%Y')]  += 1
     end
   end
 
   def recommend
+    page_title "#{@my.name}さんの映画管理 レコメンドページ"
+    description "#{@my.name}さんと似た嗜好の人が探せます。"
+
     @recommend_users = fetch_recommend @my.id
   end
 
