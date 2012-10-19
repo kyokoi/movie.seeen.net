@@ -12,6 +12,11 @@ class Author < ActiveRecord::Base
   has_many :stories
 
 
+  def self.service_login_author(author = nil)
+    @@author = author if author
+    @@author
+  end
+
   def guest?
     yield if block_given? && self.uid.blank?
     self.uid.blank?
@@ -34,6 +39,11 @@ class Author < ActiveRecord::Base
       service_name = [:facebook, :twitter, :google_oauth2]
     end
     service_name.include? self.provider.to_sym
+  end
+
+  def name_by_status
+    yield if @@author.guest?
+    self.name
   end
 
   def same?(author)

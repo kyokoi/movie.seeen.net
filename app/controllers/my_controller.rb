@@ -69,6 +69,7 @@ class MyController < ApplicationController
 
     @movies  = Movie.active
     @watches = Seen.all_seens @my.id
+    @wishes  = Seen.active.wishes @my.id
     class << @watches
       def your_times
         your_minuts = self.inject(0) do |sum, watch|

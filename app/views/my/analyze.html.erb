@@ -3,7 +3,7 @@
 <% if @author.guest? -%>
 <%= author_name_for_unlogin_user @star_seen, @wish_seen, @recently_seen -%>
 <% else -%>
-<%= image_tag(path_by_author(@my.image, @author), :size => '50x50') %>
+<%= image_tag(path_by_author(@my.image, @author), :size => '50x50', :alt => "#{@my.name}さんの分析ページ") %>
 <%= @my.name %>
 <% end -%>
 </h1>
@@ -14,8 +14,16 @@
 <h2>分析</h2>
 <ul class="list finish">
 <li>
-<span class="left emphasis">今まで見た映画数</span>
-<span class="right"><%= number_with_delimiter @watches.count %>回</span>
+<span class="left emphasis">今まで見た映画</span>
+<span class="right"><%= number_with_delimiter @watches.count %>件</span>
+</li>
+<li>
+<span class="left emphasis">お気に入り映画</span>
+<span class="right"><%= number_with_delimiter @watches.stars.count %>件</span>
+</li>
+<li>
+<span class="left emphasis">見たい映画</span>
+<span class="right"><%= number_with_delimiter @wishes.count %>件</span>
 </li>
 <li>
 <span class="left emphasis">コンプリート率</span>
@@ -28,7 +36,7 @@
 </ul>
 
 <% unless @region_tables.blank? -%>
-<h2>国別</h2>
+<h2>映画の国別</h2>
 <ul class="list finish">
 <% @region_tables.each do |tag| -%>
 <li>
@@ -39,7 +47,7 @@
 </ul>
 <% end -%>
 
-<h2>映画年鑑</h2>
+<h2>映画を見た年代別</h2>
 <% count_ages(@watch_yearly).each do |age, count| -%>
 <h3 class="opener_closer"><%= linksym.html_safe %><%= age %>年～<%= age + 9 %>年（<%= count %>回）</h3>
 <ul class="list finish"<% unless count_ages(@watch_yearly).first.first.to_i == age %> style="display:none;<% end %>">
@@ -53,7 +61,7 @@
 <% end -%>
 
 
-<h2>見た映画の公開日</h2>
+<h2>映画の年代別</h2>
 <% count_ages(@movie_yearly).each do |age, count| -%>
 <h3 class="opener_closer"><%= linksym.html_safe %><%= age %>年～<%= age + 9 %>年（<%= count %>回）</h3>
 <ul class="list finish"<% unless count_ages(@movie_yearly).first.first.to_i == age %> style="display:none;<% end %>">
