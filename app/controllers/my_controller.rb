@@ -138,9 +138,10 @@ class MyController < ApplicationController
                 if @region_tables.nil?
                   @region_of_movie = Hash.new
                   begin
-                    @region_of_movie = YAML.load_file(
-                      "#{Rails.root.to_s}/data/summaries/region_of_movie.yml"
+                    movies_sumarrized = YAML.load_file(
+                      "#{Rails.root.to_s}/data/summaries/movies.yml"
                     )
+                    @region_of_movie = movies_sumarrized[:regions]
                   rescue Exception => e
                     logger.error e
                   end

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 require './lib/monitor'
-monitor = MovieSeen::Monitor.wakeup('summary_regions', 'Movie belongs Region')
+monitor = MovieSeen::Monitor.wakeup('summarize_movies', 'Summarize Movies')
 
 require 'active_record'
 require 'yaml'
@@ -18,20 +18,32 @@ ActiveRecord::Base.establish_connection(ds[ENV['MS_ENV']])
 
 
 monitor.append 'fetch all movie data.'
-tables = Hash.new
+table_of_movies = {
+  :regions => Hash.new,
+  :ages    => Hash.new,
+  :years   => Hash.new
+}
 Movie.active.each do |movie|
   begin
     movie.category.split(/,/).each do |id|
       tag = Tag.active.find id
-      tables[tag.id] ||= 0
-      tables[tag.id]  += 1
+      table_of_movies[:regions][tag.id] ||= 0
+      table_of_movies[:regions][tag.id]  += 1
     end
   rescue Exception => e
     monitor.append 'not found tag id', id
   end
+
+  age = (movie.open_date.strftime('%Y').to_i * 0.1).floor * 10
+  table_of_movies[:ages][age] ||= 0
+  table_of_movies[:ages][age]  += 1
+
+  year = movie.open_date.strftime('%Y').to_i
+  table_of_movies[:years][year] ||= 0
+  table_of_movies[:years][year]  += 1
 end
 
 monitor.append 'output data of yaml.'
-File.write "#{ENV['MS_ROOT']}/../data/summaries/region_of_movie.yml", tables.to_yaml
+File.write "#{ENV['MS_ROOT']}/../data/summaries/movies.yml",    table_of_movies.to_yaml
 
-monitor.aging
+#monitor.aging
