@@ -46,4 +46,4 @@ end
 monitor.append 'output data of yaml.'
 File.write "#{ENV['MS_ROOT']}/../data/summaries/movies.yml",    table_of_movies.to_yaml
 
-#monitor.aging
+monitor.aging
