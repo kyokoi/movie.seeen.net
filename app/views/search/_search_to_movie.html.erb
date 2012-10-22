@@ -8,6 +8,7 @@
 <p class="actions<% unless movie.stories.count > 0 %> finish<% end %>">
 <%= link_to "/movie/#{movie[:id]}/seens/new" do %><%= linksym.html_safe %><span>見た<% if 0 < movie.seen_users.count %>(<%= movie.seen_users.count %>)<% end %></span><% end %>
 <%= link_to movie_wish_new_path movie[:id] do %><%= linksym.html_safe %><span>見たい<% if 0 < movie.wish_users.count %>(<%= movie.wish_users.count %>)<% end %></span><% end %>
+<% if movie.wish_users(@author.id).count > 0 %><span class="emphasis">見たい映画として登録しています。</span><% end %>
 </p>
 
 <% if movie.stories.count > 0 -%>

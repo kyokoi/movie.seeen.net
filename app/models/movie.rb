@@ -65,7 +65,7 @@ class Movie < ActiveRecord::Base
   def wish_users(author_id = nil)
     matches = Seen.active.where(:movie_id => self.id).wishes
     if author_id
-      matches = matches.where author_id => author_id
+      matches = matches.where :author_id => author_id
     end
     matches
   end
