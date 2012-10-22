@@ -15,6 +15,8 @@ class MyController < ApplicationController
     @recently_seen = @recently_seen.order('date desc').order('id desc')
     @recently_seen = @recently_seen.limit SUMMARY_LIMIT
 
+    @movies, @watches, @wishes = analyze_outline @my.id
+
     some_seen = Seen.active.where(:author_id => @my.id)
     some_seen = some_seen.order('date desc').order('id desc')
 
@@ -82,17 +84,7 @@ class MyController < ApplicationController
       end
     end
 
-    @movies  = Movie.active
-    @watches = Seen.all_seens @my.id
-    @wishes  = Seen.active.wishes @my.id
-    class << @watches
-      def your_times
-        your_minuts = self.inject(0) do |sum, watch|
-          sum + watch.movie.show_time
-        end
-        your_minuts / (60.0 * 24)
-      end
-    end
+    @movies, @watches, @wishes = analyze_outline @my.id
 
     @region_tables = summarize_regions @watches
 
@@ -214,5 +206,20 @@ class MyController < ApplicationController
     unless ['all', 'star', 'wish'].include? params[:narrow]
       return redirect_to my_watches_path @my
     end
+  end
+
+  def analyze_outline(id)
+    movies  = Movie.active
+    watches = Seen.all_seens id
+    wishes  = Seen.active.wishes id
+    class << watches
+      def your_times
+        your_minuts = self.inject(0) do |sum, watch|
+          sum + watch.movie.show_time
+        end
+        your_minuts / (60.0 * 24)
+      end
+    end
+    return movies, watches, wishes
   end
 end
