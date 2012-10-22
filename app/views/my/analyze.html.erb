@@ -9,25 +9,6 @@
 </h1>
 </div>
 <%= render :partial => 'selecter' -%>
-<h2>鑑賞数ランキング</h2>
-<ul class="list finish">
-<li>
-<span class="left emphasis">週間ランキング</span>
-<span class="right"><%= @seens_ranks[:weekly_seen] %>位</span>
-</li>
-<li>
-<span class="left emphasis">月間ランキング</span>
-<span class="right"><%= @seens_ranks[:monthly_seen] %>位</span>
-</li>
-<li>
-<span class="left emphasis">年間ランキング</span>
-<span class="right"><%= @seens_ranks[:yearly_seen] %>位</span>
-</li>
-<li>
-<span class="left emphasis">歴代ランキング</span>
-<span class="right"><%= @seens_ranks[:all_seen] %>位</span>
-</li>
-</ul>
 
 <h2>分析</h2>
 <ul class="list finish">
@@ -50,6 +31,26 @@
 <li>
 <span class="left emphasis">映画を見た時間</span>
 <span class="right"><%= number_with_delimiter "%.1f" % [@watches.your_times] %>日分</span>
+</li>
+</ul>
+
+<h2>鑑賞数ランキング</h2>
+<ul class="list finish">
+<li>
+<span class="left emphasis">週間ランキング</span>
+<span class="right"><%= @seens_ranks[:weekly_seen] %>位</span>
+</li>
+<li>
+<span class="left emphasis">月間ランキング</span>
+<span class="right"><%= @seens_ranks[:monthly_seen] %>位</span>
+</li>
+<li>
+<span class="left emphasis">年間ランキング</span>
+<span class="right"><%= @seens_ranks[:yearly_seen] %>位</span>
+</li>
+<li>
+<span class="left emphasis">歴代ランキング</span>
+<span class="right"><%= @seens_ranks[:all_seen] %>位</span>
 </li>
 </ul>
 
