@@ -67,6 +67,21 @@ class MyController < ApplicationController
     page_title "#{@my.name}さんの映画管理 分析ページ"
     description "#{@my.name}さんの映画傾向・嗜好が分かります。"
 
+    kinds = [:weekly_seen, :monthly_seen, :yearly_seen, :all_seen]
+    @seens_ranks = {}
+    kinds.each do |kind|
+      rank = RankingIterator.new(kind,Author).rank(@my) || 0
+      begin
+        unless rank == 0
+          @seens_ranks[kind] = rank
+        end
+        @seens_ranks[kind] = "-" if rank == 0
+      rescue Exception => e
+        logger.warn "Failure marshal processing.[#{kind}][#{e}]"
+        nil
+      end
+    end
+
     @movies  = Movie.active
     @watches = Seen.all_seens @my.id
     @wishes  = Seen.active.wishes @my.id
