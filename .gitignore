@@ -11,11 +11,14 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp/cache/sass/
+tmp/*
 *.log
 data/*/*.mon
 data/*/*.yml
+data/*
 database.yml
 public/
+db/*
 
 # YARD artifacts
 .yardoc
