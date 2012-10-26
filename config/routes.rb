@@ -47,6 +47,7 @@ MovieSeen::Application.routes.draw do
     get '/'                                   => 'Admin#index',    :as => 'admin'
     get '/admin/messages/:target/:message_id' => 'Admin#messages', :as => 'admin_messages'
     resources :broadcasts
+    resources :label_elements
     resources :movies do
       resources :affiliates, :except => [:show, :index]
     end

@@ -1,0 +1,15 @@
+<h1>Listing label_elements</h1>
+
+<p>
+<%= linksym.html_safe %><%= link_to 'New Label Element', new_label_element_path %>
+</p>
+
+<p>
+<ul class="list">
+<% @label_elements.each do |label_element| -%>
+<%= link_to label_element do -%>
+<li style="float:left;"><%= linksym.html_safe %><%= label_element.title -%></li>
+<% end -%>
+<% end -%>
+</ul>
+</p>

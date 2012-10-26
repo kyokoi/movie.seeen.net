@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @label_element.id %>.<%= @label_element.title %></h2>
+<p class="finish">
+<%= link_to 'Index', label_elements_path %>｜
+<%= link_to 'Edit', edit_label_element_path(@label_element) %> |
+<%= link_to 'Destroy', @label_element, confirm: 'Are you sure?', method: :delete %>
+</p>
+
+
+<h3>Belongs</h3>
+<p>
+<ul class="list">
+<% @label_element.belongs.each do |label| -%>
+<%= link_to label_element_path label do -%>
+<li><%= linksym.html_safe %><%= label.title %></li>
+<% end -%>
+<% end -%>
+</ul>
+</p>
+
+<h3>Elements</h3>
+<p>
+<ul class="list">
+<% @label_element.elements.each do |label| -%>
+<%= link_to label_element_path label do -%>
+<li><%= linksym.html_safe %><%= label.title %></li>
+<% end -%>
+<% end -%>
+</ul>
+</p>
+

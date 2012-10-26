@@ -1,0 +1,25 @@
+<%= form_for(@label_element) do |f| %>
+  <% if @label_element.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@label_element.errors.count, "error") %> prohibited this label_element from being saved:</h2>
+
+      <ul>
+      <% @label_element.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :belongs %><br />
+    <%= select_tag :belongs, options_for_select(@label_elements.map{|element|[element.title, element.id]}.unshift(['nothing select', 0]), @label_element.belongs.map{|label|label.id}), :multiple => true, :size => @label_elements.count + 1 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
