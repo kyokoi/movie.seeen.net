@@ -17,7 +17,7 @@
     <td style="padding: 2px;"><div><%= movie.image %></div><div><%= image_tag movie.image, :size => "64x64" %></div></td>
     <td style="padding: 2px;"><%= movie.show_time %></td>
     <td style="padding: 2px;"><%= movie.open_date %></td>
-    <td style="padding: 2px;"><%= movie.category_tag.map{|tag| tag.name }.join(' ') %></td>
+    <td style="padding: 2px;"><%= simple_format movie.regions.map{|label|label.element.title}.join("\n") %></td>
     <td style="padding: 2px;"><%= movie.negative %></td>
     <td style="padding: 2px;">
       <div><%= link_to 'Show Movie',     movie_path(movie) %></div>

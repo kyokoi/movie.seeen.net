@@ -35,8 +35,7 @@ class MoviesController < AdminController
   # GET /movies/new
   # GET /movies/new.json
   def new
-    @movie      = Movie.new
-    @categories = list_of_category
+    @movie = Movie.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,52 +45,39 @@ class MoviesController < AdminController
 
   # GET /movies/1/edit
   def edit
-    @movie      = Movie.find(params[:id])
-    @categories = list_of_category
+    @movie = Movie.find params[:id]
   end
 
   # POST /movies
-  # POST /movies.json
   def create
-    @movie = Movie.new(params[:movie])
+    @movie = Movie.new params[:movie]
+    @movie.attributes = params[:attributes]
 
-    respond_to do |format|
-      if @movie.save
-        format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
-        format.json { render json: @movie, status: :created, location: @movie }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @movie.errors, status: :unprocessable_entity }
-      end
-    end
+    @movie.save!
+    redirect_to @movie, notice: 'Movie was successfully created.'
+  rescue Exception => e
+    logger.error e
+    render action: "new"
   end
 
   # PUT /movies/1
-  # PUT /movies/1.json
   def update
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find params[:id]
+    @movie.attributes = params[:attributes]
 
-    respond_to do |format|
-      if @movie.update_attributes(params[:movie])
-        format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @movie.errors, status: :unprocessable_entity }
-      end
-    end
+    @movie.update_attributes! params[:movie]
+    redirect_to @movie, notice: 'Movie was successfully updated.'
+  rescue Exception => e
+    logger.error e
+    render action: "edit"
   end
 
   # DELETE /movies/1
-  # DELETE /movies/1.json
   def destroy
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find params[:id]
     @movie.destroy
 
-    respond_to do |format|
-      format.html { redirect_to movies_url }
-      format.json { head :no_content }
-    end
+    redirect_to movies_url
   end
 
 
@@ -100,12 +86,5 @@ class MoviesController < AdminController
   def logged_in?
     author = super
     logged_into_admin author
-  end
-
-
-  private
-
-  def list_of_category
-    Tag.where :negative => 0, :belong => 1
   end
 end

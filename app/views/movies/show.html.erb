@@ -12,35 +12,15 @@
     <td style="padding: 2px;"><%= @movie.image %></td>
     <td style="padding: 2px;"><%= @movie.show_time %></td>
     <td style="padding: 2px;"><%= @movie.open_date %></td>
-    <td style="padding: 2px;"><%= @movie.category %></td>
+    <td style="padding: 2px;"><%= simple_format @movie.regions.map{|label|label.element.title}.join("\n") %></td>
     <td style="padding: 2px;"><%= @movie.negative %></td>
     <td style="padding: 2px;">
       <div><%= link_to 'Edit Movie',     edit_movie_path(@movie) %></div>
       <div><%= link_to 'Back', movies_path %></div>
     </td>
   </tr>
-  <tr>
-    <td> </td>
-    <th><div>アフィリエイトURL</div><div style="font-size: x-small; font-weight: normal;"><%= link_to 'New Affiliate', new_movie_affiliate_path(@movie) %></div></th>
-    <td colspan="6" style="border: 1px #cccccc solid;">
-      <table>
-<% @movie.affiliates.each do |affiliate| -%>
-        <tr style="border-bottom: solid 1px #ffffff;">
-          <td style="font-size: small; background-color: #eeeeee; padding: 1px 4px;">
-            <div><%= affiliate.name %></div>
-            <div><%= affiliate.url %></div>
-          </td>
-          <td>
-            <div><%= link_to 'Edit', edit_movie_affiliate_path(@movie, affiliate) %></div>
-            <div><%= link_to 'Destroy', [@movie, affiliate], confirm: 'Are you sure?', method: :delete %></div>
-          </td>
-        </tr>
-<% end -%>
-      </table>
-    </td>
-  </tr>
   <tr style="border: 1px #cccccc solid;">
-    <td colspan="8" style="padding: 2px;"><%= @movie.outline %></td>
+    <td colspan="8" style="padding: 2px;"><%= simple_format @movie.outline %></td>
   </tr>
   <tr style="border: 1px #cccccc solid;">
     <td colspan="8" style="padding: 2px;"><%= image_tag @movie.image %></td>

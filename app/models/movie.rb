@@ -6,7 +6,32 @@ class Movie < ActiveRecord::Base
   has_many :broadcasts
   has_many :seens
   has_many :affiliates
+  has_many :movie_attributes
   has_and_belongs_to_many :stories
+
+
+  def save!
+    transaction do
+      super
+      MovieAttribute.update self.id, @movie_attributes
+    end
+    true
+  end
+
+  def attributes=(params)
+    @movie_attributes = params
+  end
+
+  def self.regions
+    Label.active.where :belong_id => 1
+  end
+
+  def regions
+    regions = self.movie_attributes.where :belong_id => 1
+    regions.map do |attribute|
+      Label.active.where(:element_id => attribute.element_id, :belong_id => 1).first
+    end
+  end
 
   def self.search(word, offset, limit)
     search = SearchMovie.new

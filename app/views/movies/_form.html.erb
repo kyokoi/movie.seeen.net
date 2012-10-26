@@ -38,10 +38,8 @@
 <th>open_date</th><td><%= f.date_select :open_date, :start_year => 1900, :end_year => Time.now.year + 5, :use_month_numbers => true %></td>
 </tr>
 <tr>
-<th>category</th><td><%= f.select :category, options_for_select(@categories.map{|category| [category.name, category.id]}, @movie.category) %></td>
-</tr>
-<tr>
-<th>アマゾンアフィリエイトURL</th><td></td>
+<th>regions</th>
+<td><%= select_tag 'attributes[regions]', options_for_select(Movie.regions.map{|label|[label.element.title, label.element.id]}, @movie.regions.map{|label|label.element_id}), :multiple => true, :size=> Movie.regions.count %></td>
 </tr>
 <tr>
 <th>negative</th><td><%= f.text_field :negative %></td>
