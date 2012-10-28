@@ -38,10 +38,10 @@ class SearchMovie < ActiveResource::Base
     http.read_timeout = 1
     http.start do |conn|
       params = {
-        :q     => query,
-        :start => offset * @limit,
-        :rows  => @limit,
-        :wt    => 'json',
+        :q      => query,
+        :start  => offset * @limit,
+        :rows   => @limit,
+        :wt     => 'json',
         :dismax => 'true',
         :qf     => 'name^2.0 outline^0.1'
       }
