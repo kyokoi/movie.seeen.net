@@ -63,7 +63,7 @@ class SearchMovie < ActiveResource::Base
     if json['response']['numFound'] == 0
       nohit.warn "#{Time.now}\t#{words}"
     else
-      hit.warn "#{words}"
+      hit.warn "#{Time.now}\t#{words}"
     end
     return header, response
   end
