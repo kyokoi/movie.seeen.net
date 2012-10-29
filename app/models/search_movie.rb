@@ -30,7 +30,7 @@ class SearchMovie < ActiveResource::Base
     end
 
     offset = @offset || 0
-    query  = queries.join(' AND ') + '&sort=seen_count desc,open_date asc'
+    query  = queries.join(' AND ')
 
     json = nil
     http = Net::HTTP.new BASE_HOST, BASE_PORT
@@ -38,11 +38,12 @@ class SearchMovie < ActiveResource::Base
     http.read_timeout = 1
     http.start do |conn|
       params = {
-        :q     => '*:*',
-        :fq    => query,
-        :start => offset * @limit,
-        :rows  => @limit,
-        :wt    => 'json'
+        :q      => query,
+        :start  => offset * @limit,
+        :rows   => @limit,
+        :wt     => 'json',
+        :dismax => 'true',
+        :qf     => 'name^2.0 outline^0.1'
       }
       queries = params.map do |key, value|
         URI.encode "#{key}=#{value}"
@@ -62,7 +63,7 @@ class SearchMovie < ActiveResource::Base
     if json['response']['numFound'] == 0
       nohit.warn "#{Time.now}\t#{words}"
     else
-      hit.warn "#{words}"
+      hit.warn "#{Time.now}\t#{words}"
     end
     return header, response
   end
