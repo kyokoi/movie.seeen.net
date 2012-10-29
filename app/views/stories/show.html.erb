@@ -6,6 +6,10 @@
 <ul>
   <li><%= @story.id %></li>
   <li><%= @story.title %></li>
+  <% display_story(@story) do |movie| -%>
+  <%= movie.name_of_japan %><br>
+  <%= request.protocol %><%= request.host %><%= movie_seens_path movie.id %>
+  <% end -%>
   <li><%= simple_format @story.contents %></li>
   <li><%= @story.author.name %></li>
   <li><%= @story.release_at %></li>
